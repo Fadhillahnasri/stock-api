@@ -69,3 +69,14 @@
 2026-08-06 15:04:59,484 | INFO | WebSocket connected - GOTO.JK
 2026-08-06 15:08:14,206 | INFO | WebSocket disconnected - GOTO.JK
 2026-08-06 15:08:14,231 | INFO | WebSocket closed - GOTO.JK
+2026-08-06 15:22:28,505 | INFO | REST Request - Stock: BBRI.JK
+2026-08-06 15:45:06,153 | INFO | WebSocket connected - BBCA.JK
+2026-08-06 15:55:38,966 | INFO | WebSocket disconnected - BBCA.JK
+2026-08-06 15:55:38,985 | INFO | WebSocket closed - BBCA.JK
+2026-08-06 16:33:19,887 | INFO | REST Request - Company: BBNI.JK
+2026-08-06 16:33:19,892 | INFO | Fetching company profile: BBNI.JK
+2026-08-06 16:34:00,697 | INFO | REST Request - Stock: BBNI.JK
+2026-08-06 16:34:00,699 | INFO | Fetching stock data: BBNI.JK
+2026-08-06 16:38:08,642 | INFO | REST Request - Health Check
+2026-08-06 16:38:47,214 | INFO | REST Request - Stock: BBNI.JK
+2026-08-06 16:38:47,215 | INFO | Fetching stock data: BBNI.JK

@@ -5,6 +5,12 @@ from app.services.yahoo_service import (
     get_multiple_stocks,
     get_stock_price,
 )
+
+from app.schemas.stock_schema import StockResponse
+from app.schemas.multiple_stock_schema import MultipleStockResponse
+from app.schemas.company_schema import CompanyResponse
+from app.schemas.health_schema import HealthResponse
+
 from app.utils.logger import logger
 
 router = APIRouter()
@@ -16,6 +22,7 @@ router = APIRouter()
 
 @router.get("/", tags=["Home"])
 def home():
+
     logger.info("REST Request - Home")
 
     return {
@@ -31,8 +38,13 @@ def home():
 # Health Check
 # ===========================
 
-@router.get("/health", tags=["Health"])
+@router.get(
+    "/health",
+    response_model=HealthResponse,
+    tags=["Health"]
+)
 def health():
+
     logger.info("REST Request - Health Check")
 
     return {
@@ -47,6 +59,7 @@ def health():
 
 @router.get(
     "/stock/{symbol}",
+    response_model=StockResponse,
     tags=["Stocks"],
     summary="Get Stock Price",
     description="Mengambil data harga saham berdasarkan simbol."
@@ -58,6 +71,7 @@ def stock(symbol: str):
     data = get_stock_price(symbol)
 
     if data is None:
+
         logger.warning(f"Stock not found: {symbol}")
 
         raise HTTPException(
@@ -78,6 +92,7 @@ def stock(symbol: str):
 
 @router.get(
     "/stocks",
+    response_model=MultipleStockResponse,
     tags=["Stocks"],
     summary="Get Multiple Stocks",
     description="Mengambil data beberapa saham sekaligus."
@@ -98,7 +113,8 @@ def stocks(
 
     data = get_multiple_stocks(symbol_list)
 
-    if not data:
+    if data["total"] == 0:
+
         logger.warning("No stock data found.")
 
         raise HTTPException(
@@ -119,6 +135,7 @@ def stocks(
 
 @router.get(
     "/company/{symbol}",
+    response_model=CompanyResponse,
     tags=["Companies"],
     summary="Get Company Profile",
     description="Mengambil profil perusahaan berdasarkan simbol saham."
@@ -130,6 +147,7 @@ def company(symbol: str):
     data = get_company_profile(symbol)
 
     if data is None:
+
         logger.warning(f"Company not found: {symbol}")
 
         raise HTTPException(
