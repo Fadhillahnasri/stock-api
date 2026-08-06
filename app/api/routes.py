@@ -1,31 +1,49 @@
 from fastapi import APIRouter, HTTPException, Query
 
-from app.services import (
-    get_stock_price,
+from app.services.yahoo_service import (
+    get_company_profile,
     get_multiple_stocks,
-    get_company_profile
+    get_stock_price,
 )
+from app.utils.logger import logger
 
 router = APIRouter()
 
 
+# ===========================
+# Home
+# ===========================
+
 @router.get("/", tags=["Home"])
 def home():
+    logger.info("REST Request - Home")
+
     return {
         "application": "Indonesia Stock API",
+        "status": "running",
         "provider": "Yahoo Finance",
         "version": "1.0.0",
         "documentation": "/docs"
     }
 
 
+# ===========================
+# Health Check
+# ===========================
+
 @router.get("/health", tags=["Health"])
 def health():
+    logger.info("REST Request - Health Check")
+
     return {
         "status": "healthy",
         "message": "API is running"
     }
 
+
+# ===========================
+# Single Stock
+# ===========================
 
 @router.get(
     "/stock/{symbol}",
@@ -35,9 +53,13 @@ def health():
 )
 def stock(symbol: str):
 
+    logger.info(f"REST Request - Stock: {symbol}")
+
     data = get_stock_price(symbol)
 
     if data is None:
+        logger.warning(f"Stock not found: {symbol}")
+
         raise HTTPException(
             status_code=404,
             detail=f"Stock '{symbol}' not found."
@@ -49,6 +71,10 @@ def stock(symbol: str):
         "data": data
     }
 
+
+# ===========================
+# Multiple Stocks
+# ===========================
 
 @router.get(
     "/stocks",
@@ -63,12 +89,22 @@ def stocks(
     )
 ):
 
+    logger.info(f"REST Request - Multiple Stocks: {symbols}")
+
     symbol_list = [
-        s.strip().upper()
-        for s in symbols.split(",")
+        symbol.strip().upper()
+        for symbol in symbols.split(",")
     ]
 
     data = get_multiple_stocks(symbol_list)
+
+    if not data:
+        logger.warning("No stock data found.")
+
+        raise HTTPException(
+            status_code=404,
+            detail="No stock data found."
+        )
 
     return {
         "success": True,
@@ -77,17 +113,25 @@ def stocks(
     }
 
 
+# ===========================
+# Company Profile
+# ===========================
+
 @router.get(
     "/company/{symbol}",
-    tags=["Company"],
+    tags=["Companies"],
     summary="Get Company Profile",
     description="Mengambil profil perusahaan berdasarkan simbol saham."
 )
 def company(symbol: str):
 
+    logger.info(f"REST Request - Company: {symbol}")
+
     data = get_company_profile(symbol)
 
     if data is None:
+        logger.warning(f"Company not found: {symbol}")
+
         raise HTTPException(
             status_code=404,
             detail=f"Company '{symbol}' not found."
