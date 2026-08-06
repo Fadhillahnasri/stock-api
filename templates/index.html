@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Indonesia Stock Monitor</title>
+
+    <style>
+
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background:#f4f6f9;
+            padding:40px;
+        }
+
+        .card{
+            background:white;
+            width:500px;
+            margin:auto;
+            padding:25px;
+            border-radius:12px;
+            box-shadow:0px 4px 15px rgba(0,0,0,.15);
+        }
+
+        h1{
+            text-align:center;
+        }
+
+        select,button{
+
+            width:100%;
+            padding:12px;
+            margin-top:10px;
+            font-size:16px;
+        }
+
+        button{
+
+            background:#0066cc;
+            color:white;
+            border:none;
+            cursor:pointer;
+            border-radius:6px;
+        }
+
+        button:hover{
+
+            background:#0050a0;
+        }
+
+        hr{
+
+            margin:25px 0;
+        }
+
+        p{
+
+            font-size:18px;
+        }
+
+        span{
+
+            font-weight:bold;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>📈 Indonesia Stock Monitor</h1>
+
+<label>Pilih Saham</label>
+
+<select id="stockSelect">
+
+<option value="BBCA.JK">Bank Central Asia (BBCA)</option>
+
+<option value="BBRI.JK">Bank Rakyat Indonesia (BBRI)</option>
+
+<option value="BMRI.JK">Bank Mandiri (BMRI)</option>
+
+<option value="BBNI.JK">Bank Negara Indonesia (BBNI)</option>
+
+<option value="BRIS.JK">Bank Syariah Indonesia (BRIS)</option>
+
+<option value="TLKM.JK">Telkom Indonesia (TLKM)</option>
+
+<option value="ASII.JK">Astra International (ASII)</option>
+
+<option value="GOTO.JK">GoTo (GOTO)</option>
+
+<option value="AMMN.JK">Amman Mineral (AMMN)</option>
+
+<option value="ICBP.JK">Indofood CBP (ICBP)</option>
+
+<option value="UNVR.JK">Unilever Indonesia (UNVR)</option>
+
+</select>
+
+<button onclick="connectSocket()">
+Connect
+</button>
+
+<hr>
+
+<h2 id="symbol"></h2>
+
+<h3 id="company"></h3>
+
+<p>Current Price :
+<span id="price"></span>
+</p>
+
+<p>High :
+<span id="high"></span>
+</p>
+
+<p>Low :
+<span id="low"></span>
+</p>
+
+<p>Last Update :
+<span id="time"></span>
+</p>
+
+</div>
+
+<script>
+
+let socket;
+
+function connectSocket(){
+
+    if(socket){
+
+        socket.close();
+
+    }
+
+    const symbol=document.getElementById("stockSelect").value;
+
+    socket=new WebSocket(`ws://127.0.0.1:8000/ws/${symbol}`);
+
+    socket.onopen=function(){
+
+        console.log("Connected :",symbol);
+
+    }
+
+    socket.onmessage=function(event){
+
+        const data=JSON.parse(event.data);
+
+        document.getElementById("symbol").innerHTML=data.symbol;
+
+        document.getElementById("company").innerHTML=data.company_name;
+
+        document.getElementById("price").innerHTML=data.current_price;
+
+        document.getElementById("high").innerHTML=data.high;
+
+        document.getElementById("low").innerHTML=data.low;
+
+        document.getElementById("time").innerHTML=new Date().toLocaleTimeString();
+
+    }
+
+}
+
+connectSocket();
+
+</script>
+
+</body>
+
+</html>
