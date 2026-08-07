@@ -1,9 +1,9 @@
 from fastapi import APIRouter, HTTPException, Query
 
-from app.services.yahoo_service import (
-    get_company_profile,
-    get_multiple_stocks,
-    get_stock_price,
+from app.services.stock_service import (
+    get_stock,
+    get_company,
+    get_multiple_stocks
 )
 
 from app.schemas.stock_schema import StockResponse
@@ -68,7 +68,7 @@ def stock(symbol: str):
 
     logger.info(f"REST Request - Stock: {symbol}")
 
-    data = get_stock_price(symbol)
+    data = get_stock(symbol)
 
     if data is None:
 
@@ -144,7 +144,7 @@ def company(symbol: str):
 
     logger.info(f"REST Request - Company: {symbol}")
 
-    data = get_company_profile(symbol)
+    data = get_company(symbol)
 
     if data is None:
 

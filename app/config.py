@@ -1,7 +1,21 @@
-import os
-from dotenv import load_dotenv
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
-load_dotenv()
 
-FINNHUB_API_KEY = os.getenv("FINNHUB_API_KEY")
-BASE_URL = "https://finnhub.io/api/v1"
+class Settings(BaseSettings):
+
+    APP_NAME: str
+    APP_VERSION: str
+
+    PROVIDER: str
+
+    REQUEST_TIMEOUT: int
+
+    LOG_LEVEL: str
+
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        extra="ignore"
+    )
+
+
+settings = Settings()

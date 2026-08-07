@@ -2,7 +2,7 @@ import asyncio
 
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 
-from app.services.yahoo_service import get_stock_price
+from app.services.stock_service import get_stock
 from app.utils.logger import logger
 
 router = APIRouter()
@@ -19,7 +19,7 @@ async def websocket_endpoint(websocket: WebSocket, symbol: str):
 
         while True:
 
-            data = get_stock_price(symbol)
+            data = get_stock(symbol)
 
             if data is not None:
                 await websocket.send_json(data)

@@ -80,3 +80,266 @@
 2026-08-06 16:38:08,642 | INFO | REST Request - Health Check
 2026-08-06 16:38:47,214 | INFO | REST Request - Stock: BBNI.JK
 2026-08-06 16:38:47,215 | INFO | Fetching stock data: BBNI.JK
+2026-08-07 09:21:47,027 | INFO | WebSocket connected - BBCA.JK
+2026-08-07 09:21:47,028 | INFO | Fetching stock data: BBCA.JK
+2026-08-07 09:21:51,563 | INFO | Fetching stock data: BBCA.JK
+2026-08-07 09:21:54,661 | INFO | Fetching stock data: BBCA.JK
+2026-08-07 09:21:58,619 | INFO | Fetching stock data: BBCA.JK
+2026-08-07 09:22:01,809 | INFO | Fetching stock data: BBCA.JK
+2026-08-07 09:22:04,986 | INFO | Fetching stock data: BBCA.JK
+2026-08-07 09:22:08,073 | INFO | Fetching stock data: BBCA.JK
+2026-08-07 09:22:11,268 | INFO | Fetching stock data: BBCA.JK
+2026-08-07 09:22:14,542 | INFO | Fetching stock data: BBCA.JK
+2026-08-07 09:22:18,351 | INFO | Fetching stock data: BBCA.JK
+2026-08-07 09:22:21,455 | INFO | Fetching stock data: BBCA.JK
+2026-08-07 09:22:22,316 | INFO | WebSocket connected - BBNI.JK
+2026-08-07 09:22:22,317 | INFO | Fetching stock data: BBNI.JK
+2026-08-07 09:22:25,321 | INFO | Fetching stock data: BBCA.JK
+2026-08-07 09:22:25,475 | INFO | WebSocket disconnected - BBCA.JK
+2026-08-07 09:22:25,476 | INFO | WebSocket closed - BBCA.JK
+2026-08-07 09:22:25,555 | INFO | Fetching stock data: BBNI.JK
+2026-08-07 09:22:28,666 | INFO | Fetching stock data: BBNI.JK
+2026-08-07 09:22:32,349 | INFO | Fetching stock data: BBNI.JK
+2026-08-07 09:22:35,557 | INFO | Fetching stock data: BBNI.JK
+2026-08-07 09:22:39,123 | INFO | Fetching stock data: BBNI.JK
+2026-08-07 09:22:42,607 | INFO | Fetching stock data: BBNI.JK
+2026-08-07 09:22:45,888 | INFO | Fetching stock data: BBNI.JK
+2026-08-07 09:22:46,971 | INFO | WebSocket connected - ASII.JK
+2026-08-07 09:22:46,971 | INFO | Fetching stock data: ASII.JK
+2026-08-07 09:22:49,168 | INFO | Fetching stock data: BBNI.JK
+2026-08-07 09:22:49,654 | INFO | WebSocket disconnected - BBNI.JK
+2026-08-07 09:22:49,654 | INFO | WebSocket closed - BBNI.JK
+2026-08-07 09:22:50,326 | INFO | Fetching stock data: ASII.JK
+2026-08-07 09:22:53,504 | INFO | Fetching stock data: ASII.JK
+2026-08-07 09:22:56,831 | INFO | Fetching stock data: ASII.JK
+2026-08-07 09:23:00,023 | INFO | Fetching stock data: ASII.JK
+2026-08-07 09:23:03,176 | INFO | Fetching stock data: ASII.JK
+2026-08-07 09:23:03,298 | INFO | WebSocket disconnected - ASII.JK
+2026-08-07 09:23:03,298 | INFO | WebSocket closed - ASII.JK
+2026-08-07 09:23:23,642 | INFO | WebSocket connected - BBCA.JK
+2026-08-07 09:23:23,642 | INFO | Fetching stock data: BBCA.JK
+2026-08-07 09:23:26,893 | INFO | Fetching stock data: BBCA.JK
+2026-08-07 09:23:27,062 | INFO | WebSocket connected - ICBP.JK
+2026-08-07 09:23:27,063 | INFO | Fetching stock data: ICBP.JK
+2026-08-07 09:23:30,057 | INFO | Fetching stock data: BBCA.JK
+2026-08-07 09:23:30,232 | INFO | WebSocket disconnected - BBCA.JK
+2026-08-07 09:23:30,232 | INFO | WebSocket closed - BBCA.JK
+2026-08-07 09:23:30,367 | INFO | Fetching stock data: ICBP.JK
+2026-08-07 09:23:33,749 | INFO | Fetching stock data: ICBP.JK
+2026-08-07 09:23:36,986 | INFO | Fetching stock data: ICBP.JK
+2026-08-07 09:23:40,209 | INFO | Fetching stock data: ICBP.JK
+2026-08-07 09:23:43,474 | INFO | Fetching stock data: ICBP.JK
+2026-08-07 09:23:46,621 | INFO | Fetching stock data: ICBP.JK
+2026-08-07 09:23:49,844 | INFO | Fetching stock data: ICBP.JK
+2026-08-07 09:23:53,226 | INFO | Fetching stock data: ICBP.JK
+2026-08-07 09:23:56,482 | INFO | Fetching stock data: ICBP.JK
+2026-08-07 09:23:59,671 | INFO | Fetching stock data: ICBP.JK
+2026-08-07 09:24:02,901 | INFO | Fetching stock data: ICBP.JK
+2026-08-07 09:24:06,097 | INFO | Fetching stock data: ICBP.JK
+2026-08-07 09:24:09,436 | INFO | Fetching stock data: ICBP.JK
+2026-08-07 09:24:12,533 | INFO | Fetching stock data: ICBP.JK
+2026-08-07 09:24:15,643 | INFO | Fetching stock data: ICBP.JK
+2026-08-07 09:24:18,768 | INFO | Fetching stock data: ICBP.JK
+2026-08-07 09:24:21,883 | INFO | Fetching stock data: ICBP.JK
+2026-08-07 09:24:25,054 | INFO | Fetching stock data: ICBP.JK
+2026-08-07 09:24:28,239 | INFO | Fetching stock data: ICBP.JK
+2026-08-07 09:24:31,418 | INFO | Fetching stock data: ICBP.JK
+2026-08-07 09:24:34,509 | INFO | Fetching stock data: ICBP.JK
+2026-08-07 09:24:37,604 | INFO | Fetching stock data: ICBP.JK
+2026-08-07 09:24:40,812 | INFO | Fetching stock data: ICBP.JK
+2026-08-07 09:24:44,149 | INFO | Fetching stock data: ICBP.JK
+2026-08-07 09:24:47,278 | INFO | Fetching stock data: ICBP.JK
+2026-08-07 09:24:50,501 | INFO | Fetching stock data: ICBP.JK
+2026-08-07 09:24:53,603 | INFO | Fetching stock data: ICBP.JK
+2026-08-07 09:24:56,785 | INFO | Fetching stock data: ICBP.JK
+2026-08-07 09:24:59,878 | INFO | Fetching stock data: ICBP.JK
+2026-08-07 09:25:03,045 | INFO | Fetching stock data: ICBP.JK
+2026-08-07 09:25:03,220 | INFO | WebSocket disconnected - ICBP.JK
+2026-08-07 09:25:03,220 | INFO | WebSocket closed - ICBP.JK
+2026-08-07 09:55:40,281 | INFO | WebSocket connected - BBCA.JK
+2026-08-07 09:55:40,282 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 09:55:40,283 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 09:55:43,362 | INFO | WebSocket connected - TLKM.JK
+2026-08-07 09:55:43,362 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:55:43,363 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:55:44,353 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 09:55:44,354 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 09:55:44,486 | INFO | WebSocket disconnected - BBCA.JK
+2026-08-07 09:55:44,487 | INFO | WebSocket closed - BBCA.JK
+2026-08-07 09:55:46,807 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:55:46,807 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:55:50,108 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:55:50,108 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:55:53,384 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:55:53,384 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:55:56,549 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:55:56,550 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:55:59,676 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:55:59,676 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:56:02,863 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:56:02,863 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:56:05,995 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:56:05,996 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:56:09,352 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:56:09,352 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:56:12,838 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:56:12,839 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:56:15,965 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:56:15,966 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:56:19,154 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:56:19,154 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:56:22,459 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:56:22,459 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:56:25,675 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:56:25,676 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:56:28,766 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:56:28,766 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:56:31,889 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:56:31,890 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:56:34,980 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:56:34,980 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:56:38,107 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:56:38,109 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:56:41,301 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:56:41,302 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:56:44,392 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:56:44,392 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:56:47,641 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:56:47,642 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:56:50,731 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:56:50,732 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:56:53,845 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:56:53,845 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:56:57,061 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:56:57,061 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:57:00,189 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:57:00,189 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:57:03,351 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:57:03,351 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:57:06,667 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:57:06,668 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:57:09,767 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:57:09,768 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:57:13,045 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:57:13,046 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:57:16,260 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:57:16,261 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:57:19,482 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:57:19,483 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:57:22,663 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:57:22,664 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:57:25,749 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:57:25,750 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:57:29,010 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:57:29,010 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:57:32,296 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:57:32,296 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:57:35,418 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:57:35,418 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:57:38,648 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:57:38,648 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:57:41,919 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:57:41,919 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:57:45,197 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:57:45,197 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:57:48,326 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:57:48,327 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:57:51,440 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:57:51,440 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:57:54,598 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:57:54,598 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:57:57,986 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:57:57,987 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:58:01,272 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:58:01,272 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:58:04,440 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:58:04,441 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:58:07,626 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:58:07,627 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:58:10,794 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:58:10,795 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:58:13,914 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:58:13,915 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:58:16,998 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:58:16,998 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:58:20,109 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:58:20,109 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:58:23,196 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:58:23,196 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:58:26,570 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:58:26,571 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:58:30,158 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:58:30,159 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:58:33,386 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:58:33,387 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:58:36,595 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:58:36,596 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:58:39,776 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:58:39,776 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:58:43,057 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:58:43,057 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:58:46,323 | INFO | Service - Get Stock: TLKM.JK
+2026-08-07 09:58:46,324 | INFO | Yahoo Provider - Fetch Stock: TLKM.JK
+2026-08-07 09:58:47,118 | INFO | WebSocket disconnected - TLKM.JK
+2026-08-07 09:58:47,118 | INFO | WebSocket closed - TLKM.JK
+2026-08-07 10:12:53,570 | INFO | REST Request - Stock: ABCDEF
+2026-08-07 10:12:53,572 | INFO | Service - Get Stock: ABCDEF
+2026-08-07 10:12:53,573 | INFO | Yahoo Provider - Fetch Stock: ABCDEF
+2026-08-07 10:12:54,331 | ERROR | HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: ABCDEF"}}}
+2026-08-07 10:12:54,448 | ERROR | 1 validation error:
+  {'type': 'string_type', 'loc': ('response', 'data', 'company_name'), 'msg': 'Input should be a valid string', 'input': None}
+
+  File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 60, in stock
+    GET /stock/{symbol}
+Traceback (most recent call last):
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    await app(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 727, in app
+    content = await serialize_response(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 324, in serialize_response
+    raise ResponseValidationError(
+    ...<3 lines>...
+    )
+fastapi.exceptions.ResponseValidationError: 1 validation error:
+  {'type': 'string_type', 'loc': ('response', 'data', 'company_name'), 'msg': 'Input should be a valid string', 'input': None}
+
+  File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 60, in stock
+    GET /stock/{symbol}
+2026-08-07 10:24:24,438 | INFO | Incoming Request | GET /stock/BBCA.JK
+2026-08-07 10:24:24,458 | INFO | REST Request - Stock: BBCA.JK
+2026-08-07 10:24:24,459 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 10:24:24,459 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 10:24:25,705 | INFO | Completed | Status=200 | Time=1.267s
