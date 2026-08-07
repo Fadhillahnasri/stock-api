@@ -76,41 +76,25 @@
 <label>Pilih Saham</label>
 
 <select id="stockSelect">
-
-<option value="BBCA.JK">Bank Central Asia (BBCA)</option>
-
-<option value="BBRI.JK">Bank Rakyat Indonesia (BBRI)</option>
-
-<option value="BMRI.JK">Bank Mandiri (BMRI)</option>
-
-<option value="BBNI.JK">Bank Negara Indonesia (BBNI)</option>
-
-<option value="BRIS.JK">Bank Syariah Indonesia (BRIS)</option>
-
-<option value="TLKM.JK">Telkom Indonesia (TLKM)</option>
-
-<option value="ASII.JK">Astra International (ASII)</option>
-
-<option value="GOTO.JK">GoTo (GOTO)</option>
-
-<option value="AMMN.JK">Amman Mineral (AMMN)</option>
-
-<option value="ICBP.JK">Indofood CBP (ICBP)</option>
-
-<option value="UNVR.JK">Unilever Indonesia (UNVR)</option>
-
+    <option value="BBCA.JK">Bank Central Asia (BBCA)</option>
+    <option value="BBRI.JK">Bank Rakyat Indonesia (BBRI)</option>
+    <option value="BMRI.JK">Bank Mandiri (BMRI)</option>
+    <option value="BBNI.JK">Bank Negara Indonesia (BBNI)</option>
+    <option value="BRIS.JK">Bank Syariah Indonesia (BRIS)</option>
+    <option value="TLKM.JK">Telkom Indonesia (TLKM)</option>
+    <option value="ASII.JK">Astra International (ASII)</option>
+    <option value="GOTO.JK">GoTo (GOTO)</option>
+    <option value="AMMN.JK">Amman Mineral (AMMN)</option>
+    <option value="ICBP.JK">Indofood CBP (ICBP)</option>
+    <option value="UNVR.JK">Unilever Indonesia (UNVR)</option>
 </select>
-
-<button onclick="connectSocket()">
-Connect
-</button>
+    <button onclick="connectSocket()">
+    Connect
+    </button>
 
 <hr>
-
 <h2 id="symbol"></h2>
-
 <h3 id="company"></h3>
-
 <p>Current Price :
 <span id="price"></span>
 </p>
@@ -133,45 +117,113 @@ Connect
 
 let socket;
 
+
 function connectSocket(){
 
+    // Tutup koneksi sebelumnya
     if(socket){
 
         socket.close();
 
     }
 
-    const symbol=document.getElementById("stockSelect").value;
 
-    socket=new WebSocket(`ws://127.0.0.1:8000/ws/${symbol}`);
+    const symbol =
+        document.getElementById("stockSelect").value;
 
-    socket.onopen=function(){
 
-        console.log("Connected :",symbol);
+    console.log("Connecting to:", symbol);
 
-    }
 
-    socket.onmessage=function(event){
+    socket = new WebSocket(
+        `ws://127.0.0.1:8000/ws/${symbol}`
+    );
 
-        const data=JSON.parse(event.data);
 
-        document.getElementById("symbol").innerHTML=data.symbol;
+    socket.onopen = function(){
 
-        document.getElementById("company").innerHTML=data.company_name;
+        console.log(
+            "WebSocket Connected:",
+            symbol
+        );
 
-        document.getElementById("price").innerHTML=data.current_price;
+    };
 
-        document.getElementById("high").innerHTML=data.high;
 
-        document.getElementById("low").innerHTML=data.low;
+    socket.onmessage = function(event){
 
-        document.getElementById("time").innerHTML=new Date().toLocaleTimeString();
+        console.log(
+            "WebSocket Message:",
+            event.data
+        );
 
-    }
+
+        const response =
+            JSON.parse(event.data);
+
+
+        // Kalau backend mengirim error
+        if(!response.success){
+
+            console.error(
+                response.message
+            );
+
+            return;
+
+        }
+
+
+        // Ambil data saham
+        const data =
+            response.data;
+
+
+        document.getElementById("symbol").innerHTML =
+            data.symbol;
+
+
+        document.getElementById("company").innerHTML =
+            data.company_name;
+
+
+        document.getElementById("price").innerHTML =
+            data.current_price;
+
+
+        document.getElementById("high").innerHTML =
+            data.high;
+
+
+        document.getElementById("low").innerHTML =
+            data.low;
+
+
+        document.getElementById("time").innerHTML =
+            new Date().toLocaleTimeString();
+
+    };
+
+
+    socket.onerror = function(error){
+
+        console.error(
+            "WebSocket Error:",
+            error
+        );
+
+    };
+
+
+    socket.onclose = function(){
+
+        console.log(
+            "WebSocket Disconnected"
+        );
+
+    };
 
 }
-
-connectSocket();
 
 </script>
 

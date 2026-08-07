@@ -1,9 +1,9 @@
-from app.providers.yahoo_provider import YahooProvider
+from app.config import settings
+from app.providers.provider_factory import get_provider
 from app.utils.logger import logger
 
 
-# Provider yang digunakan aplikasi
-provider = YahooProvider()
+provider = get_provider(settings.PROVIDER)
 
 
 def get_stock_price(symbol: str):

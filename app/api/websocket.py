@@ -7,11 +7,15 @@ from app.utils.logger import logger
 router = APIRouter()
 
 
-@router.websocket("/ws/stock/{symbol}")
+@router.websocket("/ws/{symbol}")
 async def stock_websocket(
     websocket: WebSocket,
     symbol: str
 ):
+
+    logger.info(
+        f"WebSocket Connection Attempt - Stock: {symbol}"
+    )
 
     await websocket.accept()
 
@@ -25,7 +29,6 @@ async def stock_websocket(
 
         while True:
 
-            # Ambil data melalui service
             data = get_stock_price(symbol)
 
             if data is None:
@@ -41,14 +44,12 @@ async def stock_websocket(
 
                 break
 
-            # Kirim data ke client
             await websocket.send_json({
                 "success": True,
                 "provider": "Yahoo Finance",
                 "data": data
             })
 
-            # Menunggu pesan dari client
             message = await websocket.receive_text()
 
             logger.info(

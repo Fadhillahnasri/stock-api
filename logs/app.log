@@ -2533,3 +2533,54 @@ fastapi.exceptions.ResponseValidationError: 1 validation error:
 2026-08-07 15:17:39,362 | INFO | Stock Service - Get Company Profile: BBCA.JK
 2026-08-07 15:17:39,363 | INFO | Yahoo Provider - Get Company Profile: BBCA.JK
 2026-08-07 15:17:40,357 | INFO | Completed | Status=200 | Time=1.084s
+2026-08-07 15:53:36,714 | INFO | Yahoo Provider - Get Stock Price: BBNI.JK
+2026-08-07 15:57:43,912 | INFO | Incoming Request | GET /dashboard
+2026-08-07 15:57:43,959 | INFO | Completed | Status=200 | Time=0.047s
+2026-08-07 16:00:08,416 | INFO | Incoming Request | GET /dashboard
+2026-08-07 16:00:08,431 | INFO | Completed | Status=200 | Time=0.015s
+2026-08-07 16:00:08,721 | INFO | WebSocket Connected - Stock: BBCA.JK
+2026-08-07 16:00:08,721 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-08-07 16:00:08,722 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-08-07 16:00:09,723 | INFO | WebSocket Disconnected - Stock: BBCA.JK
+2026-08-07 16:00:09,726 | INFO | WebSocket Connected - Stock: BBCA.JK
+2026-08-07 16:00:09,727 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-08-07 16:00:09,727 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-08-07 16:01:11,313 | INFO | WebSocket Disconnected - Stock: BBCA.JK
+2026-08-07 16:01:11,374 | INFO | WebSocket Connected - Stock: TLKM.JK
+2026-08-07 16:01:11,374 | INFO | Stock Service - Get Stock Price: TLKM.JK
+2026-08-07 16:01:11,375 | INFO | Yahoo Provider - Get Stock Price: TLKM.JK
+2026-08-07 16:03:53,089 | INFO | WebSocket Disconnected - Stock: TLKM.JK
+2026-08-07 16:03:59,954 | INFO | WebSocket Connection Attempt - Stock: BBNI.JK
+2026-08-07 16:03:59,956 | INFO | WebSocket Connected - Stock: BBNI.JK
+2026-08-07 16:03:59,956 | INFO | Stock Service - Get Stock Price: BBNI.JK
+2026-08-07 16:03:59,956 | INFO | Yahoo Provider - Get Stock Price: BBNI.JK
+2026-08-07 16:04:01,607 | INFO | Incoming Request | GET /dashboard
+2026-08-07 16:04:01,617 | INFO | Completed | Status=200 | Time=0.011s
+2026-08-07 16:04:01,677 | INFO | WebSocket Disconnected - Stock: BBNI.JK
+2026-08-07 16:04:01,843 | INFO | WebSocket Connection Attempt - Stock: BBCA.JK
+2026-08-07 16:04:01,845 | INFO | WebSocket Connected - Stock: BBCA.JK
+2026-08-07 16:04:01,846 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-08-07 16:04:01,846 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-08-07 16:04:02,914 | INFO | WebSocket Disconnected - Stock: BBCA.JK
+2026-08-07 16:04:02,918 | INFO | WebSocket Connection Attempt - Stock: BBCA.JK
+2026-08-07 16:04:02,919 | INFO | WebSocket Connected - Stock: BBCA.JK
+2026-08-07 16:04:02,919 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-08-07 16:04:02,920 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-08-07 16:04:05,365 | INFO | WebSocket Disconnected - Stock: BBCA.JK
+2026-08-07 16:04:05,369 | INFO | WebSocket Connection Attempt - Stock: BBCA.JK
+2026-08-07 16:04:05,370 | INFO | WebSocket Connected - Stock: BBCA.JK
+2026-08-07 16:04:05,370 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-08-07 16:04:05,371 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-08-07 16:11:27,192 | INFO | Incoming Request | GET /dashboard
+2026-08-07 16:11:27,406 | INFO | Completed | Status=200 | Time=0.222s
+2026-08-07 16:11:27,497 | INFO | WebSocket Disconnected - Stock: BBCA.JK
+2026-08-07 16:11:29,214 | INFO | WebSocket Connection Attempt - Stock: BBCA.JK
+2026-08-07 16:11:29,217 | INFO | WebSocket Connected - Stock: BBCA.JK
+2026-08-07 16:11:29,218 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-08-07 16:11:29,219 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-08-07 16:21:48,302 | INFO | WebSocket Disconnected - Stock: BBCA.JK
+2026-08-07 16:41:49,584 | INFO | WebSocket Connection Attempt - Stock: BBNI.JK
+2026-08-07 16:41:49,620 | INFO | WebSocket Connected - Stock: BBNI.JK
+2026-08-07 16:41:49,622 | INFO | Stock Service - Get Stock Price: BBNI.JK
+2026-08-07 16:41:49,625 | INFO | Yahoo Provider - Get Stock Price: BBNI.JK
+2026-08-07 16:42:54,722 | INFO | WebSocket Disconnected - Stock: BBNI.JK
