@@ -1,41 +1,78 @@
-import asyncio
-
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 
-from app.services.stock_service import get_stock
+from app.services.stock_service import get_stock_price
 from app.utils.logger import logger
+
 
 router = APIRouter()
 
 
-@router.websocket("/ws/{symbol}")
-async def websocket_endpoint(websocket: WebSocket, symbol: str):
+@router.websocket("/ws/stock/{symbol}")
+async def stock_websocket(
+    websocket: WebSocket,
+    symbol: str
+):
 
     await websocket.accept()
 
-    logger.info(f"WebSocket connected - {symbol}")
+    symbol = symbol.upper()
+
+    logger.info(
+        f"WebSocket Connected - Stock: {symbol}"
+    )
 
     try:
 
         while True:
 
-            data = get_stock(symbol)
+            # Ambil data melalui service
+            data = get_stock_price(symbol)
 
-            if data is not None:
-                await websocket.send_json(data)
-            else:
-                logger.warning(f"No data available for {symbol}")
+            if data is None:
 
-            await asyncio.sleep(3)
+                logger.warning(
+                    f"WebSocket - Stock not found: {symbol}"
+                )
+
+                await websocket.send_json({
+                    "success": False,
+                    "message": f"Stock '{symbol}' not found."
+                })
+
+                break
+
+            # Kirim data ke client
+            await websocket.send_json({
+                "success": True,
+                "provider": "Yahoo Finance",
+                "data": data
+            })
+
+            # Menunggu pesan dari client
+            message = await websocket.receive_text()
+
+            logger.info(
+                f"WebSocket Message - {symbol}: {message}"
+            )
 
     except WebSocketDisconnect:
 
-        logger.info(f"WebSocket disconnected - {symbol}")
+        logger.info(
+            f"WebSocket Disconnected - Stock: {symbol}"
+        )
 
     except Exception as e:
 
-        logger.error(f"WebSocket error ({symbol}): {e}")
+        logger.exception(
+            f"WebSocket Error - {symbol}: {e}"
+        )
 
-    finally:
+        try:
 
-        logger.info(f"WebSocket closed - {symbol}")
+            await websocket.send_json({
+                "success": False,
+                "message": "Internal server error"
+            })
+
+        except Exception:
+            pass

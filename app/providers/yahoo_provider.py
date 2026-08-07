@@ -1,72 +1,82 @@
 import yfinance as yf
 
+from app.providers.base_provider import BaseProvider
 from app.utils.logger import logger
 
 
-def fetch_stock(symbol: str) -> dict | None:
-    """
-    Mengambil data harga saham dari Yahoo Finance.
-    """
+class YahooProvider(BaseProvider):
 
-    try:
+    def get_stock_price(self, symbol: str):
 
-        logger.info(f"Yahoo Provider - Fetch Stock: {symbol}")
+        try:
+            symbol = symbol.upper()
 
-        stock = yf.Ticker(symbol.upper())
-        info = stock.info
+            logger.info(
+                f"Yahoo Provider - Get Stock Price: {symbol}"
+            )
 
-        if not info:
+            stock = yf.Ticker(symbol)
+            info = stock.info
+
+            if not info:
+                return None
+
+            return {
+                "symbol": symbol,
+                "company_name": info.get("longName"),
+                "current_price": info.get("currentPrice"),
+                "high": info.get("dayHigh"),
+                "low": info.get("dayLow"),
+                "open": info.get("open"),
+                "previous_close": info.get("previousClose"),
+                "change": info.get("regularMarketChange"),
+                "change_percent": info.get(
+                    "regularMarketChangePercent"
+                ),
+                "currency": info.get("currency"),
+                "exchange": info.get("exchange"),
+                "market_state": info.get("marketState")
+            }
+
+        except Exception as e:
+
+            logger.exception(
+                f"Yahoo Provider Error - Stock {symbol}: {e}"
+            )
+
             return None
 
-        return {
-            "symbol": symbol.upper(),
-            "company_name": info.get("longName"),
-            "current_price": info.get("currentPrice"),
-            "high": info.get("dayHigh"),
-            "low": info.get("dayLow"),
-            "open": info.get("open"),
-            "previous_close": info.get("previousClose"),
-            "change": info.get("regularMarketChange"),
-            "change_percent": info.get("regularMarketChangePercent")
-        }
+    def get_company_profile(self, symbol: str):
 
-    except Exception as e:
+        try:
+            symbol = symbol.upper()
 
-        logger.exception(e)
+            logger.info(
+                f"Yahoo Provider - Get Company Profile: {symbol}"
+            )
 
-        return None
+            stock = yf.Ticker(symbol)
+            info = stock.info
 
+            if not info:
+                return None
 
-def fetch_company(symbol: str) -> dict | None:
-    """
-    Mengambil profil perusahaan dari Yahoo Finance.
-    """
+            return {
+                "symbol": symbol,
+                "company_name": info.get("longName"),
+                "exchange": info.get("exchange"),
+                "sector": info.get("sector"),
+                "industry": info.get("industry"),
+                "country": info.get("country"),
+                "website": info.get("website"),
+                "employees": info.get("fullTimeEmployees"),
+                "currency": info.get("currency")
+            }
 
-    try:
+        except Exception as e:
 
-        logger.info(f"Yahoo Provider - Fetch Company: {symbol}")
+            logger.exception(
+                f"Yahoo Provider Error - Company {symbol}: {e}"
+            )
 
-        stock = yf.Ticker(symbol.upper())
-        info = stock.info
-
-        if not info:
             return None
-
-        return {
-
-            "symbol": symbol.upper(),
-            "company_name": info.get("longName"),
-            "sector": info.get("sector"),
-            "industry": info.get("industry"),
-            "country": info.get("country"),
-            "website": info.get("website"),
-            "employees": info.get("fullTimeEmployees"),
-            "currency": info.get("currency"),
-            "exchange": info.get("exchange")
-        }
-
-    except Exception as e:
-
-        logger.exception(e)
-
-        return None

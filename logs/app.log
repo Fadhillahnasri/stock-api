@@ -2513,3 +2513,23 @@ fastapi.exceptions.ResponseValidationError: 1 validation error:
 2026-08-07 13:58:40,836 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
 2026-08-07 13:58:41,062 | INFO | WebSocket disconnected - BBCA.JK
 2026-08-07 13:58:41,062 | INFO | WebSocket closed - BBCA.JK
+2026-08-07 14:34:11,211 | INFO | Yahoo Provider - Get Stock Price: BBNI.JK
+2026-08-07 14:36:06,815 | INFO | Yahoo Provider - Get Company Profile: TLKM.JK
+2026-08-07 14:42:03,079 | INFO | Stock Service - Get Stock Price: BBNI.JK
+2026-08-07 14:42:03,081 | INFO | Yahoo Provider - Get Stock Price: BBNI.JK
+2026-08-07 14:42:27,284 | INFO | Stock Service - Get Company Profile: TLKM.JK
+2026-08-07 14:42:27,293 | INFO | Yahoo Provider - Get Company Profile: TLKM.JK
+2026-08-07 14:42:49,790 | INFO | Stock Service - Get Multiple Stocks: ['BBNI.JK', 'TLKM.JK', 'BBCA.JK']
+2026-08-07 14:42:49,790 | INFO | Yahoo Provider - Get Stock Price: BBNI.JK
+2026-08-07 14:42:49,874 | INFO | Yahoo Provider - Get Stock Price: TLKM.JK
+2026-08-07 14:42:50,024 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-08-07 15:01:41,096 | INFO | Incoming Request | GET /company/BBNI.JK
+2026-08-07 15:01:41,194 | INFO | REST Request - Company: BBNI.JK
+2026-08-07 15:01:41,195 | INFO | Stock Service - Get Company Profile: BBNI.JK
+2026-08-07 15:01:41,195 | INFO | Yahoo Provider - Get Company Profile: BBNI.JK
+2026-08-07 15:01:42,037 | INFO | Completed | Status=200 | Time=0.945s
+2026-08-07 15:17:39,279 | INFO | Incoming Request | GET /company/BBCA.JK
+2026-08-07 15:17:39,358 | INFO | REST Request - Company: BBCA.JK
+2026-08-07 15:17:39,362 | INFO | Stock Service - Get Company Profile: BBCA.JK
+2026-08-07 15:17:39,363 | INFO | Yahoo Provider - Get Company Profile: BBCA.JK
+2026-08-07 15:17:40,357 | INFO | Completed | Status=200 | Time=1.084s

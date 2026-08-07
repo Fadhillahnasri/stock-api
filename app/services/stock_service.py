@@ -1,49 +1,50 @@
-from app.providers.yahoo_provider import (
-    fetch_stock,
-    fetch_company
-)
-
+from app.providers.yahoo_provider import YahooProvider
 from app.utils.logger import logger
 
 
-def get_stock(symbol: str):
-
-    logger.info(f"Service - Get Stock: {symbol}")
-
-    return fetch_stock(symbol)
+# Provider yang digunakan aplikasi
+provider = YahooProvider()
 
 
-def get_company(symbol: str):
+def get_stock_price(symbol: str):
 
-    logger.info(f"Service - Get Company: {symbol}")
+    logger.info(
+        f"Stock Service - Get Stock Price: {symbol}"
+    )
 
-    return fetch_company(symbol)
+    return provider.get_stock_price(symbol)
 
 
-def get_multiple_stocks(symbols: list[str]):
+def get_company_profile(symbol: str):
 
-    logger.info("Service - Get Multiple Stocks")
+    logger.info(
+        f"Stock Service - Get Company Profile: {symbol}"
+    )
+
+    return provider.get_company_profile(symbol)
+
+
+def get_multiple_stocks(symbols: list):
+
+    logger.info(
+        f"Stock Service - Get Multiple Stocks: {symbols}"
+    )
 
     stocks = []
     failed = []
 
     for symbol in symbols:
 
-        data = get_stock(symbol)
+        data = provider.get_stock_price(symbol)
 
         if data:
-
             stocks.append(data)
-
         else:
-
             failed.append(symbol)
 
     return {
-
-        "total": len(stocks),
-
+        "total_requested": len(symbols),
+        "success": len(stocks),
         "failed": failed,
-
         "data": stocks
     }

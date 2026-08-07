@@ -1,9 +1,9 @@
 from fastapi import APIRouter, HTTPException, Query
 
 from app.services.stock_service import (
-    get_stock,
-    get_company,
-    get_multiple_stocks
+    get_stock_price,
+    get_multiple_stocks,
+    get_company_profile,
 )
 
 from app.schemas.stock_schema import StockResponse
@@ -13,6 +13,7 @@ from app.schemas.health_schema import HealthResponse
 
 from app.utils.logger import logger
 
+
 router = APIRouter()
 
 
@@ -20,7 +21,10 @@ router = APIRouter()
 # Home
 # ===========================
 
-@router.get("/", tags=["Home"])
+@router.get(
+    "/",
+    tags=["Home"]
+)
 def home():
 
     logger.info("REST Request - Home")
@@ -68,11 +72,13 @@ def stock(symbol: str):
 
     logger.info(f"REST Request - Stock: {symbol}")
 
-    data = get_stock(symbol)
+    data = get_stock_price(symbol)
 
     if data is None:
 
-        logger.warning(f"Stock not found: {symbol}")
+        logger.warning(
+            f"Stock not found: {symbol}"
+        )
 
         raise HTTPException(
             status_code=404,
@@ -104,18 +110,34 @@ def stocks(
     )
 ):
 
-    logger.info(f"REST Request - Multiple Stocks: {symbols}")
+    logger.info(
+        f"REST Request - Multiple Stocks: {symbols}"
+    )
 
     symbol_list = [
         symbol.strip().upper()
         for symbol in symbols.split(",")
+        if symbol.strip()
     ]
+
+    if not symbol_list:
+
+        logger.warning(
+            "No stock symbols provided."
+        )
+
+        raise HTTPException(
+            status_code=400,
+            detail="At least one stock symbol is required."
+        )
 
     data = get_multiple_stocks(symbol_list)
 
-    if data["total"] == 0:
+    if data["success"] == 0:
 
-        logger.warning("No stock data found.")
+        logger.warning(
+            f"No stock data found: {symbol_list}"
+        )
 
         raise HTTPException(
             status_code=404,
@@ -142,13 +164,17 @@ def stocks(
 )
 def company(symbol: str):
 
-    logger.info(f"REST Request - Company: {symbol}")
+    logger.info(
+        f"REST Request - Company: {symbol}"
+    )
 
-    data = get_company(symbol)
+    data = get_company_profile(symbol)
 
     if data is None:
 
-        logger.warning(f"Company not found: {symbol}")
+        logger.warning(
+            f"Company not found: {symbol}"
+        )
 
         raise HTTPException(
             status_code=404,
