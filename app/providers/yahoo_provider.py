@@ -61,7 +61,8 @@ def fetch_company(symbol: str) -> dict | None:
             "country": info.get("country"),
             "website": info.get("website"),
             "employees": info.get("fullTimeEmployees"),
-            "currency": info.get("currency")
+            "currency": info.get("currency"),
+            "exchange": info.get("exchange")
         }
 
     except Exception as e:

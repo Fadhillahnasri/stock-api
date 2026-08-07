@@ -343,3 +343,2173 @@ fastapi.exceptions.ResponseValidationError: 1 validation error:
 2026-08-07 10:24:24,459 | INFO | Service - Get Stock: BBCA.JK
 2026-08-07 10:24:24,459 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
 2026-08-07 10:24:25,705 | INFO | Completed | Status=200 | Time=1.267s
+2026-08-07 13:18:49,443 | INFO | Incoming Request | GET /docs
+2026-08-07 13:18:49,444 | INFO | Completed | Status=200 | Time=0.002s
+2026-08-07 13:18:50,015 | INFO | Incoming Request | GET /openapi.json
+2026-08-07 13:18:50,088 | INFO | Completed | Status=200 | Time=0.073s
+2026-08-07 13:19:10,753 | INFO | Incoming Request | GET /stock/BBNI.JK
+2026-08-07 13:19:10,812 | INFO | REST Request - Stock: BBNI.JK
+2026-08-07 13:19:10,813 | INFO | Service - Get Stock: BBNI.JK
+2026-08-07 13:19:10,813 | INFO | Yahoo Provider - Fetch Stock: BBNI.JK
+2026-08-07 13:19:11,842 | INFO | Completed | Status=200 | Time=1.089s
+2026-08-07 13:19:42,323 | INFO | Incoming Request | GET /company/BBCA.JK
+2026-08-07 13:19:42,325 | INFO | REST Request - Company: BBCA.JK
+2026-08-07 13:19:42,326 | INFO | Service - Get Company: BBCA.JK
+2026-08-07 13:19:42,326 | INFO | Yahoo Provider - Fetch Company: BBCA.JK
+2026-08-07 13:19:43,029 | ERROR | 1 validation error:
+  {'type': 'missing', 'loc': ('response', 'data', 'exchange'), 'msg': 'Field required', 'input': {'symbol': 'BBCA.JK', 'company_name': 'PT Bank Central Asia Tbk', 'sector': 'Financial Services', 'industry': 'Banks - Regional', 'country': 'Indonesia', 'website': 'https://www.bca.co.id', 'employees': 27728, 'currency': 'IDR'}}
+
+  File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 136, in company
+    GET /company/{symbol}
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 79, in collapse_excgroups
+  |     yield
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 183, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 815, in __aexit__
+  |     raise BaseExceptionGroup(
+  |         "unhandled errors in a TaskGroup", self._exceptions
+  |     ) from None
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |                                    ~~~~~~~~~~~~~~~~~~^^
+    |   File "C:\Users\Fadil\AppData\Local\Python\pythoncore-3.14-64\Lib\contextlib.py", line 162, in __exit__
+    |     self.gen.throw(value)
+    |     ~~~~~~~~~~~~~~^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\app\middleware\logging_middleware.py", line 16, in logging_middleware
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    |     raise app_exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    |     await route.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    |     await self.original_router.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    |     await included_router._handle_selected(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    |     await original_route.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    |     await app(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 727, in app
+    |     content = await serialize_response(
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |     ...<11 lines>...
+    |     )
+    |     ^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 324, in serialize_response
+    |     raise ResponseValidationError(
+    |     ...<3 lines>...
+    |     )
+    | fastapi.exceptions.ResponseValidationError: 1 validation error:
+    |   {'type': 'missing', 'loc': ('response', 'data', 'exchange'), 'msg': 'Field required', 'input': {'symbol': 'BBCA.JK', 'company_name': 'PT Bank Central Asia Tbk', 'sector': 'Financial Services', 'industry': 'Banks - Regional', 'country': 'Indonesia', 'website': 'https://www.bca.co.id', 'employees': 27728, 'currency': 'IDR'}}
+    | 
+    |   File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 136, in company
+    |     GET /company/{symbol}
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+                                   ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fadil\AppData\Local\Python\pythoncore-3.14-64\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\app\middleware\logging_middleware.py", line 16, in logging_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    raise app_exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    await app(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 727, in app
+    content = await serialize_response(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 324, in serialize_response
+    raise ResponseValidationError(
+    ...<3 lines>...
+    )
+fastapi.exceptions.ResponseValidationError: 1 validation error:
+  {'type': 'missing', 'loc': ('response', 'data', 'exchange'), 'msg': 'Field required', 'input': {'symbol': 'BBCA.JK', 'company_name': 'PT Bank Central Asia Tbk', 'sector': 'Financial Services', 'industry': 'Banks - Regional', 'country': 'Indonesia', 'website': 'https://www.bca.co.id', 'employees': 27728, 'currency': 'IDR'}}
+
+  File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 136, in company
+    GET /company/{symbol}
+2026-08-07 13:20:26,293 | INFO | Incoming Request | GET /company/BBNI.JK
+2026-08-07 13:20:26,294 | INFO | REST Request - Company: BBNI.JK
+2026-08-07 13:20:26,296 | INFO | Service - Get Company: BBNI.JK
+2026-08-07 13:20:26,303 | INFO | Yahoo Provider - Fetch Company: BBNI.JK
+2026-08-07 13:20:26,445 | ERROR | 1 validation error:
+  {'type': 'missing', 'loc': ('response', 'data', 'exchange'), 'msg': 'Field required', 'input': {'symbol': 'BBNI.JK', 'company_name': 'PT Bank Negara Indonesia (Persero) Tbk', 'sector': 'Financial Services', 'industry': 'Banks - Regional', 'country': 'Indonesia', 'website': 'https://www.bni.co.id', 'employees': 27737, 'currency': 'IDR'}}
+
+  File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 136, in company
+    GET /company/{symbol}
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 79, in collapse_excgroups
+  |     yield
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 183, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 815, in __aexit__
+  |     raise BaseExceptionGroup(
+  |         "unhandled errors in a TaskGroup", self._exceptions
+  |     ) from None
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |                                    ~~~~~~~~~~~~~~~~~~^^
+    |   File "C:\Users\Fadil\AppData\Local\Python\pythoncore-3.14-64\Lib\contextlib.py", line 162, in __exit__
+    |     self.gen.throw(value)
+    |     ~~~~~~~~~~~~~~^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\app\middleware\logging_middleware.py", line 16, in logging_middleware
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    |     raise app_exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    |     await route.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    |     await self.original_router.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    |     await included_router._handle_selected(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    |     await original_route.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    |     await app(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 727, in app
+    |     content = await serialize_response(
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |     ...<11 lines>...
+    |     )
+    |     ^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 324, in serialize_response
+    |     raise ResponseValidationError(
+    |     ...<3 lines>...
+    |     )
+    | fastapi.exceptions.ResponseValidationError: 1 validation error:
+    |   {'type': 'missing', 'loc': ('response', 'data', 'exchange'), 'msg': 'Field required', 'input': {'symbol': 'BBNI.JK', 'company_name': 'PT Bank Negara Indonesia (Persero) Tbk', 'sector': 'Financial Services', 'industry': 'Banks - Regional', 'country': 'Indonesia', 'website': 'https://www.bni.co.id', 'employees': 27737, 'currency': 'IDR'}}
+    | 
+    |   File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 136, in company
+    |     GET /company/{symbol}
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+                                   ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fadil\AppData\Local\Python\pythoncore-3.14-64\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\app\middleware\logging_middleware.py", line 16, in logging_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    raise app_exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    await app(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 727, in app
+    content = await serialize_response(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 324, in serialize_response
+    raise ResponseValidationError(
+    ...<3 lines>...
+    )
+fastapi.exceptions.ResponseValidationError: 1 validation error:
+  {'type': 'missing', 'loc': ('response', 'data', 'exchange'), 'msg': 'Field required', 'input': {'symbol': 'BBNI.JK', 'company_name': 'PT Bank Negara Indonesia (Persero) Tbk', 'sector': 'Financial Services', 'industry': 'Banks - Regional', 'country': 'Indonesia', 'website': 'https://www.bni.co.id', 'employees': 27737, 'currency': 'IDR'}}
+
+  File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 136, in company
+    GET /company/{symbol}
+2026-08-07 13:20:58,268 | INFO | Incoming Request | GET /dashboard
+2026-08-07 13:20:58,401 | INFO | Completed | Status=200 | Time=0.132s
+2026-08-07 13:20:58,611 | INFO | WebSocket connected - BBCA.JK
+2026-08-07 13:20:58,611 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:20:58,612 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:21:01,900 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:21:01,900 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:21:01,993 | INFO | WebSocket disconnected - BBCA.JK
+2026-08-07 13:21:01,993 | INFO | WebSocket closed - BBCA.JK
+2026-08-07 13:30:10,801 | INFO | Incoming Request | GET /company/BBNI.JK
+2026-08-07 13:30:10,880 | INFO | REST Request - Company: BBNI.JK
+2026-08-07 13:30:10,884 | INFO | Service - Get Company: BBNI.JK
+2026-08-07 13:30:10,884 | INFO | Yahoo Provider - Fetch Company: BBNI.JK
+2026-08-07 13:30:11,542 | ERROR | 1 validation error:
+  {'type': 'missing', 'loc': ('response', 'data', 'exchange'), 'msg': 'Field required', 'input': {'symbol': 'BBNI.JK', 'company_name': 'PT Bank Negara Indonesia (Persero) Tbk', 'sector': 'Financial Services', 'industry': 'Banks - Regional', 'country': 'Indonesia', 'website': 'https://www.bni.co.id', 'employees': 27737, 'currency': 'IDR'}}
+
+  File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 136, in company
+    GET /company/{symbol}
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 79, in collapse_excgroups
+  |     yield
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 183, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 815, in __aexit__
+  |     raise BaseExceptionGroup(
+  |         "unhandled errors in a TaskGroup", self._exceptions
+  |     ) from None
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |                                    ~~~~~~~~~~~~~~~~~~^^
+    |   File "C:\Users\Fadil\AppData\Local\Python\pythoncore-3.14-64\Lib\contextlib.py", line 162, in __exit__
+    |     self.gen.throw(value)
+    |     ~~~~~~~~~~~~~~^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\app\middleware\logging_middleware.py", line 16, in logging_middleware
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    |     raise app_exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    |     await route.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    |     await self.original_router.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    |     await included_router._handle_selected(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    |     await original_route.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    |     await app(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 727, in app
+    |     content = await serialize_response(
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |     ...<11 lines>...
+    |     )
+    |     ^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 324, in serialize_response
+    |     raise ResponseValidationError(
+    |     ...<3 lines>...
+    |     )
+    | fastapi.exceptions.ResponseValidationError: 1 validation error:
+    |   {'type': 'missing', 'loc': ('response', 'data', 'exchange'), 'msg': 'Field required', 'input': {'symbol': 'BBNI.JK', 'company_name': 'PT Bank Negara Indonesia (Persero) Tbk', 'sector': 'Financial Services', 'industry': 'Banks - Regional', 'country': 'Indonesia', 'website': 'https://www.bni.co.id', 'employees': 27737, 'currency': 'IDR'}}
+    | 
+    |   File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 136, in company
+    |     GET /company/{symbol}
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+                                   ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fadil\AppData\Local\Python\pythoncore-3.14-64\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\app\middleware\logging_middleware.py", line 16, in logging_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    raise app_exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    await app(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 727, in app
+    content = await serialize_response(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 324, in serialize_response
+    raise ResponseValidationError(
+    ...<3 lines>...
+    )
+fastapi.exceptions.ResponseValidationError: 1 validation error:
+  {'type': 'missing', 'loc': ('response', 'data', 'exchange'), 'msg': 'Field required', 'input': {'symbol': 'BBNI.JK', 'company_name': 'PT Bank Negara Indonesia (Persero) Tbk', 'sector': 'Financial Services', 'industry': 'Banks - Regional', 'country': 'Indonesia', 'website': 'https://www.bni.co.id', 'employees': 27737, 'currency': 'IDR'}}
+
+  File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 136, in company
+    GET /company/{symbol}
+2026-08-07 13:37:47,937 | INFO | Incoming Request | GET /docs
+2026-08-07 13:37:47,948 | INFO | Completed | Status=200 | Time=0.016s
+2026-08-07 13:37:48,491 | INFO | Incoming Request | GET /openapi.json
+2026-08-07 13:37:48,764 | INFO | Completed | Status=200 | Time=0.272s
+2026-08-07 13:38:18,876 | INFO | Incoming Request | GET /company/BBCA.JK
+2026-08-07 13:38:18,906 | INFO | REST Request - Company: BBCA.JK
+2026-08-07 13:38:18,906 | INFO | Service - Get Company: BBCA.JK
+2026-08-07 13:38:18,908 | INFO | Yahoo Provider - Fetch Company: BBCA.JK
+2026-08-07 13:38:19,974 | INFO | Completed | Status=200 | Time=1.098s
+2026-08-07 13:38:38,995 | INFO | Incoming Request | GET /company/NFLX
+2026-08-07 13:38:38,997 | INFO | REST Request - Company: NFLX
+2026-08-07 13:38:38,997 | INFO | Service - Get Company: NFLX
+2026-08-07 13:38:38,997 | INFO | Yahoo Provider - Fetch Company: NFLX
+2026-08-07 13:38:39,324 | INFO | Completed | Status=200 | Time=0.329s
+2026-08-07 13:38:53,978 | INFO | Incoming Request | GET /company/ASII
+2026-08-07 13:38:53,979 | INFO | REST Request - Company: ASII
+2026-08-07 13:38:53,980 | INFO | Service - Get Company: ASII
+2026-08-07 13:38:53,980 | INFO | Yahoo Provider - Fetch Company: ASII
+2026-08-07 13:38:54,277 | INFO | Completed | Status=200 | Time=0.299s
+2026-08-07 13:39:07,950 | INFO | Incoming Request | GET /company/GOTO
+2026-08-07 13:39:07,952 | INFO | REST Request - Company: GOTO
+2026-08-07 13:39:07,952 | INFO | Service - Get Company: GOTO
+2026-08-07 13:39:07,952 | INFO | Yahoo Provider - Fetch Company: GOTO
+2026-08-07 13:39:08,216 | ERROR | 1 validation error:
+  {'type': 'string_type', 'loc': ('response', 'data', 'company_name'), 'msg': 'Input should be a valid string', 'input': None}
+
+  File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 136, in company
+    GET /company/{symbol}
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 79, in collapse_excgroups
+  |     yield
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 183, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 815, in __aexit__
+  |     raise BaseExceptionGroup(
+  |         "unhandled errors in a TaskGroup", self._exceptions
+  |     ) from None
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |                                    ~~~~~~~~~~~~~~~~~~^^
+    |   File "C:\Users\Fadil\AppData\Local\Python\pythoncore-3.14-64\Lib\contextlib.py", line 162, in __exit__
+    |     self.gen.throw(value)
+    |     ~~~~~~~~~~~~~~^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\app\middleware\logging_middleware.py", line 16, in logging_middleware
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    |     raise app_exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    |     await route.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    |     await self.original_router.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    |     await included_router._handle_selected(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    |     await original_route.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    |     await app(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 727, in app
+    |     content = await serialize_response(
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |     ...<11 lines>...
+    |     )
+    |     ^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 324, in serialize_response
+    |     raise ResponseValidationError(
+    |     ...<3 lines>...
+    |     )
+    | fastapi.exceptions.ResponseValidationError: 1 validation error:
+    |   {'type': 'string_type', 'loc': ('response', 'data', 'company_name'), 'msg': 'Input should be a valid string', 'input': None}
+    | 
+    |   File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 136, in company
+    |     GET /company/{symbol}
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+                                   ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fadil\AppData\Local\Python\pythoncore-3.14-64\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\app\middleware\logging_middleware.py", line 16, in logging_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    raise app_exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    await app(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 727, in app
+    content = await serialize_response(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 324, in serialize_response
+    raise ResponseValidationError(
+    ...<3 lines>...
+    )
+fastapi.exceptions.ResponseValidationError: 1 validation error:
+  {'type': 'string_type', 'loc': ('response', 'data', 'company_name'), 'msg': 'Input should be a valid string', 'input': None}
+
+  File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 136, in company
+    GET /company/{symbol}
+2026-08-07 13:39:29,274 | INFO | Incoming Request | GET /dashboard
+2026-08-07 13:39:29,322 | INFO | Completed | Status=200 | Time=0.048s
+2026-08-07 13:39:29,441 | INFO | WebSocket connected - BBCA.JK
+2026-08-07 13:39:29,441 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:39:29,442 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:39:32,656 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:39:32,656 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:39:35,945 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:39:35,946 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:39:39,095 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:39:39,096 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:39:42,215 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:39:42,215 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:39:45,349 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:39:45,349 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:39:48,452 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:39:48,454 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:39:51,539 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:39:51,540 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:39:54,880 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:39:54,881 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:39:58,117 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:39:58,117 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:40:02,002 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:40:02,002 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:40:05,105 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:40:05,105 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:40:08,203 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:40:08,203 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:40:11,291 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:40:11,292 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:40:14,381 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:40:14,382 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:40:17,474 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:40:17,475 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:40:20,554 | INFO | Incoming Request | GET /company/UNVR
+2026-08-07 13:40:20,579 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:40:20,580 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:40:20,683 | INFO | REST Request - Company: UNVR
+2026-08-07 13:40:20,684 | INFO | Service - Get Company: UNVR
+2026-08-07 13:40:20,684 | INFO | Yahoo Provider - Fetch Company: UNVR
+2026-08-07 13:40:20,842 | ERROR | 1 validation error:
+  {'type': 'string_type', 'loc': ('response', 'data', 'company_name'), 'msg': 'Input should be a valid string', 'input': None}
+
+  File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 136, in company
+    GET /company/{symbol}
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 79, in collapse_excgroups
+  |     yield
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 183, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 815, in __aexit__
+  |     raise BaseExceptionGroup(
+  |         "unhandled errors in a TaskGroup", self._exceptions
+  |     ) from None
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |                                    ~~~~~~~~~~~~~~~~~~^^
+    |   File "C:\Users\Fadil\AppData\Local\Python\pythoncore-3.14-64\Lib\contextlib.py", line 162, in __exit__
+    |     self.gen.throw(value)
+    |     ~~~~~~~~~~~~~~^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\app\middleware\logging_middleware.py", line 16, in logging_middleware
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    |     raise app_exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    |     await route.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    |     await self.original_router.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    |     await included_router._handle_selected(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    |     await original_route.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    |     await app(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 727, in app
+    |     content = await serialize_response(
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |     ...<11 lines>...
+    |     )
+    |     ^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 324, in serialize_response
+    |     raise ResponseValidationError(
+    |     ...<3 lines>...
+    |     )
+    | fastapi.exceptions.ResponseValidationError: 1 validation error:
+    |   {'type': 'string_type', 'loc': ('response', 'data', 'company_name'), 'msg': 'Input should be a valid string', 'input': None}
+    | 
+    |   File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 136, in company
+    |     GET /company/{symbol}
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+                                   ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fadil\AppData\Local\Python\pythoncore-3.14-64\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\app\middleware\logging_middleware.py", line 16, in logging_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    raise app_exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    await app(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 727, in app
+    content = await serialize_response(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 324, in serialize_response
+    raise ResponseValidationError(
+    ...<3 lines>...
+    )
+fastapi.exceptions.ResponseValidationError: 1 validation error:
+  {'type': 'string_type', 'loc': ('response', 'data', 'company_name'), 'msg': 'Input should be a valid string', 'input': None}
+
+  File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 136, in company
+    GET /company/{symbol}
+2026-08-07 13:40:23,694 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:40:23,695 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:40:26,893 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:40:26,894 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:40:30,024 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:40:30,024 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:40:33,118 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:40:33,119 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:40:36,249 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:40:36,250 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:40:39,386 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:40:39,387 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:40:42,533 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:40:42,534 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:40:44,078 | INFO | Incoming Request | GET /company/ICBP
+2026-08-07 13:40:44,079 | INFO | REST Request - Company: ICBP
+2026-08-07 13:40:44,080 | INFO | Service - Get Company: ICBP
+2026-08-07 13:40:44,080 | INFO | Yahoo Provider - Fetch Company: ICBP
+2026-08-07 13:40:44,378 | ERROR | HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: ICBP"}}}
+2026-08-07 13:40:44,452 | ERROR | 1 validation error:
+  {'type': 'string_type', 'loc': ('response', 'data', 'company_name'), 'msg': 'Input should be a valid string', 'input': None}
+
+  File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 136, in company
+    GET /company/{symbol}
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 79, in collapse_excgroups
+  |     yield
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 183, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 815, in __aexit__
+  |     raise BaseExceptionGroup(
+  |         "unhandled errors in a TaskGroup", self._exceptions
+  |     ) from None
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |                                    ~~~~~~~~~~~~~~~~~~^^
+    |   File "C:\Users\Fadil\AppData\Local\Python\pythoncore-3.14-64\Lib\contextlib.py", line 162, in __exit__
+    |     self.gen.throw(value)
+    |     ~~~~~~~~~~~~~~^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\app\middleware\logging_middleware.py", line 16, in logging_middleware
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    |     raise app_exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    |     await route.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    |     await self.original_router.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    |     await included_router._handle_selected(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    |     await original_route.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    |     await app(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 727, in app
+    |     content = await serialize_response(
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |     ...<11 lines>...
+    |     )
+    |     ^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 324, in serialize_response
+    |     raise ResponseValidationError(
+    |     ...<3 lines>...
+    |     )
+    | fastapi.exceptions.ResponseValidationError: 1 validation error:
+    |   {'type': 'string_type', 'loc': ('response', 'data', 'company_name'), 'msg': 'Input should be a valid string', 'input': None}
+    | 
+    |   File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 136, in company
+    |     GET /company/{symbol}
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+                                   ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fadil\AppData\Local\Python\pythoncore-3.14-64\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\app\middleware\logging_middleware.py", line 16, in logging_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    raise app_exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    await app(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 727, in app
+    content = await serialize_response(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 324, in serialize_response
+    raise ResponseValidationError(
+    ...<3 lines>...
+    )
+fastapi.exceptions.ResponseValidationError: 1 validation error:
+  {'type': 'string_type', 'loc': ('response', 'data', 'company_name'), 'msg': 'Input should be a valid string', 'input': None}
+
+  File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 136, in company
+    GET /company/{symbol}
+2026-08-07 13:40:45,620 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:40:45,621 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:40:48,714 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:40:48,714 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:40:51,938 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:40:51,939 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:40:55,105 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:40:55,106 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:40:58,643 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:40:58,644 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:41:01,762 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:41:01,763 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:41:04,999 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:41:05,000 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:41:08,141 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:41:08,142 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:41:11,340 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:41:11,341 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:41:14,454 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:41:14,454 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:41:15,814 | INFO | Incoming Request | GET /company/AMMN
+2026-08-07 13:41:15,816 | INFO | REST Request - Company: AMMN
+2026-08-07 13:41:15,816 | INFO | Service - Get Company: AMMN
+2026-08-07 13:41:15,817 | INFO | Yahoo Provider - Fetch Company: AMMN
+2026-08-07 13:41:16,721 | ERROR | HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: AMMN"}}}
+2026-08-07 13:41:17,032 | ERROR | 1 validation error:
+  {'type': 'string_type', 'loc': ('response', 'data', 'company_name'), 'msg': 'Input should be a valid string', 'input': None}
+
+  File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 136, in company
+    GET /company/{symbol}
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 79, in collapse_excgroups
+  |     yield
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 183, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 815, in __aexit__
+  |     raise BaseExceptionGroup(
+  |         "unhandled errors in a TaskGroup", self._exceptions
+  |     ) from None
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |                                    ~~~~~~~~~~~~~~~~~~^^
+    |   File "C:\Users\Fadil\AppData\Local\Python\pythoncore-3.14-64\Lib\contextlib.py", line 162, in __exit__
+    |     self.gen.throw(value)
+    |     ~~~~~~~~~~~~~~^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\app\middleware\logging_middleware.py", line 16, in logging_middleware
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    |     raise app_exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    |     await route.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    |     await self.original_router.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    |     await included_router._handle_selected(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    |     await original_route.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    |     await app(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 727, in app
+    |     content = await serialize_response(
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |     ...<11 lines>...
+    |     )
+    |     ^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 324, in serialize_response
+    |     raise ResponseValidationError(
+    |     ...<3 lines>...
+    |     )
+    | fastapi.exceptions.ResponseValidationError: 1 validation error:
+    |   {'type': 'string_type', 'loc': ('response', 'data', 'company_name'), 'msg': 'Input should be a valid string', 'input': None}
+    | 
+    |   File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 136, in company
+    |     GET /company/{symbol}
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+                                   ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fadil\AppData\Local\Python\pythoncore-3.14-64\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\app\middleware\logging_middleware.py", line 16, in logging_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    raise app_exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    await app(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 727, in app
+    content = await serialize_response(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 324, in serialize_response
+    raise ResponseValidationError(
+    ...<3 lines>...
+    )
+fastapi.exceptions.ResponseValidationError: 1 validation error:
+  {'type': 'string_type', 'loc': ('response', 'data', 'company_name'), 'msg': 'Input should be a valid string', 'input': None}
+
+  File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 136, in company
+    GET /company/{symbol}
+2026-08-07 13:41:17,642 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:41:17,642 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:41:21,194 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:41:21,195 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:41:24,378 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:41:24,379 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:41:27,542 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:41:27,543 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:41:30,799 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:41:30,799 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:41:33,889 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:41:33,889 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:41:37,254 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:41:37,255 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:41:40,518 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:41:40,519 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:41:43,722 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:41:43,722 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:41:46,970 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:41:46,970 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:41:50,149 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:41:50,149 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:41:53,322 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:41:53,323 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:41:56,453 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:41:56,454 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:41:59,630 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:41:59,631 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:42:02,816 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:42:02,817 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:42:04,940 | INFO | Incoming Request | GET /company/TLKM
+2026-08-07 13:42:04,942 | INFO | REST Request - Company: TLKM
+2026-08-07 13:42:04,950 | INFO | Service - Get Company: TLKM
+2026-08-07 13:42:04,951 | INFO | Yahoo Provider - Fetch Company: TLKM
+2026-08-07 13:42:05,385 | ERROR | HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: TLKM"}}}
+2026-08-07 13:42:05,598 | ERROR | 1 validation error:
+  {'type': 'string_type', 'loc': ('response', 'data', 'company_name'), 'msg': 'Input should be a valid string', 'input': None}
+
+  File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 136, in company
+    GET /company/{symbol}
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 79, in collapse_excgroups
+  |     yield
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 183, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 815, in __aexit__
+  |     raise BaseExceptionGroup(
+  |         "unhandled errors in a TaskGroup", self._exceptions
+  |     ) from None
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |                                    ~~~~~~~~~~~~~~~~~~^^
+    |   File "C:\Users\Fadil\AppData\Local\Python\pythoncore-3.14-64\Lib\contextlib.py", line 162, in __exit__
+    |     self.gen.throw(value)
+    |     ~~~~~~~~~~~~~~^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\app\middleware\logging_middleware.py", line 16, in logging_middleware
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    |     raise app_exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    |     await route.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    |     await self.original_router.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    |     await included_router._handle_selected(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    |     await original_route.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    |     await app(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 727, in app
+    |     content = await serialize_response(
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |     ...<11 lines>...
+    |     )
+    |     ^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 324, in serialize_response
+    |     raise ResponseValidationError(
+    |     ...<3 lines>...
+    |     )
+    | fastapi.exceptions.ResponseValidationError: 1 validation error:
+    |   {'type': 'string_type', 'loc': ('response', 'data', 'company_name'), 'msg': 'Input should be a valid string', 'input': None}
+    | 
+    |   File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 136, in company
+    |     GET /company/{symbol}
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+                                   ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fadil\AppData\Local\Python\pythoncore-3.14-64\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\app\middleware\logging_middleware.py", line 16, in logging_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    raise app_exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    await app(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 727, in app
+    content = await serialize_response(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 324, in serialize_response
+    raise ResponseValidationError(
+    ...<3 lines>...
+    )
+fastapi.exceptions.ResponseValidationError: 1 validation error:
+  {'type': 'string_type', 'loc': ('response', 'data', 'company_name'), 'msg': 'Input should be a valid string', 'input': None}
+
+  File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 136, in company
+    GET /company/{symbol}
+2026-08-07 13:42:06,133 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:42:06,134 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:42:09,270 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:42:09,270 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:42:12,373 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:42:12,373 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:42:15,560 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:42:15,561 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:42:18,659 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:42:18,659 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:42:21,827 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:42:21,827 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:42:25,044 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:42:25,045 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:42:28,314 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:42:28,315 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:42:29,392 | INFO | Incoming Request | GET /company/ASII
+2026-08-07 13:42:29,396 | INFO | REST Request - Company: ASII
+2026-08-07 13:42:29,396 | INFO | Service - Get Company: ASII
+2026-08-07 13:42:29,397 | INFO | Yahoo Provider - Fetch Company: ASII
+2026-08-07 13:42:29,668 | INFO | Completed | Status=200 | Time=0.277s
+2026-08-07 13:42:31,534 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:42:31,535 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:42:34,612 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:42:34,612 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:42:37,786 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:42:37,787 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:42:40,933 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:42:40,934 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:42:44,135 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:42:44,136 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:42:47,305 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:42:47,306 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:42:50,427 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:42:50,427 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:42:53,653 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:42:53,653 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:42:57,416 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:42:57,416 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:43:00,527 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:43:00,527 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:43:03,690 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:43:03,690 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:43:06,861 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:43:06,862 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:43:10,051 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:43:10,052 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:43:13,322 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:43:13,322 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:43:16,412 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:43:16,412 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:43:19,636 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:43:19,637 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:43:22,849 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:43:22,850 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:43:26,125 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:43:26,125 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:43:29,401 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:43:29,401 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:43:31,333 | INFO | Incoming Request | GET /company/UNVR
+2026-08-07 13:43:31,335 | INFO | REST Request - Company: UNVR
+2026-08-07 13:43:31,335 | INFO | Service - Get Company: UNVR
+2026-08-07 13:43:31,336 | INFO | Yahoo Provider - Fetch Company: UNVR
+2026-08-07 13:43:31,470 | ERROR | 1 validation error:
+  {'type': 'string_type', 'loc': ('response', 'data', 'company_name'), 'msg': 'Input should be a valid string', 'input': None}
+
+  File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 136, in company
+    GET /company/{symbol}
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 79, in collapse_excgroups
+  |     yield
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 183, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 815, in __aexit__
+  |     raise BaseExceptionGroup(
+  |         "unhandled errors in a TaskGroup", self._exceptions
+  |     ) from None
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |                                    ~~~~~~~~~~~~~~~~~~^^
+    |   File "C:\Users\Fadil\AppData\Local\Python\pythoncore-3.14-64\Lib\contextlib.py", line 162, in __exit__
+    |     self.gen.throw(value)
+    |     ~~~~~~~~~~~~~~^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\app\middleware\logging_middleware.py", line 16, in logging_middleware
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    |     raise app_exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    |     await route.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    |     await self.original_router.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    |     await included_router._handle_selected(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    |     await original_route.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    |     await app(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 727, in app
+    |     content = await serialize_response(
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |     ...<11 lines>...
+    |     )
+    |     ^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 324, in serialize_response
+    |     raise ResponseValidationError(
+    |     ...<3 lines>...
+    |     )
+    | fastapi.exceptions.ResponseValidationError: 1 validation error:
+    |   {'type': 'string_type', 'loc': ('response', 'data', 'company_name'), 'msg': 'Input should be a valid string', 'input': None}
+    | 
+    |   File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 136, in company
+    |     GET /company/{symbol}
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+                                   ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fadil\AppData\Local\Python\pythoncore-3.14-64\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\app\middleware\logging_middleware.py", line 16, in logging_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    raise app_exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    await app(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 727, in app
+    content = await serialize_response(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 324, in serialize_response
+    raise ResponseValidationError(
+    ...<3 lines>...
+    )
+fastapi.exceptions.ResponseValidationError: 1 validation error:
+  {'type': 'string_type', 'loc': ('response', 'data', 'company_name'), 'msg': 'Input should be a valid string', 'input': None}
+
+  File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 136, in company
+    GET /company/{symbol}
+2026-08-07 13:43:32,680 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:43:32,681 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:43:35,949 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:43:35,949 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:43:39,227 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:43:39,227 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:43:42,409 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:43:42,410 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:43:45,578 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:43:45,579 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:43:48,680 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:43:48,680 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:43:51,799 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:43:51,800 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:43:54,964 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:43:54,965 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:43:58,102 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:43:58,102 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:44:01,309 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:44:01,310 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:44:04,415 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:44:04,416 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:44:07,530 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:44:07,530 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:44:10,612 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:44:10,612 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:44:13,702 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:44:13,702 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:44:16,908 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:44:16,908 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:44:20,029 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:44:20,029 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:44:23,133 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:44:23,134 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:44:26,276 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:44:26,277 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:44:29,383 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:44:29,383 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:44:32,516 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:44:32,516 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:44:33,228 | INFO | Incoming Request | GET /company/TLKM.JK
+2026-08-07 13:44:33,229 | INFO | REST Request - Company: TLKM.JK
+2026-08-07 13:44:33,230 | INFO | Service - Get Company: TLKM.JK
+2026-08-07 13:44:33,230 | INFO | Yahoo Provider - Fetch Company: TLKM.JK
+2026-08-07 13:44:33,466 | INFO | Completed | Status=200 | Time=0.239s
+2026-08-07 13:44:35,754 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:44:35,754 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:44:38,841 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:44:38,842 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:44:42,112 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:44:42,112 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:44:45,198 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:44:45,200 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:44:48,562 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:44:48,562 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:44:51,767 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:44:51,768 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:44:54,861 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:44:54,861 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:44:57,958 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:44:57,960 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:45:01,040 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:45:01,041 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:45:04,132 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:45:04,133 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:45:07,714 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:45:07,714 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:45:10,989 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:45:10,991 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:45:14,085 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:45:14,085 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:45:17,182 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:45:17,183 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:45:20,352 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:45:20,353 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:45:23,443 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:45:23,444 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:45:26,669 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:45:26,669 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:45:29,825 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:45:29,825 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:45:32,936 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:45:32,937 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:45:36,024 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:45:36,024 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:45:39,132 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:45:39,132 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:45:42,246 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:45:42,247 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:45:45,346 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:45:45,346 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:45:48,523 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:45:48,523 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:45:51,680 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:45:51,681 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:45:54,851 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:45:54,852 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:45:58,075 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:45:58,075 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:46:01,344 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:46:01,345 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:46:04,522 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:46:04,522 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:46:07,652 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:46:07,653 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:46:10,829 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:46:10,830 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:46:14,057 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:46:14,057 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:46:17,323 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:46:17,324 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:46:20,404 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:46:20,405 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:46:23,563 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:46:23,564 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:46:26,753 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:46:26,753 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:46:30,341 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:46:30,342 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:46:33,561 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:46:33,562 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:46:36,649 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:46:36,650 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:46:40,057 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:46:40,058 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:46:43,179 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:46:43,180 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:46:46,264 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:46:46,265 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:46:49,353 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:46:49,353 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:46:52,444 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:46:52,444 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:46:55,541 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:46:55,542 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:46:58,630 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:46:58,630 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:47:01,866 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:47:01,867 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:47:05,064 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:47:05,064 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:47:08,264 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:47:08,265 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:47:11,354 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:47:11,355 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:47:14,523 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:47:14,524 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:47:17,848 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:47:17,849 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:47:21,235 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:47:21,235 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:47:24,325 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:47:24,326 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:47:27,540 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:47:27,541 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:47:30,748 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:47:30,748 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:47:33,856 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:47:33,856 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:47:37,060 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:47:37,061 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:47:40,277 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:47:40,278 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:47:43,510 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:47:43,510 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:47:46,726 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:47:46,726 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:47:49,905 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:47:49,906 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:47:52,987 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:47:52,987 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:47:56,102 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:47:56,103 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:47:59,191 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:47:59,192 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:48:02,284 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:48:02,284 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:48:05,396 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:48:05,397 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:48:08,703 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:48:08,703 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:48:11,857 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:48:11,858 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:48:14,941 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:48:14,942 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:48:18,125 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:48:18,125 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:48:21,217 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:48:21,218 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:48:24,327 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:48:24,327 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:48:27,547 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:48:27,547 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:48:30,758 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:48:30,758 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:48:33,938 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:48:33,939 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:48:37,116 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:48:37,116 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:48:40,535 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:48:40,536 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:48:43,640 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:48:43,640 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:48:46,793 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:48:46,793 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:48:50,053 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:48:50,053 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:48:53,149 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:48:53,149 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:48:56,621 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:48:56,621 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:49:00,249 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:49:00,249 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:49:03,499 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:49:03,500 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:49:06,649 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:49:06,649 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:49:10,191 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:49:10,191 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:49:13,530 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:49:13,530 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:49:16,847 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:49:16,847 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:49:20,017 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:49:20,018 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:49:23,249 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:49:23,249 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:49:26,422 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:49:26,422 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:49:29,748 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:49:29,749 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:49:32,883 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:49:32,884 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:49:36,172 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:49:36,173 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:49:39,389 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:49:39,389 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:49:42,474 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:49:42,474 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:49:45,677 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:49:45,677 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:49:48,900 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:49:48,900 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:49:52,130 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:49:52,130 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:49:55,348 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:49:55,348 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:49:58,585 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:49:58,585 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:50:01,767 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:50:01,768 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:50:04,969 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:50:04,969 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:50:08,155 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:50:08,155 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:50:11,421 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:50:11,422 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:50:14,544 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:50:14,544 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:50:17,741 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:50:17,742 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:50:20,901 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:50:20,902 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:50:24,193 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:50:24,193 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:50:27,328 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:50:27,328 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:50:30,583 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:50:30,583 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:50:33,671 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:50:33,672 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:50:36,784 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:50:36,784 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:50:40,007 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:50:40,008 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:50:43,117 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:50:43,117 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:50:46,372 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:50:46,373 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:50:49,576 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:50:49,576 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:50:53,098 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:50:53,098 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:50:56,291 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:50:56,291 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:50:59,396 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:50:59,397 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:51:02,566 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:51:02,566 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:51:05,694 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:51:05,695 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:51:08,797 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:51:08,798 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:51:12,012 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:51:12,012 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:51:15,322 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:51:15,322 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:51:18,559 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:51:18,559 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:51:21,699 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:51:21,699 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:51:24,785 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:51:24,785 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:51:27,974 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:51:27,974 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:51:31,064 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:51:31,064 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:51:34,273 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:51:34,274 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:51:37,500 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:51:37,500 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:51:40,687 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:51:40,687 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:51:43,904 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:51:43,905 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:51:47,133 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:51:47,133 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:51:50,300 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:51:50,300 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:51:53,520 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:51:53,520 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:51:56,655 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:51:56,655 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:52:00,078 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:52:00,078 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:52:03,334 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:52:03,335 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:52:06,537 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:52:06,537 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:52:09,710 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:52:09,711 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:52:12,859 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:52:12,859 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:52:16,009 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:52:16,009 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:52:19,094 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:52:19,094 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:52:22,236 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:52:22,237 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:52:25,408 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:52:25,409 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:52:28,585 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:52:28,585 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:52:31,829 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:52:31,830 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:52:35,106 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:52:35,107 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:52:38,212 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:52:38,212 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:52:41,309 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:52:41,310 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:52:44,411 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:52:44,411 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:52:47,505 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:52:47,505 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:52:50,720 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:52:50,721 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:52:53,915 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:52:53,915 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:52:56,997 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:52:56,998 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:53:00,130 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:53:00,130 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:53:03,219 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:53:03,219 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:53:06,429 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:53:06,430 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:53:09,568 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:53:09,569 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:53:12,779 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:53:12,780 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:53:15,963 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:53:15,963 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:53:19,139 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:53:19,140 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:53:22,417 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:53:22,418 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:53:25,650 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:53:25,652 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:53:28,800 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:53:28,801 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:53:31,907 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:53:31,907 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:53:35,108 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:53:35,109 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:53:38,303 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:53:38,304 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:53:41,564 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:53:41,564 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:53:44,803 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:53:44,803 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:53:48,078 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:53:48,079 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:53:51,292 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:53:51,293 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:53:54,426 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:53:54,427 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:53:57,616 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:53:57,617 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:54:00,813 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:54:00,813 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:54:04,254 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:54:04,254 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:54:07,406 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:54:07,407 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:54:10,642 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:54:10,643 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:54:13,821 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:54:13,822 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:54:16,997 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:54:16,998 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:54:20,276 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:54:20,277 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:54:23,545 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:54:23,545 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:54:26,723 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:54:26,723 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:54:30,120 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:54:30,120 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:54:33,225 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:54:33,226 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:54:36,451 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:54:36,452 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:54:39,629 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:54:39,630 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:54:42,788 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:54:42,788 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:54:45,929 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:54:45,930 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:54:49,249 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:54:49,250 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:54:52,521 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:54:52,521 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:54:55,661 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:54:55,662 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:54:58,839 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:54:58,840 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:55:02,044 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:55:02,044 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:55:05,144 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:55:05,145 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:55:08,403 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:55:08,404 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:55:11,493 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:55:11,494 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:55:14,577 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:55:14,578 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:55:17,734 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:55:17,735 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:55:20,811 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:55:20,811 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:55:23,921 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:55:23,922 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:55:27,045 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:55:27,045 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:55:30,169 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:55:30,169 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:55:33,372 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:55:33,372 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:55:36,487 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:55:36,488 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:55:39,642 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:55:39,642 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:55:42,783 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:55:42,784 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:55:45,866 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:55:45,866 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:55:48,959 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:55:48,959 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:55:52,225 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:55:52,225 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:55:55,544 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:55:55,545 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:55:59,001 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:55:59,002 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:56:02,261 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:56:02,262 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:56:05,363 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:56:05,363 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:56:08,458 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:56:08,459 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:56:11,559 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:56:11,559 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:56:14,718 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:56:14,718 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:56:17,823 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:56:17,824 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:56:20,914 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:56:20,915 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:56:24,004 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:56:24,005 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:56:27,252 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:56:27,252 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:56:30,390 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:56:30,390 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:56:33,600 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:56:33,601 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:56:36,734 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:56:36,735 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:56:39,895 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:56:39,895 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:56:43,651 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:56:43,652 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:56:47,442 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:56:47,442 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:56:51,367 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:56:51,367 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:56:54,950 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:56:54,951 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:56:58,581 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:56:58,581 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:57:01,813 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:57:01,814 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:57:05,412 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:57:05,413 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:57:08,806 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:57:08,807 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:57:12,014 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:57:12,014 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:57:15,788 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:57:15,789 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:57:19,023 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:57:19,023 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:57:22,270 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:57:22,270 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:57:25,837 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:57:25,837 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:57:29,070 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:57:29,071 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:57:32,966 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:57:32,967 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:57:36,483 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:57:36,483 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:57:39,852 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:57:39,853 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:57:42,971 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:57:42,971 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:57:46,105 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:57:46,105 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:57:49,195 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:57:49,195 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:57:52,278 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:57:52,278 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:57:55,524 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:57:55,525 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:57:58,696 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:57:58,697 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:58:01,830 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:58:01,831 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:58:05,003 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:58:05,003 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:58:08,233 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:58:08,234 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:58:11,485 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:58:11,485 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:58:14,593 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:58:14,594 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:58:17,806 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:58:17,806 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:58:20,977 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:58:20,978 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:58:24,172 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:58:24,173 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:58:27,676 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:58:27,676 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:58:31,311 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:58:31,311 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:58:34,475 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:58:34,475 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:58:37,683 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:58:37,684 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:58:40,835 | INFO | Service - Get Stock: BBCA.JK
+2026-08-07 13:58:40,836 | INFO | Yahoo Provider - Fetch Stock: BBCA.JK
+2026-08-07 13:58:41,062 | INFO | WebSocket disconnected - BBCA.JK
+2026-08-07 13:58:41,062 | INFO | WebSocket closed - BBCA.JK
