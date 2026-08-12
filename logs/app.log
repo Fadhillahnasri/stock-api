@@ -2584,3 +2584,23 @@ fastapi.exceptions.ResponseValidationError: 1 validation error:
 2026-08-07 16:41:49,622 | INFO | Stock Service - Get Stock Price: BBNI.JK
 2026-08-07 16:41:49,625 | INFO | Yahoo Provider - Get Stock Price: BBNI.JK
 2026-08-07 16:42:54,722 | INFO | WebSocket Disconnected - Stock: BBNI.JK
+2026-08-12 14:19:34,079 | INFO | Incoming Request | GET /
+2026-08-12 14:19:34,096 | INFO | REST Request - Home
+2026-08-12 14:19:34,097 | INFO | Completed | Status=200 | Time=0.018s
+2026-08-12 14:19:34,270 | INFO | Incoming Request | GET /favicon.ico
+2026-08-12 14:19:34,272 | INFO | Completed | Status=404 | Time=0.002s
+2026-08-12 14:22:00,411 | INFO | Incoming Request | GET /
+2026-08-12 14:22:00,499 | INFO | REST Request - Home
+2026-08-12 14:22:00,517 | INFO | Completed | Status=200 | Time=0.116s
+2026-08-12 14:22:04,647 | INFO | Incoming Request | GET /
+2026-08-12 14:22:04,649 | INFO | REST Request - Home
+2026-08-12 14:22:04,650 | INFO | Completed | Status=200 | Time=0.003s
+2026-08-12 14:22:20,631 | INFO | Incoming Request | GET /docs
+2026-08-12 14:22:20,644 | INFO | Completed | Status=200 | Time=0.016s
+2026-08-12 14:22:21,278 | INFO | Incoming Request | GET /openapi.json
+2026-08-12 14:22:21,578 | INFO | Completed | Status=200 | Time=0.300s
+2026-08-12 14:23:03,277 | INFO | Incoming Request | GET /stock/BBCA.JK
+2026-08-12 14:23:03,315 | INFO | REST Request - Stock: BBCA.JK
+2026-08-12 14:23:03,317 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-08-12 14:23:03,321 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-08-12 14:23:04,904 | INFO | Completed | Status=200 | Time=1.628s

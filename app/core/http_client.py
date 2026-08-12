@@ -13,17 +13,25 @@ class HttpClient:
 
     def get(self, url: str, **kwargs):
 
-        return self.client.get(
+        response = self.client.get(
             url,
             **kwargs
         )
+
+        response.raise_for_status()
+
+        return response
 
     def post(self, url: str, **kwargs):
 
-        return self.client.post(
+        response = self.client.post(
             url,
             **kwargs
         )
+
+        response.raise_for_status()
+
+        return response
 
     def close(self):
 

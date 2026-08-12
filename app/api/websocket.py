@@ -1,3 +1,5 @@
+import asyncio
+
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 
 from app.services.stock_service import get_stock_price
@@ -13,13 +15,13 @@ async def stock_websocket(
     symbol: str
 ):
 
+    symbol = symbol.upper()
+
     logger.info(
         f"WebSocket Connection Attempt - Stock: {symbol}"
     )
 
     await websocket.accept()
-
-    symbol = symbol.upper()
 
     logger.info(
         f"WebSocket Connected - Stock: {symbol}"
@@ -29,8 +31,13 @@ async def stock_websocket(
 
         while True:
 
-            data = get_stock_price(symbol)
+            # Ambil data saham
+            data = await asyncio.to_thread(
+                get_stock_price,
+                symbol
+            )
 
+            # Jika data tidak ditemukan
             if data is None:
 
                 logger.warning(
@@ -44,23 +51,27 @@ async def stock_websocket(
 
                 break
 
+            # Kirim data ke client
             await websocket.send_json({
                 "success": True,
                 "provider": "Yahoo Finance",
                 "data": data
             })
 
-            message = await websocket.receive_text()
-
             logger.info(
-                f"WebSocket Message - {symbol}: {message}"
+                f"WebSocket Update Sent - Stock: {symbol}"
             )
+
+            # Tunggu 5 detik sebelum mengambil data lagi
+            await asyncio.sleep(5)
+
 
     except WebSocketDisconnect:
 
         logger.info(
             f"WebSocket Disconnected - Stock: {symbol}"
         )
+
 
     except Exception as e:
 
