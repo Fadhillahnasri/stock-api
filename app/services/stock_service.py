@@ -43,8 +43,6 @@ def get_multiple_stocks(symbols: list):
             failed.append(symbol)
 
     return {
-        "total_requested": len(symbols),
-        "success": len(stocks),
-        "failed": failed,
+        "total": len(stocks),
         "data": stocks
     }

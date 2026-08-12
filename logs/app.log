@@ -2604,3 +2604,1010 @@ fastapi.exceptions.ResponseValidationError: 1 validation error:
 2026-08-12 14:23:03,317 | INFO | Stock Service - Get Stock Price: BBCA.JK
 2026-08-12 14:23:03,321 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
 2026-08-12 14:23:04,904 | INFO | Completed | Status=200 | Time=1.628s
+2026-08-12 15:45:44,982 | INFO | Incoming Request | GET /docs
+2026-08-12 15:45:45,048 | INFO | Completed | Status=200 | Time=0.077s
+2026-08-12 15:45:46,000 | INFO | Incoming Request | GET /openapi.json
+2026-08-12 15:45:46,410 | INFO | Completed | Status=200 | Time=0.410s
+2026-08-12 15:55:07,776 | INFO | Incoming Request | GET /health
+2026-08-12 15:55:07,972 | INFO | REST Request - Health Check
+2026-08-12 15:55:08,008 | INFO | Completed | Status=200 | Time=0.241s
+2026-08-12 15:57:43,505 | INFO | Incoming Request | GET /stocks
+2026-08-12 15:57:43,535 | INFO | REST Request - Multiple Stocks: BBNI.JK,NFLX,TLKM.JK
+2026-08-12 15:57:43,538 | INFO | Stock Service - Get Multiple Stocks: ['BBNI.JK', 'NFLX', 'TLKM.JK']
+2026-08-12 15:57:43,541 | INFO | Yahoo Provider - Get Stock Price: BBNI.JK
+2026-08-12 15:57:45,608 | INFO | Yahoo Provider - Get Stock Price: NFLX
+2026-08-12 15:57:46,223 | INFO | Yahoo Provider - Get Stock Price: TLKM.JK
+2026-08-12 15:57:46,861 | ERROR | 2 validation errors:
+  {'type': 'bool_parsing', 'loc': ('response', 'success'), 'msg': 'Input should be a valid boolean, unable to interpret input', 'input': 3}
+  {'type': 'missing', 'loc': ('response', 'success_count'), 'msg': 'Field required', 'input': {'success': 3, 'provider': 'Yahoo Finance', 'total_requested': 3, 'failed': [], 'data': [{'symbol': 'BBNI.JK', 'company_name': 'PT Bank Negara Indonesia (Persero) Tbk', 'current_price': 3560.0, 'high': 3590.0, 'low': 3550.0, 'open': 3560.0, 'previous_close': 3550.0, 'change': 10.0, 'change_percent': 0.28089887, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'NFLX', 'company_name': 'Netflix, Inc.', 'current_price': 74.79, 'high': 76.89, 'low': 74.4812, 'open': 76.092, 'previous_close': 76.29, 'change': -1.5, 'change_percent': -1.96618, 'currency': 'USD', 'exchange': 'NMS', 'market_state': 'PRE'}, {'symbol': 'TLKM.JK', 'company_name': 'Perusahaan Perseroan (Persero) PT Telekomunikasi Indonesia Tbk', 'current_price': 2580.0, 'high': 2620.0, 'low': 2570.0, 'open': 2610.0, 'previous_close': 2610.0, 'change': -30.0, 'change_percent': -1.1494253, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}]}}
+
+  File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 99, in stocks
+    GET /stocks
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 79, in collapse_excgroups
+  |     yield
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 183, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 815, in __aexit__
+  |     raise BaseExceptionGroup(
+  |         "unhandled errors in a TaskGroup", self._exceptions
+  |     ) from None
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |                                    ~~~~~~~~~~~~~~~~~~^^
+    |   File "C:\Users\Fadil\AppData\Local\Python\pythoncore-3.14-64\Lib\contextlib.py", line 162, in __exit__
+    |     self.gen.throw(value)
+    |     ~~~~~~~~~~~~~~^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\app\middleware\logging_middleware.py", line 16, in logging_middleware
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    |     raise app_exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    |     await route.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    |     await self.original_router.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    |     await included_router._handle_selected(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    |     await original_route.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    |     await app(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 727, in app
+    |     content = await serialize_response(
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |     ...<11 lines>...
+    |     )
+    |     ^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 324, in serialize_response
+    |     raise ResponseValidationError(
+    |     ...<3 lines>...
+    |     )
+    | fastapi.exceptions.ResponseValidationError: 2 validation errors:
+    |   {'type': 'bool_parsing', 'loc': ('response', 'success'), 'msg': 'Input should be a valid boolean, unable to interpret input', 'input': 3}
+    |   {'type': 'missing', 'loc': ('response', 'success_count'), 'msg': 'Field required', 'input': {'success': 3, 'provider': 'Yahoo Finance', 'total_requested': 3, 'failed': [], 'data': [{'symbol': 'BBNI.JK', 'company_name': 'PT Bank Negara Indonesia (Persero) Tbk', 'current_price': 3560.0, 'high': 3590.0, 'low': 3550.0, 'open': 3560.0, 'previous_close': 3550.0, 'change': 10.0, 'change_percent': 0.28089887, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'NFLX', 'company_name': 'Netflix, Inc.', 'current_price': 74.79, 'high': 76.89, 'low': 74.4812, 'open': 76.092, 'previous_close': 76.29, 'change': -1.5, 'change_percent': -1.96618, 'currency': 'USD', 'exchange': 'NMS', 'market_state': 'PRE'}, {'symbol': 'TLKM.JK', 'company_name': 'Perusahaan Perseroan (Persero) PT Telekomunikasi Indonesia Tbk', 'current_price': 2580.0, 'high': 2620.0, 'low': 2570.0, 'open': 2610.0, 'previous_close': 2610.0, 'change': -30.0, 'change_percent': -1.1494253, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}]}}
+    | 
+    |   File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 99, in stocks
+    |     GET /stocks
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+                                   ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fadil\AppData\Local\Python\pythoncore-3.14-64\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\app\middleware\logging_middleware.py", line 16, in logging_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    raise app_exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    await app(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 727, in app
+    content = await serialize_response(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 324, in serialize_response
+    raise ResponseValidationError(
+    ...<3 lines>...
+    )
+fastapi.exceptions.ResponseValidationError: 2 validation errors:
+  {'type': 'bool_parsing', 'loc': ('response', 'success'), 'msg': 'Input should be a valid boolean, unable to interpret input', 'input': 3}
+  {'type': 'missing', 'loc': ('response', 'success_count'), 'msg': 'Field required', 'input': {'success': 3, 'provider': 'Yahoo Finance', 'total_requested': 3, 'failed': [], 'data': [{'symbol': 'BBNI.JK', 'company_name': 'PT Bank Negara Indonesia (Persero) Tbk', 'current_price': 3560.0, 'high': 3590.0, 'low': 3550.0, 'open': 3560.0, 'previous_close': 3550.0, 'change': 10.0, 'change_percent': 0.28089887, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'NFLX', 'company_name': 'Netflix, Inc.', 'current_price': 74.79, 'high': 76.89, 'low': 74.4812, 'open': 76.092, 'previous_close': 76.29, 'change': -1.5, 'change_percent': -1.96618, 'currency': 'USD', 'exchange': 'NMS', 'market_state': 'PRE'}, {'symbol': 'TLKM.JK', 'company_name': 'Perusahaan Perseroan (Persero) PT Telekomunikasi Indonesia Tbk', 'current_price': 2580.0, 'high': 2620.0, 'low': 2570.0, 'open': 2610.0, 'previous_close': 2610.0, 'change': -30.0, 'change_percent': -1.1494253, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}]}}
+
+  File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 99, in stocks
+    GET /stocks
+2026-08-12 15:58:08,261 | INFO | Incoming Request | GET /stocks
+2026-08-12 15:58:08,275 | INFO | REST Request - Multiple Stocks: BBNI.JK,NFLX.JK,TLKM.JK
+2026-08-12 15:58:08,275 | INFO | Stock Service - Get Multiple Stocks: ['BBNI.JK', 'NFLX.JK', 'TLKM.JK']
+2026-08-12 15:58:08,276 | INFO | Yahoo Provider - Get Stock Price: BBNI.JK
+2026-08-12 15:58:08,579 | INFO | Yahoo Provider - Get Stock Price: NFLX.JK
+2026-08-12 15:58:09,471 | ERROR | HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: NFLX.JK"}}}
+2026-08-12 15:58:09,775 | INFO | Yahoo Provider - Get Stock Price: TLKM.JK
+2026-08-12 15:58:10,142 | ERROR | 3 validation errors:
+  {'type': 'bool_parsing', 'loc': ('response', 'success'), 'msg': 'Input should be a valid boolean, unable to interpret input', 'input': 3}
+  {'type': 'missing', 'loc': ('response', 'success_count'), 'msg': 'Field required', 'input': {'success': 3, 'provider': 'Yahoo Finance', 'total_requested': 3, 'failed': [], 'data': [{'symbol': 'BBNI.JK', 'company_name': 'PT Bank Negara Indonesia (Persero) Tbk', 'current_price': 3570.0, 'high': 3590.0, 'low': 3550.0, 'open': 3560.0, 'previous_close': 3550.0, 'change': 20.0, 'change_percent': 0.5633803, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'NFLX.JK', 'company_name': None, 'current_price': None, 'high': None, 'low': None, 'open': None, 'previous_close': None, 'change': None, 'change_percent': None, 'currency': None, 'exchange': None, 'market_state': None}, {'symbol': 'TLKM.JK', 'company_name': 'Perusahaan Perseroan (Persero) PT Telekomunikasi Indonesia Tbk', 'current_price': 2580.0, 'high': 2620.0, 'low': 2570.0, 'open': 2610.0, 'previous_close': 2610.0, 'change': -30.0, 'change_percent': -1.1494253, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}]}}
+  {'type': 'string_type', 'loc': ('response', 'data', 1, 'company_name'), 'msg': 'Input should be a valid string', 'input': None}
+
+  File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 99, in stocks
+    GET /stocks
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 79, in collapse_excgroups
+  |     yield
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 183, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 815, in __aexit__
+  |     raise BaseExceptionGroup(
+  |         "unhandled errors in a TaskGroup", self._exceptions
+  |     ) from None
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |                                    ~~~~~~~~~~~~~~~~~~^^
+    |   File "C:\Users\Fadil\AppData\Local\Python\pythoncore-3.14-64\Lib\contextlib.py", line 162, in __exit__
+    |     self.gen.throw(value)
+    |     ~~~~~~~~~~~~~~^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\app\middleware\logging_middleware.py", line 16, in logging_middleware
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    |     raise app_exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    |     await route.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    |     await self.original_router.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    |     await included_router._handle_selected(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    |     await original_route.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    |     await app(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 727, in app
+    |     content = await serialize_response(
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |     ...<11 lines>...
+    |     )
+    |     ^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 324, in serialize_response
+    |     raise ResponseValidationError(
+    |     ...<3 lines>...
+    |     )
+    | fastapi.exceptions.ResponseValidationError: 3 validation errors:
+    |   {'type': 'bool_parsing', 'loc': ('response', 'success'), 'msg': 'Input should be a valid boolean, unable to interpret input', 'input': 3}
+    |   {'type': 'missing', 'loc': ('response', 'success_count'), 'msg': 'Field required', 'input': {'success': 3, 'provider': 'Yahoo Finance', 'total_requested': 3, 'failed': [], 'data': [{'symbol': 'BBNI.JK', 'company_name': 'PT Bank Negara Indonesia (Persero) Tbk', 'current_price': 3570.0, 'high': 3590.0, 'low': 3550.0, 'open': 3560.0, 'previous_close': 3550.0, 'change': 20.0, 'change_percent': 0.5633803, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'NFLX.JK', 'company_name': None, 'current_price': None, 'high': None, 'low': None, 'open': None, 'previous_close': None, 'change': None, 'change_percent': None, 'currency': None, 'exchange': None, 'market_state': None}, {'symbol': 'TLKM.JK', 'company_name': 'Perusahaan Perseroan (Persero) PT Telekomunikasi Indonesia Tbk', 'current_price': 2580.0, 'high': 2620.0, 'low': 2570.0, 'open': 2610.0, 'previous_close': 2610.0, 'change': -30.0, 'change_percent': -1.1494253, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}]}}
+    |   {'type': 'string_type', 'loc': ('response', 'data', 1, 'company_name'), 'msg': 'Input should be a valid string', 'input': None}
+    | 
+    |   File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 99, in stocks
+    |     GET /stocks
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+                                   ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fadil\AppData\Local\Python\pythoncore-3.14-64\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\app\middleware\logging_middleware.py", line 16, in logging_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    raise app_exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    await app(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 727, in app
+    content = await serialize_response(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 324, in serialize_response
+    raise ResponseValidationError(
+    ...<3 lines>...
+    )
+fastapi.exceptions.ResponseValidationError: 3 validation errors:
+  {'type': 'bool_parsing', 'loc': ('response', 'success'), 'msg': 'Input should be a valid boolean, unable to interpret input', 'input': 3}
+  {'type': 'missing', 'loc': ('response', 'success_count'), 'msg': 'Field required', 'input': {'success': 3, 'provider': 'Yahoo Finance', 'total_requested': 3, 'failed': [], 'data': [{'symbol': 'BBNI.JK', 'company_name': 'PT Bank Negara Indonesia (Persero) Tbk', 'current_price': 3570.0, 'high': 3590.0, 'low': 3550.0, 'open': 3560.0, 'previous_close': 3550.0, 'change': 20.0, 'change_percent': 0.5633803, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'NFLX.JK', 'company_name': None, 'current_price': None, 'high': None, 'low': None, 'open': None, 'previous_close': None, 'change': None, 'change_percent': None, 'currency': None, 'exchange': None, 'market_state': None}, {'symbol': 'TLKM.JK', 'company_name': 'Perusahaan Perseroan (Persero) PT Telekomunikasi Indonesia Tbk', 'current_price': 2580.0, 'high': 2620.0, 'low': 2570.0, 'open': 2610.0, 'previous_close': 2610.0, 'change': -30.0, 'change_percent': -1.1494253, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}]}}
+  {'type': 'string_type', 'loc': ('response', 'data', 1, 'company_name'), 'msg': 'Input should be a valid string', 'input': None}
+
+  File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 99, in stocks
+    GET /stocks
+2026-08-12 15:58:33,927 | INFO | Incoming Request | GET /stocks
+2026-08-12 15:58:33,929 | INFO | REST Request - Multiple Stocks: BBNI.JK,BBCA.JK,TLKM.JK
+2026-08-12 15:58:33,930 | INFO | Stock Service - Get Multiple Stocks: ['BBNI.JK', 'BBCA.JK', 'TLKM.JK']
+2026-08-12 15:58:33,930 | INFO | Yahoo Provider - Get Stock Price: BBNI.JK
+2026-08-12 15:58:34,290 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-08-12 15:58:34,869 | INFO | Yahoo Provider - Get Stock Price: TLKM.JK
+2026-08-12 15:58:35,173 | ERROR | 2 validation errors:
+  {'type': 'bool_parsing', 'loc': ('response', 'success'), 'msg': 'Input should be a valid boolean, unable to interpret input', 'input': 3}
+  {'type': 'missing', 'loc': ('response', 'success_count'), 'msg': 'Field required', 'input': {'success': 3, 'provider': 'Yahoo Finance', 'total_requested': 3, 'failed': [], 'data': [{'symbol': 'BBNI.JK', 'company_name': 'PT Bank Negara Indonesia (Persero) Tbk', 'current_price': 3570.0, 'high': 3590.0, 'low': 3550.0, 'open': 3560.0, 'previous_close': 3550.0, 'change': 20.0, 'change_percent': 0.5633803, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'BBCA.JK', 'company_name': 'PT Bank Central Asia Tbk', 'current_price': 6325.0, 'high': 6325.0, 'low': 6225.0, 'open': 6300.0, 'previous_close': 6300.0, 'change': 25.0, 'change_percent': 0.3984064, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'TLKM.JK', 'company_name': 'Perusahaan Perseroan (Persero) PT Telekomunikasi Indonesia Tbk', 'current_price': 2580.0, 'high': 2620.0, 'low': 2570.0, 'open': 2610.0, 'previous_close': 2610.0, 'change': -30.0, 'change_percent': -1.1494253, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}]}}
+
+  File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 99, in stocks
+    GET /stocks
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 79, in collapse_excgroups
+  |     yield
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 183, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 815, in __aexit__
+  |     raise BaseExceptionGroup(
+  |         "unhandled errors in a TaskGroup", self._exceptions
+  |     ) from None
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |                                    ~~~~~~~~~~~~~~~~~~^^
+    |   File "C:\Users\Fadil\AppData\Local\Python\pythoncore-3.14-64\Lib\contextlib.py", line 162, in __exit__
+    |     self.gen.throw(value)
+    |     ~~~~~~~~~~~~~~^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\app\middleware\logging_middleware.py", line 16, in logging_middleware
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    |     raise app_exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    |     await route.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    |     await self.original_router.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    |     await included_router._handle_selected(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    |     await original_route.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    |     await app(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 727, in app
+    |     content = await serialize_response(
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |     ...<11 lines>...
+    |     )
+    |     ^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 324, in serialize_response
+    |     raise ResponseValidationError(
+    |     ...<3 lines>...
+    |     )
+    | fastapi.exceptions.ResponseValidationError: 2 validation errors:
+    |   {'type': 'bool_parsing', 'loc': ('response', 'success'), 'msg': 'Input should be a valid boolean, unable to interpret input', 'input': 3}
+    |   {'type': 'missing', 'loc': ('response', 'success_count'), 'msg': 'Field required', 'input': {'success': 3, 'provider': 'Yahoo Finance', 'total_requested': 3, 'failed': [], 'data': [{'symbol': 'BBNI.JK', 'company_name': 'PT Bank Negara Indonesia (Persero) Tbk', 'current_price': 3570.0, 'high': 3590.0, 'low': 3550.0, 'open': 3560.0, 'previous_close': 3550.0, 'change': 20.0, 'change_percent': 0.5633803, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'BBCA.JK', 'company_name': 'PT Bank Central Asia Tbk', 'current_price': 6325.0, 'high': 6325.0, 'low': 6225.0, 'open': 6300.0, 'previous_close': 6300.0, 'change': 25.0, 'change_percent': 0.3984064, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'TLKM.JK', 'company_name': 'Perusahaan Perseroan (Persero) PT Telekomunikasi Indonesia Tbk', 'current_price': 2580.0, 'high': 2620.0, 'low': 2570.0, 'open': 2610.0, 'previous_close': 2610.0, 'change': -30.0, 'change_percent': -1.1494253, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}]}}
+    | 
+    |   File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 99, in stocks
+    |     GET /stocks
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+                                   ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fadil\AppData\Local\Python\pythoncore-3.14-64\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\app\middleware\logging_middleware.py", line 16, in logging_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    raise app_exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    await app(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 727, in app
+    content = await serialize_response(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 324, in serialize_response
+    raise ResponseValidationError(
+    ...<3 lines>...
+    )
+fastapi.exceptions.ResponseValidationError: 2 validation errors:
+  {'type': 'bool_parsing', 'loc': ('response', 'success'), 'msg': 'Input should be a valid boolean, unable to interpret input', 'input': 3}
+  {'type': 'missing', 'loc': ('response', 'success_count'), 'msg': 'Field required', 'input': {'success': 3, 'provider': 'Yahoo Finance', 'total_requested': 3, 'failed': [], 'data': [{'symbol': 'BBNI.JK', 'company_name': 'PT Bank Negara Indonesia (Persero) Tbk', 'current_price': 3570.0, 'high': 3590.0, 'low': 3550.0, 'open': 3560.0, 'previous_close': 3550.0, 'change': 20.0, 'change_percent': 0.5633803, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'BBCA.JK', 'company_name': 'PT Bank Central Asia Tbk', 'current_price': 6325.0, 'high': 6325.0, 'low': 6225.0, 'open': 6300.0, 'previous_close': 6300.0, 'change': 25.0, 'change_percent': 0.3984064, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'TLKM.JK', 'company_name': 'Perusahaan Perseroan (Persero) PT Telekomunikasi Indonesia Tbk', 'current_price': 2580.0, 'high': 2620.0, 'low': 2570.0, 'open': 2610.0, 'previous_close': 2610.0, 'change': -30.0, 'change_percent': -1.1494253, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}]}}
+
+  File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 99, in stocks
+    GET /stocks
+2026-08-12 15:58:49,310 | INFO | Incoming Request | GET /stocks
+2026-08-12 15:58:49,311 | INFO | REST Request - Multiple Stocks: BBNI.JK,BBCA.JK,BMRI.JK
+2026-08-12 15:58:49,312 | INFO | Stock Service - Get Multiple Stocks: ['BBNI.JK', 'BBCA.JK', 'BMRI.JK']
+2026-08-12 15:58:49,312 | INFO | Yahoo Provider - Get Stock Price: BBNI.JK
+2026-08-12 15:58:49,815 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-08-12 15:58:50,226 | INFO | Yahoo Provider - Get Stock Price: BMRI.JK
+2026-08-12 15:58:51,250 | ERROR | 2 validation errors:
+  {'type': 'bool_parsing', 'loc': ('response', 'success'), 'msg': 'Input should be a valid boolean, unable to interpret input', 'input': 3}
+  {'type': 'missing', 'loc': ('response', 'success_count'), 'msg': 'Field required', 'input': {'success': 3, 'provider': 'Yahoo Finance', 'total_requested': 3, 'failed': [], 'data': [{'symbol': 'BBNI.JK', 'company_name': 'PT Bank Negara Indonesia (Persero) Tbk', 'current_price': 3570.0, 'high': 3590.0, 'low': 3550.0, 'open': 3560.0, 'previous_close': 3550.0, 'change': 20.0, 'change_percent': 0.56497175, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'BBCA.JK', 'company_name': 'PT Bank Central Asia Tbk', 'current_price': 6325.0, 'high': 6325.0, 'low': 6225.0, 'open': 6300.0, 'previous_close': 6300.0, 'change': 25.0, 'change_percent': 0.3968254, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'BMRI.JK', 'company_name': 'PT Bank Mandiri (Persero) Tbk', 'current_price': 4130.0, 'high': 4150.0, 'low': 4080.0, 'open': 4130.0, 'previous_close': 4120.0, 'change': 10.0, 'change_percent': 0.24271844, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}]}}
+
+  File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 99, in stocks
+    GET /stocks
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 79, in collapse_excgroups
+  |     yield
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 183, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 815, in __aexit__
+  |     raise BaseExceptionGroup(
+  |         "unhandled errors in a TaskGroup", self._exceptions
+  |     ) from None
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |                                    ~~~~~~~~~~~~~~~~~~^^
+    |   File "C:\Users\Fadil\AppData\Local\Python\pythoncore-3.14-64\Lib\contextlib.py", line 162, in __exit__
+    |     self.gen.throw(value)
+    |     ~~~~~~~~~~~~~~^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\app\middleware\logging_middleware.py", line 16, in logging_middleware
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    |     raise app_exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    |     await route.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    |     await self.original_router.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    |     await included_router._handle_selected(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    |     await original_route.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    |     await app(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 727, in app
+    |     content = await serialize_response(
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |     ...<11 lines>...
+    |     )
+    |     ^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 324, in serialize_response
+    |     raise ResponseValidationError(
+    |     ...<3 lines>...
+    |     )
+    | fastapi.exceptions.ResponseValidationError: 2 validation errors:
+    |   {'type': 'bool_parsing', 'loc': ('response', 'success'), 'msg': 'Input should be a valid boolean, unable to interpret input', 'input': 3}
+    |   {'type': 'missing', 'loc': ('response', 'success_count'), 'msg': 'Field required', 'input': {'success': 3, 'provider': 'Yahoo Finance', 'total_requested': 3, 'failed': [], 'data': [{'symbol': 'BBNI.JK', 'company_name': 'PT Bank Negara Indonesia (Persero) Tbk', 'current_price': 3570.0, 'high': 3590.0, 'low': 3550.0, 'open': 3560.0, 'previous_close': 3550.0, 'change': 20.0, 'change_percent': 0.56497175, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'BBCA.JK', 'company_name': 'PT Bank Central Asia Tbk', 'current_price': 6325.0, 'high': 6325.0, 'low': 6225.0, 'open': 6300.0, 'previous_close': 6300.0, 'change': 25.0, 'change_percent': 0.3968254, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'BMRI.JK', 'company_name': 'PT Bank Mandiri (Persero) Tbk', 'current_price': 4130.0, 'high': 4150.0, 'low': 4080.0, 'open': 4130.0, 'previous_close': 4120.0, 'change': 10.0, 'change_percent': 0.24271844, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}]}}
+    | 
+    |   File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 99, in stocks
+    |     GET /stocks
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+                                   ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fadil\AppData\Local\Python\pythoncore-3.14-64\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\app\middleware\logging_middleware.py", line 16, in logging_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    raise app_exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    await app(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 727, in app
+    content = await serialize_response(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 324, in serialize_response
+    raise ResponseValidationError(
+    ...<3 lines>...
+    )
+fastapi.exceptions.ResponseValidationError: 2 validation errors:
+  {'type': 'bool_parsing', 'loc': ('response', 'success'), 'msg': 'Input should be a valid boolean, unable to interpret input', 'input': 3}
+  {'type': 'missing', 'loc': ('response', 'success_count'), 'msg': 'Field required', 'input': {'success': 3, 'provider': 'Yahoo Finance', 'total_requested': 3, 'failed': [], 'data': [{'symbol': 'BBNI.JK', 'company_name': 'PT Bank Negara Indonesia (Persero) Tbk', 'current_price': 3570.0, 'high': 3590.0, 'low': 3550.0, 'open': 3560.0, 'previous_close': 3550.0, 'change': 20.0, 'change_percent': 0.56497175, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'BBCA.JK', 'company_name': 'PT Bank Central Asia Tbk', 'current_price': 6325.0, 'high': 6325.0, 'low': 6225.0, 'open': 6300.0, 'previous_close': 6300.0, 'change': 25.0, 'change_percent': 0.3968254, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'BMRI.JK', 'company_name': 'PT Bank Mandiri (Persero) Tbk', 'current_price': 4130.0, 'high': 4150.0, 'low': 4080.0, 'open': 4130.0, 'previous_close': 4120.0, 'change': 10.0, 'change_percent': 0.24271844, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}]}}
+
+  File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 99, in stocks
+    GET /stocks
+2026-08-12 15:59:51,397 | INFO | Incoming Request | GET /stocks
+2026-08-12 15:59:51,427 | INFO | REST Request - Multiple Stocks: BBCA.JK,BBRI.JK,BMRI.JK
+2026-08-12 15:59:51,428 | INFO | Stock Service - Get Multiple Stocks: ['BBCA.JK', 'BBRI.JK', 'BMRI.JK']
+2026-08-12 15:59:51,429 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-08-12 15:59:51,803 | INFO | Yahoo Provider - Get Stock Price: BBRI.JK
+2026-08-12 15:59:52,381 | INFO | Yahoo Provider - Get Stock Price: BMRI.JK
+2026-08-12 15:59:52,809 | ERROR | 2 validation errors:
+  {'type': 'bool_parsing', 'loc': ('response', 'success'), 'msg': 'Input should be a valid boolean, unable to interpret input', 'input': 3}
+  {'type': 'missing', 'loc': ('response', 'success_count'), 'msg': 'Field required', 'input': {'success': 3, 'provider': 'Yahoo Finance', 'total_requested': 3, 'failed': [], 'data': [{'symbol': 'BBCA.JK', 'company_name': 'PT Bank Central Asia Tbk', 'current_price': 6325.0, 'high': 6325.0, 'low': 6225.0, 'open': 6300.0, 'previous_close': 6300.0, 'change': 25.0, 'change_percent': 0.3984064, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'BBRI.JK', 'company_name': 'PT Bank Rakyat Indonesia (Persero) Tbk', 'current_price': 3110.0, 'high': 3120.0, 'low': 3080.0, 'open': 3090.0, 'previous_close': 3090.0, 'change': 20.0, 'change_percent': 0.64724916, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'BMRI.JK', 'company_name': 'PT Bank Mandiri (Persero) Tbk', 'current_price': 4130.0, 'high': 4150.0, 'low': 4080.0, 'open': 4130.0, 'previous_close': 4120.0, 'change': 0.0, 'change_percent': 0.0, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}]}}
+
+  File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 99, in stocks
+    GET /stocks
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 79, in collapse_excgroups
+  |     yield
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 183, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 815, in __aexit__
+  |     raise BaseExceptionGroup(
+  |         "unhandled errors in a TaskGroup", self._exceptions
+  |     ) from None
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |                                    ~~~~~~~~~~~~~~~~~~^^
+    |   File "C:\Users\Fadil\AppData\Local\Python\pythoncore-3.14-64\Lib\contextlib.py", line 162, in __exit__
+    |     self.gen.throw(value)
+    |     ~~~~~~~~~~~~~~^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\app\middleware\logging_middleware.py", line 16, in logging_middleware
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    |     raise app_exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    |     await route.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    |     await self.original_router.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    |     await included_router._handle_selected(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    |     await original_route.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    |     await app(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 727, in app
+    |     content = await serialize_response(
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |     ...<11 lines>...
+    |     )
+    |     ^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 324, in serialize_response
+    |     raise ResponseValidationError(
+    |     ...<3 lines>...
+    |     )
+    | fastapi.exceptions.ResponseValidationError: 2 validation errors:
+    |   {'type': 'bool_parsing', 'loc': ('response', 'success'), 'msg': 'Input should be a valid boolean, unable to interpret input', 'input': 3}
+    |   {'type': 'missing', 'loc': ('response', 'success_count'), 'msg': 'Field required', 'input': {'success': 3, 'provider': 'Yahoo Finance', 'total_requested': 3, 'failed': [], 'data': [{'symbol': 'BBCA.JK', 'company_name': 'PT Bank Central Asia Tbk', 'current_price': 6325.0, 'high': 6325.0, 'low': 6225.0, 'open': 6300.0, 'previous_close': 6300.0, 'change': 25.0, 'change_percent': 0.3984064, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'BBRI.JK', 'company_name': 'PT Bank Rakyat Indonesia (Persero) Tbk', 'current_price': 3110.0, 'high': 3120.0, 'low': 3080.0, 'open': 3090.0, 'previous_close': 3090.0, 'change': 20.0, 'change_percent': 0.64724916, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'BMRI.JK', 'company_name': 'PT Bank Mandiri (Persero) Tbk', 'current_price': 4130.0, 'high': 4150.0, 'low': 4080.0, 'open': 4130.0, 'previous_close': 4120.0, 'change': 0.0, 'change_percent': 0.0, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}]}}
+    | 
+    |   File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 99, in stocks
+    |     GET /stocks
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+                                   ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fadil\AppData\Local\Python\pythoncore-3.14-64\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\app\middleware\logging_middleware.py", line 16, in logging_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    raise app_exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    await app(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 727, in app
+    content = await serialize_response(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 324, in serialize_response
+    raise ResponseValidationError(
+    ...<3 lines>...
+    )
+fastapi.exceptions.ResponseValidationError: 2 validation errors:
+  {'type': 'bool_parsing', 'loc': ('response', 'success'), 'msg': 'Input should be a valid boolean, unable to interpret input', 'input': 3}
+  {'type': 'missing', 'loc': ('response', 'success_count'), 'msg': 'Field required', 'input': {'success': 3, 'provider': 'Yahoo Finance', 'total_requested': 3, 'failed': [], 'data': [{'symbol': 'BBCA.JK', 'company_name': 'PT Bank Central Asia Tbk', 'current_price': 6325.0, 'high': 6325.0, 'low': 6225.0, 'open': 6300.0, 'previous_close': 6300.0, 'change': 25.0, 'change_percent': 0.3984064, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'BBRI.JK', 'company_name': 'PT Bank Rakyat Indonesia (Persero) Tbk', 'current_price': 3110.0, 'high': 3120.0, 'low': 3080.0, 'open': 3090.0, 'previous_close': 3090.0, 'change': 20.0, 'change_percent': 0.64724916, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'BMRI.JK', 'company_name': 'PT Bank Mandiri (Persero) Tbk', 'current_price': 4130.0, 'high': 4150.0, 'low': 4080.0, 'open': 4130.0, 'previous_close': 4120.0, 'change': 0.0, 'change_percent': 0.0, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}]}}
+
+  File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 99, in stocks
+    GET /stocks
+2026-08-12 16:03:21,012 | INFO | Incoming Request | GET /docs
+2026-08-12 16:03:21,014 | INFO | Completed | Status=200 | Time=0.003s
+2026-08-12 16:03:21,680 | INFO | Incoming Request | GET /openapi.json
+2026-08-12 16:03:21,795 | INFO | Completed | Status=200 | Time=0.116s
+2026-08-12 16:03:36,753 | INFO | Incoming Request | GET /stocks
+2026-08-12 16:03:36,768 | INFO | REST Request - Multiple Stocks: BBCA.JK,BBRI.JK,BMRI.JK
+2026-08-12 16:03:36,769 | INFO | Stock Service - Get Multiple Stocks: ['BBCA.JK', 'BBRI.JK', 'BMRI.JK']
+2026-08-12 16:03:36,769 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-08-12 16:03:38,163 | INFO | Yahoo Provider - Get Stock Price: BBRI.JK
+2026-08-12 16:03:38,817 | INFO | Yahoo Provider - Get Stock Price: BMRI.JK
+2026-08-12 16:03:39,454 | ERROR | 3 validation errors:
+  {'type': 'missing', 'loc': ('response', 'total_requested'), 'msg': 'Field required', 'input': {'success': True, 'provider': 'Yahoo Finance', 'total': 3, 'data': [{'symbol': 'BBCA.JK', 'company_name': 'PT Bank Central Asia Tbk', 'current_price': 6325.0, 'high': 6325.0, 'low': 6225.0, 'open': 6300.0, 'previous_close': 6300.0, 'change': 25.0, 'change_percent': 0.3968254, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'BBRI.JK', 'company_name': 'PT Bank Rakyat Indonesia (Persero) Tbk', 'current_price': 3110.0, 'high': 3120.0, 'low': 3080.0, 'open': 3090.0, 'previous_close': 3090.0, 'change': 20.0, 'change_percent': 0.64724916, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'BMRI.JK', 'company_name': 'PT Bank Mandiri (Persero) Tbk', 'current_price': 4130.0, 'high': 4150.0, 'low': 4080.0, 'open': 4130.0, 'previous_close': 4120.0, 'change': 10.0, 'change_percent': 0.24271844, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}]}}
+  {'type': 'missing', 'loc': ('response', 'success_count'), 'msg': 'Field required', 'input': {'success': True, 'provider': 'Yahoo Finance', 'total': 3, 'data': [{'symbol': 'BBCA.JK', 'company_name': 'PT Bank Central Asia Tbk', 'current_price': 6325.0, 'high': 6325.0, 'low': 6225.0, 'open': 6300.0, 'previous_close': 6300.0, 'change': 25.0, 'change_percent': 0.3968254, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'BBRI.JK', 'company_name': 'PT Bank Rakyat Indonesia (Persero) Tbk', 'current_price': 3110.0, 'high': 3120.0, 'low': 3080.0, 'open': 3090.0, 'previous_close': 3090.0, 'change': 20.0, 'change_percent': 0.64724916, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'BMRI.JK', 'company_name': 'PT Bank Mandiri (Persero) Tbk', 'current_price': 4130.0, 'high': 4150.0, 'low': 4080.0, 'open': 4130.0, 'previous_close': 4120.0, 'change': 10.0, 'change_percent': 0.24271844, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}]}}
+  {'type': 'missing', 'loc': ('response', 'failed'), 'msg': 'Field required', 'input': {'success': True, 'provider': 'Yahoo Finance', 'total': 3, 'data': [{'symbol': 'BBCA.JK', 'company_name': 'PT Bank Central Asia Tbk', 'current_price': 6325.0, 'high': 6325.0, 'low': 6225.0, 'open': 6300.0, 'previous_close': 6300.0, 'change': 25.0, 'change_percent': 0.3968254, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'BBRI.JK', 'company_name': 'PT Bank Rakyat Indonesia (Persero) Tbk', 'current_price': 3110.0, 'high': 3120.0, 'low': 3080.0, 'open': 3090.0, 'previous_close': 3090.0, 'change': 20.0, 'change_percent': 0.64724916, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'BMRI.JK', 'company_name': 'PT Bank Mandiri (Persero) Tbk', 'current_price': 4130.0, 'high': 4150.0, 'low': 4080.0, 'open': 4130.0, 'previous_close': 4120.0, 'change': 10.0, 'change_percent': 0.24271844, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}]}}
+
+  File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 99, in stocks
+    GET /stocks
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 79, in collapse_excgroups
+  |     yield
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 183, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 815, in __aexit__
+  |     raise BaseExceptionGroup(
+  |         "unhandled errors in a TaskGroup", self._exceptions
+  |     ) from None
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |                                    ~~~~~~~~~~~~~~~~~~^^
+    |   File "C:\Users\Fadil\AppData\Local\Python\pythoncore-3.14-64\Lib\contextlib.py", line 162, in __exit__
+    |     self.gen.throw(value)
+    |     ~~~~~~~~~~~~~~^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\app\middleware\logging_middleware.py", line 16, in logging_middleware
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    |     raise app_exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    |     await route.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    |     await self.original_router.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    |     await included_router._handle_selected(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    |     await original_route.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    |     await app(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 727, in app
+    |     content = await serialize_response(
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |     ...<11 lines>...
+    |     )
+    |     ^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 324, in serialize_response
+    |     raise ResponseValidationError(
+    |     ...<3 lines>...
+    |     )
+    | fastapi.exceptions.ResponseValidationError: 3 validation errors:
+    |   {'type': 'missing', 'loc': ('response', 'total_requested'), 'msg': 'Field required', 'input': {'success': True, 'provider': 'Yahoo Finance', 'total': 3, 'data': [{'symbol': 'BBCA.JK', 'company_name': 'PT Bank Central Asia Tbk', 'current_price': 6325.0, 'high': 6325.0, 'low': 6225.0, 'open': 6300.0, 'previous_close': 6300.0, 'change': 25.0, 'change_percent': 0.3968254, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'BBRI.JK', 'company_name': 'PT Bank Rakyat Indonesia (Persero) Tbk', 'current_price': 3110.0, 'high': 3120.0, 'low': 3080.0, 'open': 3090.0, 'previous_close': 3090.0, 'change': 20.0, 'change_percent': 0.64724916, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'BMRI.JK', 'company_name': 'PT Bank Mandiri (Persero) Tbk', 'current_price': 4130.0, 'high': 4150.0, 'low': 4080.0, 'open': 4130.0, 'previous_close': 4120.0, 'change': 10.0, 'change_percent': 0.24271844, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}]}}
+    |   {'type': 'missing', 'loc': ('response', 'success_count'), 'msg': 'Field required', 'input': {'success': True, 'provider': 'Yahoo Finance', 'total': 3, 'data': [{'symbol': 'BBCA.JK', 'company_name': 'PT Bank Central Asia Tbk', 'current_price': 6325.0, 'high': 6325.0, 'low': 6225.0, 'open': 6300.0, 'previous_close': 6300.0, 'change': 25.0, 'change_percent': 0.3968254, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'BBRI.JK', 'company_name': 'PT Bank Rakyat Indonesia (Persero) Tbk', 'current_price': 3110.0, 'high': 3120.0, 'low': 3080.0, 'open': 3090.0, 'previous_close': 3090.0, 'change': 20.0, 'change_percent': 0.64724916, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'BMRI.JK', 'company_name': 'PT Bank Mandiri (Persero) Tbk', 'current_price': 4130.0, 'high': 4150.0, 'low': 4080.0, 'open': 4130.0, 'previous_close': 4120.0, 'change': 10.0, 'change_percent': 0.24271844, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}]}}
+    |   {'type': 'missing', 'loc': ('response', 'failed'), 'msg': 'Field required', 'input': {'success': True, 'provider': 'Yahoo Finance', 'total': 3, 'data': [{'symbol': 'BBCA.JK', 'company_name': 'PT Bank Central Asia Tbk', 'current_price': 6325.0, 'high': 6325.0, 'low': 6225.0, 'open': 6300.0, 'previous_close': 6300.0, 'change': 25.0, 'change_percent': 0.3968254, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'BBRI.JK', 'company_name': 'PT Bank Rakyat Indonesia (Persero) Tbk', 'current_price': 3110.0, 'high': 3120.0, 'low': 3080.0, 'open': 3090.0, 'previous_close': 3090.0, 'change': 20.0, 'change_percent': 0.64724916, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'BMRI.JK', 'company_name': 'PT Bank Mandiri (Persero) Tbk', 'current_price': 4130.0, 'high': 4150.0, 'low': 4080.0, 'open': 4130.0, 'previous_close': 4120.0, 'change': 10.0, 'change_percent': 0.24271844, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}]}}
+    | 
+    |   File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 99, in stocks
+    |     GET /stocks
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+                                   ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fadil\AppData\Local\Python\pythoncore-3.14-64\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\app\middleware\logging_middleware.py", line 16, in logging_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    raise app_exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    await app(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 727, in app
+    content = await serialize_response(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 324, in serialize_response
+    raise ResponseValidationError(
+    ...<3 lines>...
+    )
+fastapi.exceptions.ResponseValidationError: 3 validation errors:
+  {'type': 'missing', 'loc': ('response', 'total_requested'), 'msg': 'Field required', 'input': {'success': True, 'provider': 'Yahoo Finance', 'total': 3, 'data': [{'symbol': 'BBCA.JK', 'company_name': 'PT Bank Central Asia Tbk', 'current_price': 6325.0, 'high': 6325.0, 'low': 6225.0, 'open': 6300.0, 'previous_close': 6300.0, 'change': 25.0, 'change_percent': 0.3968254, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'BBRI.JK', 'company_name': 'PT Bank Rakyat Indonesia (Persero) Tbk', 'current_price': 3110.0, 'high': 3120.0, 'low': 3080.0, 'open': 3090.0, 'previous_close': 3090.0, 'change': 20.0, 'change_percent': 0.64724916, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'BMRI.JK', 'company_name': 'PT Bank Mandiri (Persero) Tbk', 'current_price': 4130.0, 'high': 4150.0, 'low': 4080.0, 'open': 4130.0, 'previous_close': 4120.0, 'change': 10.0, 'change_percent': 0.24271844, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}]}}
+  {'type': 'missing', 'loc': ('response', 'success_count'), 'msg': 'Field required', 'input': {'success': True, 'provider': 'Yahoo Finance', 'total': 3, 'data': [{'symbol': 'BBCA.JK', 'company_name': 'PT Bank Central Asia Tbk', 'current_price': 6325.0, 'high': 6325.0, 'low': 6225.0, 'open': 6300.0, 'previous_close': 6300.0, 'change': 25.0, 'change_percent': 0.3968254, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'BBRI.JK', 'company_name': 'PT Bank Rakyat Indonesia (Persero) Tbk', 'current_price': 3110.0, 'high': 3120.0, 'low': 3080.0, 'open': 3090.0, 'previous_close': 3090.0, 'change': 20.0, 'change_percent': 0.64724916, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'BMRI.JK', 'company_name': 'PT Bank Mandiri (Persero) Tbk', 'current_price': 4130.0, 'high': 4150.0, 'low': 4080.0, 'open': 4130.0, 'previous_close': 4120.0, 'change': 10.0, 'change_percent': 0.24271844, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}]}}
+  {'type': 'missing', 'loc': ('response', 'failed'), 'msg': 'Field required', 'input': {'success': True, 'provider': 'Yahoo Finance', 'total': 3, 'data': [{'symbol': 'BBCA.JK', 'company_name': 'PT Bank Central Asia Tbk', 'current_price': 6325.0, 'high': 6325.0, 'low': 6225.0, 'open': 6300.0, 'previous_close': 6300.0, 'change': 25.0, 'change_percent': 0.3968254, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'BBRI.JK', 'company_name': 'PT Bank Rakyat Indonesia (Persero) Tbk', 'current_price': 3110.0, 'high': 3120.0, 'low': 3080.0, 'open': 3090.0, 'previous_close': 3090.0, 'change': 20.0, 'change_percent': 0.64724916, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}, {'symbol': 'BMRI.JK', 'company_name': 'PT Bank Mandiri (Persero) Tbk', 'current_price': 4130.0, 'high': 4150.0, 'low': 4080.0, 'open': 4130.0, 'previous_close': 4120.0, 'change': 10.0, 'change_percent': 0.24271844, 'currency': 'IDR', 'exchange': 'JKT', 'market_state': 'REGULAR'}]}}
+
+  File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 99, in stocks
+    GET /stocks
+2026-08-12 16:06:56,073 | INFO | Incoming Request | GET /docs
+2026-08-12 16:06:56,076 | INFO | Completed | Status=200 | Time=0.002s
+2026-08-12 16:06:56,706 | INFO | Incoming Request | GET /openapi.json
+2026-08-12 16:06:56,803 | INFO | Completed | Status=200 | Time=0.097s
+2026-08-12 16:07:05,617 | INFO | Incoming Request | GET /stocks
+2026-08-12 16:07:05,623 | INFO | REST Request - Multiple Stocks: BBCA.JK,BBRI.JK,BMRI.JK
+2026-08-12 16:07:05,624 | INFO | Stock Service - Get Multiple Stocks: ['BBCA.JK', 'BBRI.JK', 'BMRI.JK']
+2026-08-12 16:07:05,624 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-08-12 16:07:06,763 | INFO | Yahoo Provider - Get Stock Price: BBRI.JK
+2026-08-12 16:07:07,377 | INFO | Yahoo Provider - Get Stock Price: BMRI.JK
+2026-08-12 16:07:07,966 | INFO | Completed | Status=200 | Time=2.349s
+2026-08-12 16:07:28,907 | INFO | Incoming Request | GET /stocks
+2026-08-12 16:07:28,909 | INFO | REST Request - Multiple Stocks: BBNI.JK,NFLX,BBCA.JK
+2026-08-12 16:07:28,909 | INFO | Stock Service - Get Multiple Stocks: ['BBNI.JK', 'NFLX', 'BBCA.JK']
+2026-08-12 16:07:28,909 | INFO | Yahoo Provider - Get Stock Price: BBNI.JK
+2026-08-12 16:07:29,495 | INFO | Yahoo Provider - Get Stock Price: NFLX
+2026-08-12 16:07:30,110 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-08-12 16:07:30,725 | INFO | Completed | Status=200 | Time=1.818s
+2026-08-12 16:17:35,562 | INFO | Incoming Request | GET /docs
+2026-08-12 16:17:35,565 | INFO | Completed | Status=200 | Time=0.003s
+2026-08-12 16:17:36,308 | INFO | Incoming Request | GET /openapi.json
+2026-08-12 16:17:36,400 | INFO | Completed | Status=200 | Time=0.092s
+2026-08-12 16:18:47,700 | INFO | Incoming Request | GET /stocks
+2026-08-12 16:18:47,747 | INFO | REST Request - Multiple Stocks: BBNI.JK,TLKM.JK,NFLX
+2026-08-12 16:18:47,747 | INFO | Stock Service - Get Multiple Stocks: ['BBNI.JK', 'TLKM.JK', 'NFLX']
+2026-08-12 16:18:47,748 | INFO | Yahoo Provider - Get Stock Price: BBNI.JK
+2026-08-12 16:18:49,230 | INFO | Yahoo Provider - Get Stock Price: TLKM.JK
+2026-08-12 16:18:49,741 | INFO | Yahoo Provider - Get Stock Price: NFLX
+2026-08-12 16:18:50,297 | INFO | Completed | Status=200 | Time=2.597s

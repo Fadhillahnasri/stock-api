@@ -117,26 +117,14 @@ def stocks(
     symbol_list = [
         symbol.strip().upper()
         for symbol in symbols.split(",")
-        if symbol.strip()
     ]
-
-    if not symbol_list:
-
-        logger.warning(
-            "No stock symbols provided."
-        )
-
-        raise HTTPException(
-            status_code=400,
-            detail="At least one stock symbol is required."
-        )
 
     data = get_multiple_stocks(symbol_list)
 
-    if data["success"] == 0:
+    if data["total"] == 0:
 
         logger.warning(
-            f"No stock data found: {symbol_list}"
+            "No stock data found."
         )
 
         raise HTTPException(
@@ -147,9 +135,9 @@ def stocks(
     return {
         "success": True,
         "provider": "Yahoo Finance",
-        **data
+        "total": data["total"],
+        "data": data["data"]
     }
-
 
 # ===========================
 # Company Profile
@@ -184,5 +172,5 @@ def company(symbol: str):
     return {
         "success": True,
         "provider": "Yahoo Finance",
-        "data": data
+        **data
     }

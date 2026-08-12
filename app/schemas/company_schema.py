@@ -8,7 +8,10 @@ class CompanyData(BaseModel):
     exchange: str | None
     sector: str | None
     industry: str | None
+    country: str | None
     website: str | None
+    employees: int | None
+    currency: str | None
 
 
 class CompanyResponse(BaseModel):
