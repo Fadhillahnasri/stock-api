@@ -91,6 +91,10 @@
     <button onclick="connectSocket()">
     Connect
     </button>
+    <p>
+    Status:
+    <span id="connectionStatus">Disconnected</span>
+    </p>
 
 <hr>
 <h2 id="symbol"></h2>
@@ -116,65 +120,71 @@
 <script>
 
 let socket;
+let reconnectTimer;
+let reconnectAttempts = 0;
 
 
-function connectSocket(){
+function connectSocket() {
 
-    // Tutup koneksi sebelumnya
-    if(socket){
-
-        socket.close();
-
+    // Hentikan reconnect timer sebelumnya
+    if (reconnectTimer) {
+        clearTimeout(reconnectTimer);
     }
 
+    // Tutup koneksi sebelumnya
+    if (socket) {
+        socket.close();
+    }
 
     const symbol =
         document.getElementById("stockSelect").value;
 
+    const status =
+        document.getElementById("connectionStatus");
+
+    status.innerHTML = "Connecting...";
 
     console.log("Connecting to:", symbol);
-
 
     socket = new WebSocket(
         `ws://127.0.0.1:8000/ws/${symbol}`
     );
 
 
-    socket.onopen = function(){
+    socket.onopen = function () {
 
         console.log(
             "WebSocket Connected:",
             symbol
         );
 
+        status.innerHTML = "Connected";
+
+        reconnectAttempts = 0;
     };
 
 
-    socket.onmessage = function(event){
+    socket.onmessage = function (event) {
 
         console.log(
             "WebSocket Message:",
             event.data
         );
 
-
         const response =
             JSON.parse(event.data);
 
 
-        // Kalau backend mengirim error
-        if(!response.success){
+        if (!response.success) {
 
             console.error(
                 response.message
             );
 
             return;
-
         }
 
 
-        // Ambil data saham
         const data =
             response.data;
 
@@ -182,47 +192,78 @@ function connectSocket(){
         document.getElementById("symbol").innerHTML =
             data.symbol;
 
-
         document.getElementById("company").innerHTML =
             data.company_name;
-
 
         document.getElementById("price").innerHTML =
             data.current_price;
 
-
         document.getElementById("high").innerHTML =
             data.high;
-
 
         document.getElementById("low").innerHTML =
             data.low;
 
-
         document.getElementById("time").innerHTML =
             new Date().toLocaleTimeString();
-
     };
 
 
-    socket.onerror = function(error){
+    socket.onerror = function (error) {
 
         console.error(
             "WebSocket Error:",
             error
         );
 
+        status.innerHTML = "Error";
     };
 
 
-    socket.onclose = function(){
+    socket.onclose = function () {
 
         console.log(
             "WebSocket Disconnected"
         );
 
-    };
+        status.innerHTML =
+            "Disconnected";
 
+        scheduleReconnect(symbol);
+    };
+}
+
+function scheduleReconnect(symbol) {
+
+    reconnectAttempts++;
+
+    const delay =
+        Math.min(
+            5000,
+            1000 * reconnectAttempts
+        );
+
+    console.log(
+        `Reconnect attempt ${reconnectAttempts} in ${delay}ms`
+    );
+
+    reconnectTimer = setTimeout(
+        function () {
+
+            const currentSymbol =
+                document.getElementById(
+                    "stockSelect"
+                ).value;
+
+            // Pastikan saham yang dipilih masih sama
+            if (currentSymbol === symbol) {
+
+                connectSocket();
+            }
+
+        },
+        delay
+    );
 }
 
 </script>

@@ -8,6 +8,7 @@ class Settings(BaseSettings):
     REQUEST_TIMEOUT: int = 10
     LOG_LEVEL: str = "INFO"
     PROVIDER: str = "yahoo"
+    STOCK_UPDATE_INTERVAL: int = 5
 
     model_config = SettingsConfigDict(
         env_file=".env",

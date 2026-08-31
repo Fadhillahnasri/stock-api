@@ -2,6 +2,7 @@ import asyncio
 
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 
+from app.config import settings
 from app.services.stock_service import get_stock_price
 from app.utils.logger import logger
 
@@ -32,10 +33,7 @@ async def stock_websocket(
         while True:
 
             # Ambil data saham
-            data = await asyncio.to_thread(
-                get_stock_price,
-                symbol
-            )
+            data = get_stock_price(symbol)
 
             # Jika data tidak ditemukan
             if data is None:
@@ -54,16 +52,18 @@ async def stock_websocket(
             # Kirim data ke client
             await websocket.send_json({
                 "success": True,
-                "provider": "Yahoo Finance",
+                "provider": settings.PROVIDER,
                 "data": data
             })
 
             logger.info(
-                f"WebSocket Update Sent - Stock: {symbol}"
+                f"WebSocket Data Sent - Stock: {symbol}"
             )
 
-            # Tunggu 5 detik sebelum mengambil data lagi
-            await asyncio.sleep(5)
+            # Tunggu sebelum update berikutnya
+            await asyncio.sleep(
+                settings.STOCK_UPDATE_INTERVAL
+            )
 
 
     except WebSocketDisconnect:
