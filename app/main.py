@@ -6,9 +6,12 @@ from app.api.websocket import router as websocket_router
 
 from fastapi import HTTPException
 
+from app.exceptions.provider_exceptions import ProviderError
+
 from app.exceptions.handlers import (
     http_exception_handler,
     generic_exception_handler,
+    provider_exception_handler,
 )
 
 from app.middleware.logging_middleware import logging_middleware
@@ -22,6 +25,11 @@ app = FastAPI(
 app.add_exception_handler(
     HTTPException,
     http_exception_handler,
+)
+
+app.add_exception_handler(
+    ProviderError,
+    provider_exception_handler,
 )
 
 app.add_exception_handler(

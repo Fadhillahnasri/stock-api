@@ -8,6 +8,8 @@ provider = get_provider(settings.PROVIDER)
 
 def get_stock_price(symbol: str):
 
+    symbol = symbol.strip().upper()
+
     logger.info(
         f"Stock Service - Get Stock Price: {symbol}"
     )
@@ -16,6 +18,8 @@ def get_stock_price(symbol: str):
 
 
 def get_company_profile(symbol: str):
+
+    symbol = symbol.strip().upper()
 
     logger.info(
         f"Stock Service - Get Company Profile: {symbol}"
@@ -44,5 +48,6 @@ def get_multiple_stocks(symbols: list):
 
     return {
         "total": len(stocks),
+        "failed": failed,
         "data": stocks
     }

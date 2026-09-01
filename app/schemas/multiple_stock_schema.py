@@ -19,4 +19,5 @@ class MultipleStockResponse(BaseModel):
     success: bool
     provider: str
     total: int
+    failed: list[str]
     data: list[StockItem]

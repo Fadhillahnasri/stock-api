@@ -1,6 +1,12 @@
 from fastapi import Request, HTTPException
 from fastapi.responses import JSONResponse
 
+from app.exceptions.provider_exceptions import (
+    ProviderError,
+    ProviderTimeoutError,
+    ProviderConnectionError
+)
+
 from app.utils.logger import logger
 
 
@@ -39,4 +45,23 @@ async def generic_exception_handler(
             "message": "Internal Server Error",
             "path": request.url.path,
         },
+    )
+
+async def provider_exception_handler(
+    request: Request,
+    exc: ProviderError
+):
+
+    logger.exception(
+        f"Provider Error - {request.url.path}: {exc}"
+    )
+
+    return JSONResponse(
+        status_code=502,
+        content={
+            "success": False,
+            "status": 502,
+            "message": str(exc),
+            "path": request.url.path
+        }
     )

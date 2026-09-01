@@ -1,6 +1,11 @@
 import yfinance as yf
 
 from app.providers.base_provider import BaseProvider
+from app.exceptions.provider_exceptions import (
+    ProviderError,
+    ProviderTimeoutError,
+    ProviderConnectionError
+)
 from app.utils.logger import logger
 
 
@@ -8,8 +13,9 @@ class YahooProvider(BaseProvider):
 
     def get_stock_price(self, symbol: str):
 
+        symbol = symbol.upper()
+
         try:
-            symbol = symbol.upper()
 
             logger.info(
                 f"Yahoo Provider - Get Stock Price: {symbol}"
@@ -21,10 +27,21 @@ class YahooProvider(BaseProvider):
             if not info:
                 return None
 
+            current_price = info.get("currentPrice")
+            company_name = info.get("longName")
+
+            if current_price is None or company_name is None:
+
+                logger.warning(
+                    f"Yahoo Provider - Invalid Stock: {symbol}"
+                )
+
+                return None
+
             return {
                 "symbol": symbol,
-                "company_name": info.get("longName"),
-                "current_price": info.get("currentPrice"),
+                "company_name": company_name,
+                "current_price": current_price,
                 "high": info.get("dayHigh"),
                 "low": info.get("dayLow"),
                 "open": info.get("open"),
@@ -38,18 +55,41 @@ class YahooProvider(BaseProvider):
                 "market_state": info.get("marketState")
             }
 
+        except TimeoutError as e:
+
+            logger.exception(
+                f"Yahoo Provider Timeout - Stock {symbol}: {e}"
+            )
+
+            raise ProviderTimeoutError(
+                "Yahoo Finance request timed out"
+            )
+
+        except ConnectionError as e:
+
+            logger.exception(
+                f"Yahoo Provider Connection Error - Stock {symbol}: {e}"
+            )
+
+            raise ProviderConnectionError(
+                "Unable to connect to Yahoo Finance"
+            )
+
         except Exception as e:
 
             logger.exception(
                 f"Yahoo Provider Error - Stock {symbol}: {e}"
             )
 
-            return None
+            raise ProviderError(
+                f"Yahoo Finance error for {symbol}"
+            )
 
     def get_company_profile(self, symbol: str):
 
+        symbol = symbol.upper()
+
         try:
-            symbol = symbol.upper()
 
             logger.info(
                 f"Yahoo Provider - Get Company Profile: {symbol}"
@@ -73,10 +113,32 @@ class YahooProvider(BaseProvider):
                 "currency": info.get("currency")
             }
 
+        except TimeoutError as e:
+
+            logger.exception(
+                f"Yahoo Provider Timeout - Company {symbol}: {e}"
+            )
+
+            raise ProviderTimeoutError(
+                "Yahoo Finance request timed out"
+            )
+
+        except ConnectionError as e:
+
+            logger.exception(
+                f"Yahoo Provider Connection Error - Company {symbol}: {e}"
+            )
+
+            raise ProviderConnectionError(
+                "Unable to connect to Yahoo Finance"
+            )
+
         except Exception as e:
 
             logger.exception(
                 f"Yahoo Provider Error - Company {symbol}: {e}"
             )
 
-            return None
+            raise ProviderError(
+                f"Yahoo Finance error for company {symbol}"
+            )

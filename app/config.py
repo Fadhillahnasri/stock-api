@@ -10,6 +10,8 @@ class Settings(BaseSettings):
     PROVIDER: str = "yahoo"
     STOCK_UPDATE_INTERVAL: int = 5
 
+    INTERNAL_API_BASE_URL: str = ""
+
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",

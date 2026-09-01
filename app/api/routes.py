@@ -65,12 +65,14 @@ def health():
     "/stock/{symbol}",
     response_model=StockResponse,
     tags=["Stocks"],
-    summary="Get Stock Price",
-    description="Mengambil data harga saham berdasarkan simbol."
+    summary="Get Single Stock",
+    description="Mengambil data satu saham berdasarkan simbol."
 )
 def stock(symbol: str):
 
-    logger.info(f"REST Request - Stock: {symbol}")
+    logger.info(
+        f"REST Request - Stock: {symbol}"
+    )
 
     data = get_stock_price(symbol)
 
@@ -117,6 +119,7 @@ def stocks(
     symbol_list = [
         symbol.strip().upper()
         for symbol in symbols.split(",")
+        if symbol.strip()
     ]
 
     data = get_multiple_stocks(symbol_list)
@@ -136,6 +139,7 @@ def stocks(
         "success": True,
         "provider": "Yahoo Finance",
         "total": data["total"],
+        "failed": data["failed"],
         "data": data["data"]
     }
 
@@ -172,5 +176,5 @@ def company(symbol: str):
     return {
         "success": True,
         "provider": "Yahoo Finance",
-        **data
+        "data": data
     }
