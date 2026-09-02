@@ -2,6 +2,7 @@ from app.config import settings
 from app.providers.base_provider import BaseProvider
 from app.core.http_client import HttpClient
 from app.utils.logger import logger
+from app.exceptions.provider_exceptions import ProviderError
 
 
 class InternalProvider(BaseProvider):
@@ -19,7 +20,7 @@ class InternalProvider(BaseProvider):
             f"Internal Provider - Get Stock Price: {symbol}"
         )
 
-        raise NotImplementedError(
+        raise ProviderError(
             "Internal Provider belum diimplementasikan."
         )
 

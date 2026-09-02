@@ -5911,3 +5911,887 @@ fastapi.exceptions.ResponseValidationError: 1 validation error:
 2026-09-01 11:36:30,009 | WARNING | Yahoo Provider - Invalid Stock: ABC123.JK
 2026-09-01 11:36:30,009 | INFO | Yahoo Provider - Get Stock Price: BMRI.JK
 2026-09-01 11:36:30,573 | INFO | Completed | Status=200 | Time=1.875s
+2026-09-02 09:33:02,515 | INFO | Incoming Request | GET /dashboard
+2026-09-02 09:33:02,939 | INFO | Completed | Status=200 | Time=0.424s
+2026-09-02 09:33:03,119 | INFO | Incoming Request | GET /favicon.ico
+2026-09-02 09:33:03,133 | INFO | Completed | Status=404 | Time=0.014s
+2026-09-02 09:33:04,775 | INFO | WebSocket Connection Attempt - Stock: BBCA.JK
+2026-09-02 09:33:04,776 | INFO | WebSocket Connected - Stock: BBCA.JK
+2026-09-02 09:33:04,776 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 09:33:04,777 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 09:33:05,740 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 09:33:10,754 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 09:33:10,755 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 09:33:11,099 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 09:33:16,111 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 09:33:16,112 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 09:33:16,399 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 09:33:21,403 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 09:33:21,404 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 09:33:21,866 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 09:33:26,879 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 09:33:26,880 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 09:33:27,135 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 09:33:32,143 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 09:33:32,144 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 09:33:32,511 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 09:33:37,525 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 09:33:37,525 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 09:33:37,938 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 09:33:42,948 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 09:33:42,948 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 09:33:43,360 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 09:33:48,367 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 09:33:48,368 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 09:33:48,738 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 09:33:53,750 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 09:33:53,751 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 09:33:54,118 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 09:33:59,133 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 09:33:59,134 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 09:33:59,545 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 09:34:04,558 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 09:34:04,559 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 09:34:05,236 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 09:34:10,238 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 09:34:10,239 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 09:34:10,496 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 09:34:15,507 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 09:34:15,508 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 09:34:15,808 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 09:34:20,817 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 09:34:20,817 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 09:34:21,080 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 09:34:26,092 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 09:34:26,092 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 09:34:26,427 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 09:34:31,438 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 09:34:31,439 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 09:34:31,711 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 09:34:36,716 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 09:34:36,717 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 09:34:37,127 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 09:34:42,131 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 09:34:42,132 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 09:34:42,510 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 09:34:47,520 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 09:34:47,521 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 09:34:47,883 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 09:34:52,890 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 09:34:52,890 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 09:34:53,309 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 09:34:58,321 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 09:34:58,321 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 09:34:58,689 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 09:35:03,697 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 09:35:03,697 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 09:35:04,016 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 09:35:09,026 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 09:35:09,026 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 09:35:09,333 | INFO | WebSocket Disconnected - Stock: BBCA.JK
+2026-09-02 09:36:32,222 | INFO | Incoming Request | GET /ws/ABC123.JK
+2026-09-02 09:36:32,234 | INFO | Completed | Status=404 | Time=0.012s
+2026-09-02 09:39:40,884 | INFO | Incoming Request | GET /dashboard
+2026-09-02 09:39:41,047 | INFO | Completed | Status=200 | Time=0.173s
+2026-09-02 09:40:59,677 | INFO | WebSocket Connection Attempt - Stock: ABC123.JK
+2026-09-02 09:40:59,702 | INFO | WebSocket Connected - Stock: ABC123.JK
+2026-09-02 09:40:59,703 | INFO | Stock Service - Get Stock Price: ABC123.JK
+2026-09-02 09:40:59,707 | INFO | Yahoo Provider - Get Stock Price: ABC123.JK
+2026-09-02 09:41:01,881 | ERROR | HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: ABC123.JK"}}}
+2026-09-02 09:41:02,252 | WARNING | Yahoo Provider - Invalid Stock: ABC123.JK
+2026-09-02 09:41:02,254 | WARNING | WebSocket - Stock not found: ABC123.JK
+2026-09-02 10:22:12,066 | INFO | Incoming Request | GET /dashboard
+2026-09-02 10:22:12,079 | INFO | Completed | Status=200 | Time=0.013s
+2026-09-02 10:22:17,719 | INFO | WebSocket Connection Attempt - Stock: BBCA.JK
+2026-09-02 10:22:17,720 | INFO | WebSocket Connected - Stock: BBCA.JK
+2026-09-02 10:22:17,720 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:22:17,721 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:22:19,025 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:22:24,038 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:22:24,039 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:22:24,289 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:22:29,294 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:22:29,295 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:22:29,567 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:22:34,575 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:22:34,576 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:22:35,001 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:22:40,011 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:22:40,011 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:22:40,374 | INFO | WebSocket Disconnected - Stock: BBCA.JK
+2026-09-02 10:22:51,437 | INFO | Incoming Request | GET /dashboard
+2026-09-02 10:22:51,543 | INFO | Completed | Status=200 | Time=0.110s
+2026-09-02 10:22:51,957 | INFO | Incoming Request | GET /dashboard
+2026-09-02 10:22:51,960 | INFO | Completed | Status=200 | Time=0.003s
+2026-09-02 10:23:19,311 | INFO | WebSocket Connection Attempt - Stock: BBCA.JK
+2026-09-02 10:23:19,313 | INFO | WebSocket Connected - Stock: BBCA.JK
+2026-09-02 10:23:19,314 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:23:19,315 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:23:19,624 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:23:24,635 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:23:24,636 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:23:25,329 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:23:30,330 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:23:30,330 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:23:30,634 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:23:35,647 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:23:35,647 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:23:35,929 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:23:40,940 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:23:40,940 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:23:41,213 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:23:46,214 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:23:46,215 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:23:46,579 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:23:51,585 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:23:51,585 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:23:51,874 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:23:56,878 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:23:56,878 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:23:57,140 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:24:02,154 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:24:02,154 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:24:02,554 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:24:07,563 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:24:07,564 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:24:07,952 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:24:12,958 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:24:12,958 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:24:13,256 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:24:18,268 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:24:18,268 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:24:18,587 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:24:23,591 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:24:23,591 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:24:23,882 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:24:28,894 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:24:28,894 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:24:29,237 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:24:34,244 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:24:34,244 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:24:34,715 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:24:39,717 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:24:39,718 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:24:39,991 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:24:45,005 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:24:45,005 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:24:45,312 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:24:50,328 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:24:50,329 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:24:50,682 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:24:55,696 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:24:55,696 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:24:55,961 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:25:00,963 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:25:00,964 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:25:01,251 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:25:06,266 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:25:06,268 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:25:06,654 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:25:11,669 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:25:11,670 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:25:12,083 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:25:17,099 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:25:17,099 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:25:17,472 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:25:22,474 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:25:22,475 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:25:22,819 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:25:27,829 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:25:27,829 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:25:28,262 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:25:33,266 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:25:33,267 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:25:33,648 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:25:38,661 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:25:38,662 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:25:39,073 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:25:44,080 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:25:44,080 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:25:44,395 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:25:49,409 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:25:49,409 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:25:49,662 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:25:54,665 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:25:54,666 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:25:54,972 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:25:59,979 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:25:59,979 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:26:00,272 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:26:05,286 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:26:05,287 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:26:05,546 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:26:05,880 | INFO | Incoming Request | GET /health
+2026-09-02 10:26:05,928 | INFO | REST Request - Health Check
+2026-09-02 10:26:05,954 | INFO | Completed | Status=200 | Time=0.076s
+2026-09-02 10:26:10,550 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:26:10,550 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:26:10,962 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:26:15,963 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:26:15,964 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:26:16,344 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:26:21,350 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:26:21,350 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:26:21,818 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:26:26,832 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:26:26,832 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:26:27,127 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:26:32,134 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:26:32,135 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:26:32,673 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:26:37,686 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:26:37,686 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:26:37,941 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:26:42,949 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:26:42,950 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:26:43,322 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:26:48,328 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:26:48,328 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:26:48,601 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:26:53,612 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:26:53,613 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:26:53,881 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:26:58,887 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:26:58,888 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:26:59,149 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:27:04,151 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:27:04,151 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:27:04,787 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:27:09,802 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:27:09,803 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:27:10,070 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:27:15,083 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:27:15,084 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:27:15,349 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:27:20,356 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:27:20,356 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:27:20,613 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:27:25,616 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:27:25,616 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:27:25,885 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:27:30,889 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:27:30,890 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:27:31,176 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:27:36,178 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:27:36,178 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:27:36,527 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:27:41,538 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:27:41,539 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:27:41,850 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:27:46,853 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:27:46,853 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:27:47,154 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:27:52,163 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:27:52,164 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:27:52,545 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:27:57,556 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:27:57,556 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:27:57,927 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:28:02,939 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:28:02,940 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:28:03,500 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:28:08,514 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:28:08,514 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:28:08,929 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:28:13,931 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:28:13,932 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:28:14,359 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:28:19,373 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:28:19,374 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:28:19,884 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:28:24,895 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:28:24,896 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:28:25,532 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:28:30,546 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:28:30,547 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:28:30,828 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:28:35,839 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:28:35,840 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:28:36,166 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:28:41,168 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:28:41,169 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:28:41,548 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:28:46,564 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:28:46,565 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:28:46,912 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:28:51,920 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:28:51,920 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:28:52,299 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:28:57,303 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:28:57,304 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:28:57,566 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:29:02,579 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:29:02,580 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:29:02,929 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:29:07,939 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:29:07,939 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:29:08,533 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:29:13,541 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:29:13,542 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:29:14,074 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:29:19,076 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:29:19,077 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:29:19,481 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:29:24,494 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:29:24,495 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:29:25,117 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:29:30,129 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:29:30,129 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:29:30,721 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:29:35,733 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:29:35,734 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:29:36,279 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:29:41,290 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:29:41,308 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:29:41,586 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:29:46,599 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:29:46,600 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:29:46,974 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:29:51,978 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:29:51,978 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:29:52,271 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:29:57,274 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:29:57,275 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:29:57,563 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:30:02,569 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:30:02,570 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:30:02,836 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:30:07,850 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:30:07,851 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:30:08,123 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:30:13,135 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:30:13,136 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:30:13,516 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:30:18,521 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:30:18,522 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:30:19,293 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:30:24,299 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:30:24,299 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:30:24,554 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:30:29,557 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:30:29,557 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:30:30,035 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:30:35,035 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:30:35,036 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:30:35,562 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:30:40,566 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:30:40,566 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:30:40,993 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:30:46,040 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:30:46,044 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:30:46,417 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:30:46,459 | INFO | Incoming Request | GET /stock/BBCA.JK
+2026-09-02 10:30:46,515 | INFO | REST Request - Stock: BBCA.JK
+2026-09-02 10:30:46,516 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:30:46,516 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:30:49,776 | INFO | Completed | Status=200 | Time=3.320s
+2026-09-02 10:30:51,422 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:30:51,423 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:30:51,692 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:30:56,706 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:30:56,706 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:30:57,054 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:31:02,057 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:31:02,058 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:31:02,605 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:31:07,608 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:31:07,609 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:31:07,922 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:31:12,927 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:31:12,927 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:31:13,348 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:31:18,349 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:31:18,350 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:31:18,661 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:31:23,676 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:31:23,677 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:31:23,947 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:31:24,913 | INFO | Incoming Request | GET /stock/ABC123.JK
+2026-09-02 10:31:24,975 | INFO | REST Request - Stock: ABC123.JK
+2026-09-02 10:31:24,976 | INFO | Stock Service - Get Stock Price: ABC123.JK
+2026-09-02 10:31:24,976 | INFO | Yahoo Provider - Get Stock Price: ABC123.JK
+2026-09-02 10:31:25,800 | ERROR | HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: ABC123.JK"}}}
+2026-09-02 10:31:26,059 | WARNING | Yahoo Provider - Invalid Stock: ABC123.JK
+2026-09-02 10:31:26,059 | WARNING | Stock not found: ABC123.JK
+2026-09-02 10:31:26,068 | WARNING | GET /stock/ABC123.JK -> Stock 'ABC123.JK' not found.
+2026-09-02 10:31:26,074 | INFO | Completed | Status=404 | Time=1.164s
+2026-09-02 10:31:28,958 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:31:28,959 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:31:29,225 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:31:34,233 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:31:34,234 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:31:34,611 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:31:39,617 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:31:39,617 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:31:40,052 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:31:45,065 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:31:45,066 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:31:45,694 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:31:50,703 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:31:50,703 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:31:50,984 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:31:55,994 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:31:55,995 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:31:56,270 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:32:01,271 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:32:01,271 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:32:01,561 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:32:04,368 | INFO | Incoming Request | GET /stock/ABC123.JK
+2026-09-02 10:32:04,376 | INFO | REST Request - Stock: ABC123.JK
+2026-09-02 10:32:04,377 | INFO | Stock Service - Get Stock Price: ABC123.JK
+2026-09-02 10:32:04,377 | INFO | Yahoo Provider - Get Stock Price: ABC123.JK
+2026-09-02 10:32:05,089 | ERROR | HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: ABC123.JK"}}}
+2026-09-02 10:32:05,128 | WARNING | Yahoo Provider - Invalid Stock: ABC123.JK
+2026-09-02 10:32:05,129 | WARNING | Stock not found: ABC123.JK
+2026-09-02 10:32:05,131 | WARNING | GET /stock/ABC123.JK -> Stock 'ABC123.JK' not found.
+2026-09-02 10:32:05,132 | INFO | Completed | Status=404 | Time=0.764s
+2026-09-02 10:32:06,575 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:32:06,575 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:32:06,833 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:32:11,838 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:32:11,838 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:32:12,112 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:32:17,128 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:32:17,128 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:32:17,390 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:32:22,396 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:32:22,397 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:32:22,654 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:32:27,669 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:32:27,669 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:32:28,106 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:32:33,113 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:32:33,113 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:32:33,525 | INFO | WebSocket Data Sent - Stock: BBCA.JK
+2026-09-02 10:32:38,536 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 10:32:38,536 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:32:38,827 | INFO | WebSocket Disconnected - Stock: BBCA.JK
+2026-09-02 10:38:17,989 | INFO | Incoming Request | GET /stocks
+2026-09-02 10:38:18,105 | INFO | REST Request - Multiple Stocks: BBCA.JK,BBRI.JK,BMRI.JK
+2026-09-02 10:38:18,108 | INFO | Stock Service - Get Multiple Stocks: ['BBCA.JK', 'BBRI.JK', 'BMRI.JK']
+2026-09-02 10:38:18,110 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:38:18,718 | INFO | Yahoo Provider - Get Stock Price: BBRI.JK
+2026-09-02 10:38:19,188 | INFO | Yahoo Provider - Get Stock Price: BMRI.JK
+2026-09-02 10:38:19,692 | INFO | Completed | Status=200 | Time=1.710s
+2026-09-02 10:40:57,552 | INFO | Incoming Request | GET /stocks
+2026-09-02 10:40:57,627 | INFO | REST Request - Multiple Stocks: BBCA.JK,ABC123.JK,BBRI.JK
+2026-09-02 10:40:57,630 | INFO | Stock Service - Get Multiple Stocks: ['BBCA.JK', 'ABC123.JK', 'BBRI.JK']
+2026-09-02 10:40:57,632 | INFO | Yahoo Provider - Get Stock Price: BBCA.JK
+2026-09-02 10:40:58,256 | INFO | Yahoo Provider - Get Stock Price: ABC123.JK
+2026-09-02 10:40:59,011 | ERROR | HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: ABC123.JK"}}}
+2026-09-02 10:40:59,043 | WARNING | Yahoo Provider - Invalid Stock: ABC123.JK
+2026-09-02 10:40:59,051 | INFO | Yahoo Provider - Get Stock Price: BBRI.JK
+2026-09-02 10:40:59,336 | INFO | Completed | Status=200 | Time=1.787s
+2026-09-02 10:42:13,942 | INFO | Incoming Request | GET /company/BBCA.JK
+2026-09-02 10:42:14,046 | INFO | REST Request - Company: BBCA.JK
+2026-09-02 10:42:14,051 | INFO | Stock Service - Get Company Profile: BBCA.JK
+2026-09-02 10:42:14,053 | INFO | Yahoo Provider - Get Company Profile: BBCA.JK
+2026-09-02 10:42:14,496 | INFO | Completed | Status=200 | Time=0.561s
+2026-09-02 10:43:27,429 | INFO | Incoming Request | GET /company/ABC123.JK
+2026-09-02 10:43:27,508 | INFO | REST Request - Company: ABC123.JK
+2026-09-02 10:43:27,511 | INFO | Stock Service - Get Company Profile: ABC123.JK
+2026-09-02 10:43:27,512 | INFO | Yahoo Provider - Get Company Profile: ABC123.JK
+2026-09-02 10:43:28,351 | ERROR | HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: ABC123.JK"}}}
+2026-09-02 10:43:28,485 | ERROR | 1 validation error:
+  {'type': 'string_type', 'loc': ('response', 'data', 'company_name'), 'msg': 'Input should be a valid string', 'input': None}
+
+  File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 150, in company
+    GET /company/{symbol}
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 79, in collapse_excgroups
+  |     yield
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 183, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 815, in __aexit__
+  |     raise BaseExceptionGroup(
+  |         "unhandled errors in a TaskGroup", self._exceptions
+  |     ) from None
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |                                    ~~~~~~~~~~~~~~~~~~^^
+    |   File "C:\Users\Fadil\AppData\Local\Python\pythoncore-3.14-64\Lib\contextlib.py", line 162, in __exit__
+    |     self.gen.throw(value)
+    |     ~~~~~~~~~~~~~~^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\app\middleware\logging_middleware.py", line 16, in logging_middleware
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    |     raise app_exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    |     await route.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    |     await self.original_router.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    |     await included_router._handle_selected(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    |     await original_route.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    |     await app(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 727, in app
+    |     content = await serialize_response(
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |     ...<11 lines>...
+    |     )
+    |     ^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 324, in serialize_response
+    |     raise ResponseValidationError(
+    |     ...<3 lines>...
+    |     )
+    | fastapi.exceptions.ResponseValidationError: 1 validation error:
+    |   {'type': 'string_type', 'loc': ('response', 'data', 'company_name'), 'msg': 'Input should be a valid string', 'input': None}
+    | 
+    |   File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 150, in company
+    |     GET /company/{symbol}
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+                                   ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fadil\AppData\Local\Python\pythoncore-3.14-64\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\app\middleware\logging_middleware.py", line 16, in logging_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    raise app_exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    await app(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 727, in app
+    content = await serialize_response(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 324, in serialize_response
+    raise ResponseValidationError(
+    ...<3 lines>...
+    )
+fastapi.exceptions.ResponseValidationError: 1 validation error:
+  {'type': 'string_type', 'loc': ('response', 'data', 'company_name'), 'msg': 'Input should be a valid string', 'input': None}
+
+  File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 150, in company
+    GET /company/{symbol}
+2026-09-02 10:54:07,949 | INFO | Incoming Request | GET /company/ABC123.JK
+2026-09-02 10:54:08,087 | INFO | REST Request - Company: ABC123.JK
+2026-09-02 10:54:08,089 | INFO | Stock Service - Get Company Profile: ABC123.JK
+2026-09-02 10:54:08,090 | INFO | Yahoo Provider - Get Company Profile: ABC123.JK
+2026-09-02 10:54:09,330 | ERROR | HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: ABC123.JK"}}}
+2026-09-02 10:54:09,989 | WARNING | Yahoo Provider - Invalid Company: ABC123.JK
+2026-09-02 10:54:09,989 | WARNING | Company not found: ABC123.JK
+2026-09-02 10:54:09,992 | WARNING | GET /company/ABC123.JK -> Company 'ABC123.JK' not found.
+2026-09-02 10:54:09,996 | INFO | Completed | Status=404 | Time=2.050s
+2026-09-02 10:57:14,930 | INFO | Incoming Request | GET /stock/
+2026-09-02 10:57:15,091 | INFO | Completed | Status=404 | Time=0.170s
+2026-09-02 10:59:15,698 | INFO | Incoming Request | GET /stocks
+2026-09-02 10:59:15,775 | INFO | REST Request - Multiple Stocks: 
+2026-09-02 10:59:15,780 | INFO | Stock Service - Get Multiple Stocks: []
+2026-09-02 10:59:15,780 | WARNING | No stock data found.
+2026-09-02 10:59:15,787 | WARNING | GET /stocks -> No stock data found.
+2026-09-02 10:59:15,793 | INFO | Completed | Status=404 | Time=0.100s
+2026-09-02 11:33:47,687 | INFO | Incoming Request | GET /stock/BBCA.JK
+2026-09-02 11:33:47,829 | INFO | REST Request - Stock: BBCA.JK
+2026-09-02 11:33:47,829 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 11:33:47,830 | INFO | Internal Provider - Get Stock Price: BBCA.JK
+2026-09-02 11:33:47,842 | ERROR | Internal Provider belum diimplementasikan.
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 79, in collapse_excgroups
+  |     yield
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 183, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 815, in __aexit__
+  |     raise BaseExceptionGroup(
+  |         "unhandled errors in a TaskGroup", self._exceptions
+  |     ) from None
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |                                    ~~~~~~~~~~~~~~~~~~^^
+    |   File "C:\Users\Fadil\AppData\Local\Python\pythoncore-3.14-64\Lib\contextlib.py", line 162, in __exit__
+    |     self.gen.throw(value)
+    |     ~~~~~~~~~~~~~~^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\app\middleware\logging_middleware.py", line 16, in logging_middleware
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    |     raise app_exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    |     await route.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    |     await self.original_router.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    |     await included_router._handle_selected(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    |     await original_route.handle(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    |     await app(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 706, in app
+    |     raw_response = await run_endpoint_function(
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |     ...<3 lines>...
+    |     )
+    |     ^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 354, in run_endpoint_function
+    |     return await run_in_threadpool(dependant.call, **values)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\concurrency.py", line 38, in run_in_threadpool
+    |     return await anyio.to_thread.run_sync(func)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\anyio\to_thread.py", line 65, in run_sync
+    |     return await get_async_backend().run_sync_in_worker_thread(
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |         func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |     )
+    |     ^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2641, in run_sync_in_worker_thread
+    |     return await future
+    |            ^^^^^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1033, in run
+    |     result = context.run(func, *args)
+    |   File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 77, in stock
+    |     data = get_stock_price(symbol)
+    |   File "C:\Users\Fadil\Documents\stock-api\app\services\stock_service.py", line 17, in get_stock_price
+    |     return provider.get_stock_price(symbol)
+    |            ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+    |   File "C:\Users\Fadil\Documents\stock-api\app\providers\internal_provider.py", line 22, in get_stock_price
+    |     raise NotImplementedError(
+    |         "Internal Provider belum diimplementasikan."
+    |     )
+    | NotImplementedError: Internal Provider belum diimplementasikan.
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+                                   ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fadil\AppData\Local\Python\pythoncore-3.14-64\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\app\middleware\logging_middleware.py", line 16, in logging_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    raise app_exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    await app(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 706, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 354, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\concurrency.py", line 38, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\anyio\to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2641, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1033, in run
+    result = context.run(func, *args)
+  File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 77, in stock
+    data = get_stock_price(symbol)
+  File "C:\Users\Fadil\Documents\stock-api\app\services\stock_service.py", line 17, in get_stock_price
+    return provider.get_stock_price(symbol)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\app\providers\internal_provider.py", line 22, in get_stock_price
+    raise NotImplementedError(
+        "Internal Provider belum diimplementasikan."
+    )
+NotImplementedError: Internal Provider belum diimplementasikan.
+2026-09-02 11:40:13,677 | INFO | Incoming Request | GET /stock/BBCA.JK
+2026-09-02 11:40:13,794 | INFO | REST Request - Stock: BBCA.JK
+2026-09-02 11:40:13,795 | INFO | Stock Service - Get Stock Price: BBCA.JK
+2026-09-02 11:40:13,795 | INFO | Internal Provider - Get Stock Price: BBCA.JK
+2026-09-02 11:40:13,800 | ERROR | Provider Error - /stock/BBCA.JK: Internal Provider belum diimplementasikan.
+Traceback (most recent call last):
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 706, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\fastapi\routing.py", line 354, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\starlette\concurrency.py", line 38, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\anyio\to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2641, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1033, in run
+    result = context.run(func, *args)
+  File "C:\Users\Fadil\Documents\stock-api\app\api\routes.py", line 77, in stock
+    data = get_stock_price(symbol)
+  File "C:\Users\Fadil\Documents\stock-api\app\services\stock_service.py", line 17, in get_stock_price
+    return provider.get_stock_price(symbol)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\Fadil\Documents\stock-api\app\providers\internal_provider.py", line 23, in get_stock_price
+    raise ProviderError(
+        "Internal Provider belum diimplementasikan."
+    )
+app.exceptions.provider_exceptions.ProviderError: Internal Provider belum diimplementasikan.
+2026-09-02 11:40:13,832 | INFO | Completed | Status=502 | Time=0.158s

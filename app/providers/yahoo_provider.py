@@ -88,22 +88,28 @@ class YahooProvider(BaseProvider):
     def get_company_profile(self, symbol: str):
 
         symbol = symbol.upper()
-
+        
         try:
-
             logger.info(
                 f"Yahoo Provider - Get Company Profile: {symbol}"
             )
-
             stock = yf.Ticker(symbol)
             info = stock.info
 
             if not info:
                 return None
 
+            company_name = info.get("longName")
+
+            if not company_name:
+                logger.warning(
+                    f"Yahoo Provider - Invalid Company: {symbol}"
+                )
+                return None
+
             return {
                 "symbol": symbol,
-                "company_name": info.get("longName"),
+                "company_name": company_name,
                 "exchange": info.get("exchange"),
                 "sector": info.get("sector"),
                 "industry": info.get("industry"),
@@ -114,31 +120,25 @@ class YahooProvider(BaseProvider):
             }
 
         except TimeoutError as e:
-
             logger.exception(
                 f"Yahoo Provider Timeout - Company {symbol}: {e}"
             )
-
             raise ProviderTimeoutError(
                 "Yahoo Finance request timed out"
             )
 
         except ConnectionError as e:
-
             logger.exception(
                 f"Yahoo Provider Connection Error - Company {symbol}: {e}"
             )
-
             raise ProviderConnectionError(
                 "Unable to connect to Yahoo Finance"
             )
 
         except Exception as e:
-
             logger.exception(
                 f"Yahoo Provider Error - Company {symbol}: {e}"
             )
-
             raise ProviderError(
                 f"Yahoo Finance error for company {symbol}"
             )
