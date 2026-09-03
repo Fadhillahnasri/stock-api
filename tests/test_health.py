@@ -1,5 +1,7 @@
 from fastapi.testclient import TestClient
 from app.main import app
+from app.exceptions.provider_exceptions import ProviderTimeoutError
+from app.exceptions.provider_exceptions import ProviderConnectionError
 
 client = TestClient(app)
 
@@ -113,3 +115,56 @@ def test_provider_error(monkeypatch):
     assert data["success"] is False
     assert data["status"] == 502
     assert data["message"] == "Test provider error"
+
+def test_provider_timeout(monkeypatch):
+    from app.services import stock_service
+
+    class TimeoutProvider:
+        def get_stock_price(self, symbol):
+            raise ProviderTimeoutError(
+                "Yahoo Finance request timed out"
+            )
+
+    monkeypatch.setattr(
+        stock_service,
+        "provider",
+        TimeoutProvider()
+    )
+
+    response = client.get("/stock/BBCA.JK")
+
+    assert response.status_code == 502
+
+    data = response.json()
+
+    assert data["success"] is False
+    assert data["status"] == 502
+    assert data["message"] == "Yahoo Finance request timed out"
+    assert data["path"] == "/stock/BBCA.JK"
+
+
+def test_provider_connection_error(monkeypatch):
+    from app.services import stock_service
+
+    class ConnectionErrorProvider:
+        def get_stock_price(self, symbol):
+            raise ProviderConnectionError(
+                "Unable to connect to Yahoo Finance"
+            )
+
+    monkeypatch.setattr(
+        stock_service,
+        "provider",
+        ConnectionErrorProvider()
+    )
+
+    response = client.get("/stock/BBCA.JK")
+
+    assert response.status_code == 502
+
+    data = response.json()
+
+    assert data["success"] is False
+    assert data["status"] == 502
+    assert data["message"] == "Unable to connect to Yahoo Finance"
+    assert data["path"] == "/stock/BBCA.JK"
