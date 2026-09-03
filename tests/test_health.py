@@ -1,7 +1,10 @@
+import pytest
 from fastapi.testclient import TestClient
 from app.main import app
 from app.exceptions.provider_exceptions import ProviderTimeoutError
 from app.exceptions.provider_exceptions import ProviderConnectionError
+from app.providers.internal_provider import InternalProvider
+from app.exceptions.provider_exceptions import ProviderError
 
 client = TestClient(app)
 
@@ -168,3 +171,14 @@ def test_provider_connection_error(monkeypatch):
     assert data["status"] == 502
     assert data["message"] == "Unable to connect to Yahoo Finance"
     assert data["path"] == "/stock/BBCA.JK"
+
+
+def test_internal_provider_not_implemented():
+    provider = InternalProvider()
+
+    with pytest.raises(ProviderError) as exc:
+        provider.get_stock_price("BBCA.JK")
+
+    assert str(exc.value) == "Internal Provider belum diimplementasikan."
+
+    provider.client.close()

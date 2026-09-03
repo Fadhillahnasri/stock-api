@@ -22,7 +22,7 @@ class InternalProvider(BaseProvider):
 
         raise ProviderError(
             "Internal Provider belum diimplementasikan."
-        )
+    )
 
     def get_company_profile(self, symbol: str):
 
