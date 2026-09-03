@@ -33,7 +33,7 @@ async def stock_websocket(
         while True:
 
             # Ambil data saham
-            data = get_stock_price(symbol)
+            data = await asyncio.to_thread(get_stock_price, symbol)
 
             # Jika data tidak ditemukan
             if data is None:
