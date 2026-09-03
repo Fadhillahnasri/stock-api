@@ -182,3 +182,4 @@ def test_internal_provider_not_implemented():
     assert str(exc.value) == "Internal Provider belum diimplementasikan."
 
     provider.client.close()
+
