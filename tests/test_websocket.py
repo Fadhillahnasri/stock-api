@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 from app.main import app
-from app.services import stock_service
+from app.api import websocket as websocket_module
 
 client = TestClient(app)
 
@@ -20,7 +20,7 @@ def test_websocket_valid_stock(monkeypatch):
         }
 
     monkeypatch.setattr(
-        stock_service,
+        websocket_module,
         "get_stock_price",
         mock_get_stock_price
     )
@@ -40,7 +40,7 @@ def test_websocket_invalid_stock(monkeypatch):
         return None
 
     monkeypatch.setattr(
-        stock_service,
+        websocket_module,
         "get_stock_price",
         mock_get_stock_price
     )

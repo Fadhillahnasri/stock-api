@@ -32,6 +32,6 @@ class InternalProvider(BaseProvider):
             f"Internal Provider - Get Company Profile: {symbol}"
         )
 
-        raise NotImplementedError(
+        raise ProviderError(
             "Internal Provider belum diimplementasikan."
         )

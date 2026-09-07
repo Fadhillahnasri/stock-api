@@ -1,11 +1,7 @@
 from fastapi import Request, HTTPException
 from fastapi.responses import JSONResponse
 
-from app.exceptions.provider_exceptions import (
-    ProviderError,
-    ProviderTimeoutError,
-    ProviderConnectionError
-)
+from app.exceptions.provider_exceptions import ProviderError
 
 from app.utils.logger import logger
 
@@ -33,7 +29,7 @@ async def http_exception_handler(
 async def generic_exception_handler(
     request: Request,
     exc: Exception,
-    ):
+):
 
     logger.exception(exc)
 

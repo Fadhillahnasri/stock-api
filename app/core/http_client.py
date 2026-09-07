@@ -1,12 +1,11 @@
 import httpx
 
 from app.config import settings
-from app.exceptions.provider_exceptions import ProviderTimeoutError
-
 from app.exceptions.provider_exceptions import (
     ProviderTimeoutError,
     ProviderConnectionError
 )
+
 
 class HttpClient:
 
