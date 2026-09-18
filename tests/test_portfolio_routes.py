@@ -81,3 +81,19 @@ def test_portfolio_stocks():
     assert "name" in data["data"][0]
     assert "sector" in data["data"][0]
     assert "subSector" in data["data"][0]
+
+def test_portfolio_portfolios():
+    response = client.get("/portfolio/portfolios")
+
+    assert response.status_code == 200
+
+    data = response.json()
+
+    assert data["status"] == "success"
+    assert "data" in data
+
+    assert len(data["data"]) > 0
+    assert "code" in data["data"][0]
+    assert "name" in data["data"][0]
+    assert "category" in data["data"][0]
+    assert "isActive" in data["data"][0]

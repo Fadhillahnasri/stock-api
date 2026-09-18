@@ -8,6 +8,7 @@ from app.services.stock_service import (
 
 from app.services.portfolio_service import (
     get_closing_prices,
+    get_portfolios,
     get_stocks,
     get_trading_report,
     get_transactions,
@@ -27,6 +28,7 @@ from app.schemas.portfolio_trading_report_schema import PortfolioTradingReportRe
 from app.services.portfolio_service import ( get_index_prices,)
 from app.schemas.portfolio_closing_prices_schema import ClosingPriceResponse
 from app.schemas.portfolio_stocks_schema import PortfolioStocksResponse
+from app.schemas.portfolio_portfolios_schema import PortfolioResponse
 
 from app.utils.logger import logger
 
@@ -316,3 +318,14 @@ def portfolio_stocks():
     }
 
     return get_stocks(params=params)
+
+@router.get(
+    "/portfolio/portfolios",
+    response_model=PortfolioResponse,
+    tags=["Portfolio"],
+    summary="Get Portfolio List",
+    description="Mengambil daftar portfolio dari Internal API."
+)
+def portfolio_portfolios():
+    logger.info("REST Request - Portfolio Portfolios")
+    return get_portfolios()
