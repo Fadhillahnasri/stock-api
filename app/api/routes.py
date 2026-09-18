@@ -7,6 +7,8 @@ from app.services.stock_service import (
 )
 
 from app.services.portfolio_service import (
+    get_closing_prices,
+    get_stocks,
     get_trading_report,
     get_transactions,
     get_index_report,
@@ -22,6 +24,9 @@ from app.schemas.portfolio_transaction_schema import (
     PortfolioTransactionResponse,
 )
 from app.schemas.portfolio_trading_report_schema import PortfolioTradingReportResponse
+from app.services.portfolio_service import ( get_index_prices,)
+from app.schemas.portfolio_closing_prices_schema import ClosingPriceResponse
+from app.schemas.portfolio_stocks_schema import PortfolioStocksResponse
 
 from app.utils.logger import logger
 
@@ -253,3 +258,61 @@ def portfolio_trading_report():
     }
 
     return get_trading_report(params=params)
+
+
+@router.get(
+    "/portfolio/index-prices",
+    tags=["Portfolio"],
+    summary="Get Portfolio Index Prices",
+    description="Mengambil data harga indeks dari Internal API."
+)
+def portfolio_index_prices():
+    logger.info("REST Request - Portfolio Index Prices")
+
+    params = {
+        "page": 1,
+        "limit": 20,
+        "orderBy": "indexCode",
+        "sort": "asc"
+    }
+
+    return get_index_prices(params=params)
+
+@router.get(
+    "/portfolio/closing-prices",
+    response_model=ClosingPriceResponse,
+    tags=["Portfolio"],
+    summary="Get Portfolio Closing Prices",
+    description="Mengambil data harga penutupan saham dari Internal API."
+)
+def portfolio_closing_prices():
+    logger.info("REST Request - Portfolio Closing Prices")
+
+    params = {
+        "page": 1,
+        "limit": 20,
+        "orderBy": "stockCode",
+        "sort": "asc",
+        "date": "2026-05-26"
+    }
+
+    return get_closing_prices(params=params)    
+
+@router.get(
+    "/portfolio/stocks",
+    response_model=PortfolioStocksResponse,
+    tags=["Portfolio"],
+    summary="Get Portfolio Stocks",
+    description="Mengambil data saham dari Internal API."
+)
+def portfolio_stocks():
+    logger.info("REST Request - Portfolio Stocks")
+
+    params = {
+        "page": 1,
+        "limit": 20,
+        "orderBy": "code",
+        "sort": "asc"
+    }
+
+    return get_stocks(params=params)

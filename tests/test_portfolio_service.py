@@ -17,14 +17,15 @@ def test_get_portfolios(monkeypatch):
 
 def test_get_stocks(monkeypatch):
     expected = {"status": "success", "data": []}
+    params = {"page": 1, "limit": 20}
 
     monkeypatch.setattr(
         portfolio_service.provider,
         "get_stocks",
-        lambda: expected
+        lambda params=None: expected
     )
 
-    result = portfolio_service.get_stocks()
+    result = portfolio_service.get_stocks(params=params)
 
     assert result == expected
 

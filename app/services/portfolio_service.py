@@ -8,9 +8,9 @@ def get_portfolios():
     logger.info("Portfolio Service - Get Portfolios")
     return provider.get_portfolios()
 
-def get_stocks():
+def get_stocks(params: dict | None = None):
     logger.info("Portfolio Service - Get Stocks")
-    return provider.get_stocks()
+    return provider.get_stocks(params=params)
 
 def get_closing_prices(params: dict | None = None):
     logger.info("Portfolio Service - Get Closing Prices")

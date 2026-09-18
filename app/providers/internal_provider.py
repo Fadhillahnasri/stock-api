@@ -1,3 +1,5 @@
+from fastapi import params
+
 from app.config import settings
 from app.providers.base_provider import BaseProvider
 from app.core.http_client import HttpClient
@@ -41,8 +43,8 @@ class InternalProvider(BaseProvider):
     def get_portfolios(self):
         return self._get("/api/portfolios")
 
-    def get_stocks(self):
-        return self._get("/api/stocks")
+    def get_stocks(self, params: dict | None = None):
+        return self._get("/api/stocks", params=params)
 
     def get_closing_prices(self, params: dict | None = None):
         return self._get("/api/closing-prices", params=params)
