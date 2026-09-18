@@ -8,30 +8,63 @@ from app.exceptions.provider_exceptions import ProviderError
 class InternalProvider(BaseProvider):
 
     def __init__(self):
-
         self.client = HttpClient()
         self.base_url = settings.INTERNAL_API_BASE_URL
 
-    def get_stock_price(self, symbol: str):
+    def _get(self, path: str, params: dict | None = None):
+        if not self.base_url:
+            raise ProviderError(
+                "Internal API Base URL belum dikonfigurasi."
+            )
 
-        symbol = symbol.upper()
+        if not settings.INTERNAL_API_TOKEN:
+            raise ProviderError(
+                "Internal API Token belum dikonfigurasi."
+            )
 
-        logger.info(
-            f"Internal Provider - Get Stock Price: {symbol}"
+        url = f"{self.base_url}{path}"
+
+        headers = {
+            "Authorization": f"Bearer {settings.INTERNAL_API_TOKEN}"
+        }
+
+        logger.info(f"Internal API GET - {url}")
+
+        response = self.client.get(
+            url,
+            params=params,
+            headers=headers
         )
 
+        return response.json()
+
+    def get_portfolios(self):
+        return self._get("/api/portfolios")
+
+    def get_stocks(self):
+        return self._get("/api/stocks")
+
+    def get_closing_prices(self, params: dict | None = None):
+        return self._get("/api/closing-prices", params=params)
+
+    def get_index_prices(self, params: dict | None = None):
+        return self._get("/api/index-prices", params=params)
+
+    def get_index_report(self, params: dict | None = None):
+        return self._get("/api/report/index", params=params)
+
+    def get_trading_report(self, params: dict | None = None):
+        return self._get("/api/report/trading", params=params)
+
+    def get_transactions(self, params: dict | None = None):
+        return self._get("/api/transactions", params=params)
+
+    def get_stock_price(self, symbol: str):
         raise ProviderError(
-            "Internal Provider belum diimplementasikan."
-    )
+            "Internal Provider get_stock_price belum diimplementasikan."
+        )
 
     def get_company_profile(self, symbol: str):
-
-        symbol = symbol.upper()
-
-        logger.info(
-            f"Internal Provider - Get Company Profile: {symbol}"
-        )
-
         raise ProviderError(
-            "Internal Provider belum diimplementasikan."
+            "Internal Provider get_company_profile belum diimplementasikan."
         )

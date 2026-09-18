@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, HTTPException, Query, params
 
 from app.services.stock_service import (
     get_stock_price,
@@ -6,10 +6,22 @@ from app.services.stock_service import (
     get_company_profile,
 )
 
+from app.services.portfolio_service import (
+    get_trading_report,
+    get_transactions,
+    get_index_report,
+)
+
 from app.schemas.stock_schema import StockResponse
 from app.schemas.multiple_stock_schema import MultipleStockResponse
 from app.schemas.company_schema import CompanyResponse
 from app.schemas.health_schema import HealthResponse
+from app.services.portfolio_service import get_transactions
+from app.schemas.portfolio_index_schema import PortfolioIndexResponse
+from app.schemas.portfolio_transaction_schema import (
+    PortfolioTransactionResponse,
+)
+from app.schemas.portfolio_trading_report_schema import PortfolioTradingReportResponse
 
 from app.utils.logger import logger
 
@@ -178,3 +190,66 @@ def company(symbol: str):
         "provider": "Yahoo Finance",
         "data": data
     }
+
+# ===========================
+# Portfolio Transactions
+# ===========================
+
+@router.get(
+    "/portfolio/transactions",
+    response_model=PortfolioTransactionResponse,
+    tags=["Portfolio"],
+    summary="Get Portfolio Transactions",
+    description="Mengambil data transaksi portfolio dari Internal API."
+)
+def portfolio_transactions():
+
+    logger.info(
+        "REST Request - Portfolio Transactions"
+    )
+
+    params = {
+        "page": 1,
+        "limit": 20,
+        "orderBy": "createdAt",
+        "sort": "desc"
+    }
+
+    return get_transactions(params=params)
+
+# ===========================
+# Portfolio Index Report
+# ===========================
+
+@router.get(
+    "/portfolio/index-report",
+    response_model=PortfolioIndexResponse,
+    tags=["Portfolio"],
+    summary="Get Portfolio Index Report",
+    description="Mengambil laporan portfolio berdasarkan indeks dari Internal API."
+)
+def portfolio_index_report():
+
+    logger.info(
+        "REST Request - Portfolio Index Report"
+    )
+
+    return get_index_report()
+
+
+@router.get(
+    "/portfolio/trading-report",
+    response_model=PortfolioTradingReportResponse,
+    tags=["Portfolio"],
+    summary="Get Portfolio Trading Report",
+    description="Mengambil data trading report portfolio dari Internal API."
+)
+def portfolio_trading_report():
+    logger.info("REST Request - Portfolio Trading Report")
+
+    params = {
+        "page": 1,
+        "limit": 20,
+    }
+
+    return get_trading_report(params=params)

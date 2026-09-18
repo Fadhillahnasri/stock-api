@@ -179,7 +179,7 @@ def test_internal_provider_not_implemented():
     with pytest.raises(ProviderError) as exc:
         provider.get_stock_price("BBCA.JK")
 
-    assert str(exc.value) == "Internal Provider belum diimplementasikan."
+    assert str(exc.value) == "Internal Provider get_stock_price belum diimplementasikan."
 
     provider.client.close()
 

@@ -2,15 +2,17 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-
     APP_NAME: str = "Indonesia Stock API"
     APP_VERSION: str = "1.0.0"
+
     REQUEST_TIMEOUT: int = 10
     LOG_LEVEL: str = "INFO"
+
     PROVIDER: str = "yahoo"
     STOCK_UPDATE_INTERVAL: int = 5
 
     INTERNAL_API_BASE_URL: str = ""
+    INTERNAL_API_TOKEN: str = ""
 
     model_config = SettingsConfigDict(
         env_file=".env",
