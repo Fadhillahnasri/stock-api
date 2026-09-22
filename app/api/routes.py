@@ -29,6 +29,7 @@ from app.services.portfolio_service import ( get_index_prices,)
 from app.schemas.portfolio_closing_prices_schema import ClosingPriceResponse
 from app.schemas.portfolio_stocks_schema import PortfolioStocksResponse
 from app.schemas.portfolio_portfolios_schema import PortfolioResponse
+from app.services.portfolio_analysis_service import get_portfolio_analysis
 
 from app.utils.logger import logger
 
@@ -329,3 +330,13 @@ def portfolio_stocks():
 def portfolio_portfolios():
     logger.info("REST Request - Portfolio Portfolios")
     return get_portfolios()
+
+@router.get(
+    "/portfolio/analysis",
+    tags=["Portfolio"],
+    summary="Get Portfolio Analysis",
+    description="Menghitung analisis kinerja portfolio berdasarkan index report."
+)
+def portfolio_analysis():
+    logger.info("REST Request - Portfolio Analysis")
+    return get_portfolio_analysis()

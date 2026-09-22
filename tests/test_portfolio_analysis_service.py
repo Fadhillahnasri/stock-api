@@ -24,7 +24,7 @@ def test_get_portfolio_analysis(monkeypatch):
     monkeypatch.setattr(
         portfolio_analysis_service,
         "get_index_report",
-        lambda: expected
+        lambda params=None: expected
     )
 
     result = portfolio_analysis_service.get_portfolio_analysis()
@@ -36,3 +36,21 @@ def test_get_portfolio_analysis(monkeypatch):
     assert round(
         result["totalUnrealizedGainLossPercentage"], 2
     ) == -23.67
+
+    assert len(result["stocks"]) == 2
+
+    bbca = result["stocks"][0]
+
+    assert bbca["stockCode"] == "BBCA"
+    assert bbca["costBasis"] == 28771578605.43
+    assert bbca["marketValue"] == 22877250000
+    assert bbca["unrealizedGainLoss"] == -5894328605.43
+
+    assert round(bbca["performancePercentage"], 2) == -20.49
+    assert round(bbca["portfolioWeight"], 2) == 50.32
+
+    assert len(result["topGainers"]) == 2
+    assert len(result["topLosers"]) == 2
+
+    assert result["topGainers"][0]["stockCode"] == "BBCA"
+    assert result["topLosers"][0]["stockCode"] == "BBRI"
