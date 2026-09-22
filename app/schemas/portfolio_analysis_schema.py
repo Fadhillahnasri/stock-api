@@ -8,6 +8,7 @@ class PortfolioStockAnalysis(BaseModel):
     unrealizedGainLoss: float
     performancePercentage: float
     portfolioWeight: float
+    closingPrice: float
 
 
 class PortfolioAnalysisResponse(BaseModel):

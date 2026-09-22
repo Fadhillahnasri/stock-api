@@ -43,7 +43,9 @@ def test_portfolio_trading_report():
     assert "data" in data
 
 def test_portfolio_closing_prices():
-    response = client.get("/portfolio/closing-prices")
+    response = client.get(
+        "/portfolio/closing-prices?date=2026-05-26"
+    )
 
     assert response.status_code == 200
 

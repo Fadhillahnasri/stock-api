@@ -27,7 +27,26 @@ def test_get_portfolio_analysis(monkeypatch):
         lambda params=None: expected
     )
 
-    result = portfolio_analysis_service.get_portfolio_analysis()
+    monkeypatch.setattr(
+    portfolio_analysis_service,
+    "get_all_closing_prices",
+    lambda date: [
+        {
+            "stockCode": "BBCA",
+            "stockName": "Bank Central Asia Tbk",
+            "closingPrice": 8250,
+        },
+        {
+            "stockCode": "BBRI",
+            "stockName": "Bank Rakyat Indonesia Tbk",
+            "closingPrice": 4370,
+        },
+    ]
+)
+
+    result = portfolio_analysis_service.get_portfolio_analysis(
+        date="2026-05-26"
+    )
 
     assert result["totalCostBasis"] == 59565619575.43
     assert result["totalMarketValue"] == 45467990000
@@ -40,11 +59,14 @@ def test_get_portfolio_analysis(monkeypatch):
     assert len(result["stocks"]) == 2
 
     bbca = result["stocks"][0]
+    bbri = result["stocks"][1]
 
     assert bbca["stockCode"] == "BBCA"
     assert bbca["costBasis"] == 28771578605.43
     assert bbca["marketValue"] == 22877250000
     assert bbca["unrealizedGainLoss"] == -5894328605.43
+    assert bbca["closingPrice"] == 8250
+    assert bbri["closingPrice"] == 4370
 
     assert round(bbca["performancePercentage"], 2) == -20.49
     assert round(bbca["portfolioWeight"], 2) == 50.32
@@ -54,3 +76,5 @@ def test_get_portfolio_analysis(monkeypatch):
 
     assert result["topGainers"][0]["stockCode"] == "BBCA"
     assert result["topLosers"][0]["stockCode"] == "BBRI"
+
+    

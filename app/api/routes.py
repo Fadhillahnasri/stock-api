@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, Query, params
+from fastapi import APIRouter, HTTPException, Query
 
 from app.services.stock_service import (
     get_stock_price,
@@ -19,7 +19,6 @@ from app.schemas.stock_schema import StockResponse
 from app.schemas.multiple_stock_schema import MultipleStockResponse
 from app.schemas.company_schema import CompanyResponse
 from app.schemas.health_schema import HealthResponse
-from app.services.portfolio_service import get_transactions
 from app.schemas.portfolio_index_schema import PortfolioIndexResponse
 from app.schemas.portfolio_transaction_schema import (
     PortfolioTransactionResponse,
@@ -289,18 +288,37 @@ def portfolio_index_prices():
     summary="Get Portfolio Closing Prices",
     description="Mengambil data harga penutupan saham dari Internal API."
 )
-def portfolio_closing_prices():
-    logger.info("REST Request - Portfolio Closing Prices")
+def portfolio_closing_prices(
+    date: str = Query(
+        ...,
+        description="Tanggal closing price. Format: YYYY-MM-DD"
+    ),
+    page: int = Query(
+        1,
+        ge=1,
+        description="Nomor halaman"
+    ),
+    limit: int = Query(
+        20,
+        ge=1,
+        le=100,
+        description="Jumlah data per halaman"
+    )
+):
+    logger.info(
+        f"REST Request - Portfolio Closing Prices: "
+        f"date={date}, page={page}, limit={limit}"
+    )
 
     params = {
-        "page": 1,
-        "limit": 20,
+        "page": page,
+        "limit": limit,
         "orderBy": "stockCode",
         "sort": "asc",
-        "date": "2026-05-26"
+        "date": date
     }
 
-    return get_closing_prices(params=params)    
+    return get_closing_prices(params=params)
 
 @router.get(
     "/portfolio/stocks",
@@ -339,6 +357,14 @@ def portfolio_portfolios():
     summary="Get Portfolio Analysis",
     description="Menghitung analisis kinerja portfolio berdasarkan index report."
 )
-def portfolio_analysis():
-    logger.info("REST Request - Portfolio Analysis")
-    return get_portfolio_analysis()
+def portfolio_analysis(
+    date: str = Query(
+        ...,
+        description="Tanggal closing price. Format: YYYY-MM-DD"
+    )
+):
+    logger.info(
+        f"REST Request - Portfolio Analysis: {date}"
+    )
+
+    return get_portfolio_analysis(date=date)
