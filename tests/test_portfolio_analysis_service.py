@@ -8,13 +8,15 @@ def test_get_portfolio_analysis(monkeypatch):
         "data": [
             {
                 "stockCode": "BBCA",
-                "marketValue": "22101750000",
-                "unrealizedgainorloss": "-6669828605.43",
+                "netAmount": "28771578605.43",
+                "marketValue": "22877250000.00",
+                "unrealizedgainorloss": "-5894328605.43",
             },
             {
                 "stockCode": "BBRI",
-                "marketValue": "21850060000",
-                "unrealizedgainorloss": "-8943980970.00",
+                "netAmount": "30794040970.00",
+                "marketValue": "22590740000.00",
+                "unrealizedgainorloss": "-8203300970.00",
             },
         ],
     }
@@ -27,5 +29,10 @@ def test_get_portfolio_analysis(monkeypatch):
 
     result = portfolio_analysis_service.get_portfolio_analysis()
 
-    assert result["totalMarketValue"] == 43951810000
-    assert result["totalUnrealizedGainLoss"] == -15613809575.43
+    assert result["totalCostBasis"] == 59565619575.43
+    assert result["totalMarketValue"] == 45467990000
+    assert result["totalUnrealizedGainLoss"] == -14097629575.43
+
+    assert round(
+        result["totalUnrealizedGainLossPercentage"], 2
+    ) == -23.67
