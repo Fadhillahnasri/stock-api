@@ -10,8 +10,14 @@ from app.exceptions.provider_exceptions import (
 class HttpClient:
 
     def __init__(self):
+        headers = {}
+
+        if settings.INTERNAL_API_TOKEN:
+            headers["Authorization"] = f"Bearer {settings.INTERNAL_API_TOKEN}"
+
         self.client = httpx.Client(
-            timeout=settings.REQUEST_TIMEOUT
+            timeout=settings.REQUEST_TIMEOUT,
+            headers=headers
         )
 
     def get(self, url: str, **kwargs):

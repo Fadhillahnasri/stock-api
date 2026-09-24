@@ -27,6 +27,24 @@ def get_company_profile(symbol: str):
 
     return provider.get_company_profile(symbol)
 
+def get_historical_prices(
+    symbol: str,
+    period: str = "1y",
+    interval: str = "1d"
+):
+    symbol = symbol.strip().upper()
+
+    logger.info(
+        f"Stock Service - Get Historical Prices: "
+        f"{symbol}, period={period}, interval={interval}"
+    )
+
+    return provider.get_historical_prices(
+        symbol=symbol,
+        period=period,
+        interval=interval
+    )
+
 
 def get_multiple_stocks(symbols: list):
 

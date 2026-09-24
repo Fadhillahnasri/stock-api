@@ -4,6 +4,7 @@ from app.services.stock_service import (
     get_stock_price,
     get_multiple_stocks,
     get_company_profile,
+    get_historical_prices,
 )
 
 from app.services.portfolio_service import (
@@ -30,6 +31,13 @@ from app.schemas.portfolio_stocks_schema import PortfolioStocksResponse
 from app.schemas.portfolio_portfolios_schema import PortfolioResponse
 from app.services.portfolio_analysis_service import get_portfolio_analysis
 from app.schemas.portfolio_analysis_schema import PortfolioAnalysisResponse
+from app.services.historical_analysis_service import (
+    calculate_historical_returns,
+)
+
+from app.services.sensitivity_analysis_service import (
+    get_stock_sensitivity,
+)
 
 from app.utils.logger import logger
 
@@ -198,6 +206,62 @@ def company(symbol: str):
         "provider": "Yahoo Finance",
         "data": data
     }
+
+@router.get(
+    "/stocks/{symbol}/history",
+    tags=["Stock"],
+    summary="Get Historical Stock Prices",
+    description="Mengambil data historis harga saham dari provider."
+)
+def historical_stock_prices(
+    symbol: str,
+    period: str = Query(
+        "1y",
+        description="Periode data historis, contoh: 1mo, 3mo, 6mo, 1y, 5y"
+    ),
+    interval: str = Query(
+        "1d",
+        description="Interval data, contoh: 1d, 1wk, 1mo"
+    )
+):
+    logger.info(
+        f"REST Request - Historical Stock Prices: "
+        f"{symbol}, period={period}, interval={interval}"
+    )
+
+    return get_historical_prices(
+        symbol=symbol,
+        period=period,
+        interval=interval
+    )
+
+@router.get(
+    "/stocks/{symbol}/history/returns",
+    tags=["Stock"],
+    summary="Get Historical Stock Returns",
+    description="Menghitung daily return berdasarkan data historis harga saham."
+)
+def historical_stock_returns(
+    symbol: str,
+    period: str = Query(
+        "1y",
+        description="Periode data historis, contoh: 1mo, 3mo, 6mo, 1y"
+    ),
+    interval: str = Query(
+        "1d",
+        description="Interval data, contoh: 1d, 1wk, 1mo"
+    )
+):
+    logger.info(
+        f"REST Request - Historical Stock Returns: "
+        f"{symbol}, period={period}, interval={interval}"
+    )
+
+    return calculate_historical_returns(
+        symbol=symbol,
+        period=period,
+        interval=interval
+    )
 
 # ===========================
 # Portfolio Transactions
@@ -368,3 +432,36 @@ def portfolio_analysis(
     )
 
     return get_portfolio_analysis(date=date)
+
+@router.get(
+    "/stocks/{symbol}/sensitivity",
+    tags=["Stock"],
+    summary="Get Stock Sensitivity",
+    description="Menghitung sensitivitas historis saham terhadap benchmark.",
+)
+def stock_sensitivity(
+    symbol: str,
+    benchmark: str = Query(
+        "^JKSE",
+        description="Benchmark saham, default ^JKSE (IHSG).",
+    ),
+    period: str = Query(
+        "1y",
+        description="Periode data historis.",
+    ),
+    interval: str = Query(
+        "1d",
+        description="Interval data historis.",
+    ),
+):
+    logger.info(
+        f"REST Request - Stock Sensitivity: "
+        f"{symbol} vs {benchmark}"
+    )
+
+    return get_stock_sensitivity(
+        symbol=symbol,
+        benchmark_symbol=benchmark,
+        period=period,
+        interval=interval,
+    )

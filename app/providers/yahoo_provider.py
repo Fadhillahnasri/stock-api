@@ -142,3 +142,73 @@ class YahooProvider(BaseProvider):
             raise ProviderError(
                 f"Yahoo Finance error for company {symbol}"
             )
+
+    def get_historical_prices(
+        self,
+        symbol: str,
+        period: str = "1y",
+        interval: str = "1d"
+    ):
+        symbol = symbol.upper()
+
+        try:
+            logger.info(
+                f"Yahoo Provider - Get Historical Prices: "
+                f"{symbol}, period={period}, interval={interval}"
+            )
+
+            stock = yf.Ticker(symbol)
+
+            history = stock.history(
+                period=period,
+                interval=interval
+            )
+
+            if history.empty:
+                logger.warning(
+                    f"Yahoo Provider - No Historical Data: {symbol}"
+                )
+                return None
+
+            data = []
+
+            for date, row in history.iterrows():
+                data.append({
+                    "date": date.strftime("%Y-%m-%d"),
+                    "open": row["Open"],
+                    "high": row["High"],
+                    "low": row["Low"],
+                    "close": row["Close"],
+                    "volume": row["Volume"],
+                })
+
+            return {
+                "symbol": symbol,
+                "period": period,
+                "interval": interval,
+                "data": data,
+            }
+
+        except TimeoutError as e:
+            logger.exception(
+                f"Yahoo Provider Timeout - Historical Prices {symbol}: {e}"
+            )
+            raise ProviderTimeoutError(
+                "Yahoo Finance request timed out"
+            )
+
+        except ConnectionError as e:
+            logger.exception(
+                f"Yahoo Provider Connection Error - Historical Prices {symbol}: {e}"
+            )
+            raise ProviderConnectionError(
+                "Unable to connect to Yahoo Finance"
+            )
+
+        except Exception as e:
+            logger.exception(
+                f"Yahoo Provider Error - Historical Prices {symbol}: {e}"
+            )
+            raise ProviderError(
+                f"Yahoo Finance error for historical prices {symbol}"
+            )

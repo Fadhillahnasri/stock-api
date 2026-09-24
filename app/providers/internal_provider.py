@@ -70,3 +70,13 @@ class InternalProvider(BaseProvider):
         raise ProviderError(
             "Internal Provider get_company_profile belum diimplementasikan."
         )
+
+    def get_historical_prices(
+        self,
+        symbol: str,
+        period: str = "1y",
+        interval: str = "1d"
+    ):
+        raise ProviderError(
+            "Internal Provider get_historical_prices belum diimplementasikan."
+        )

@@ -241,11 +241,209 @@
             line-height: 1.7;
         }
 
+        .sensitivity-card {
+            margin-top: 24px;
+            width: 100%;
+            grid-column: 1 / -1;
+        }
+
+        .sensitivity-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 18px;
+        }
+
+        .sensitivity-header h3 {
+            margin: 0;
+            font-size: 1.25rem;
+        }
+
+        .sensitivity-header p {
+            margin: 5px 0 0;
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        .sensitivity-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .sensitivity-box {
+            background: linear-gradient(180deg, #fffaf3 0%, #fff7ed 100%);
+            border: 1px solid rgba(217, 119, 6, 0.12);
+            border-radius: 16px;
+            padding: 18px;
+        }
+
+        .sensitivity-box .label {
+            display: block;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .sensitivity-box .value {
+            font-size: 1.6rem;
+            font-weight: 800;
+        }
+
+        .sensitivity-status {
+            margin-top: 16px;
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
         @media (max-width: 760px) {
             .content { grid-template-columns: 1fr; }
             .stats-grid { grid-template-columns: 1fr; }
             .ticker-header { flex-direction: column; }
         }
+
+        /* ================================
+            PORTFOLIO ANALYSIS
+        ================================ */
+
+        .portfolio-analysis {
+            margin-top: 24px;
+            width: 100%;
+            grid-column: 1 / -1;
+            box-sizing: border-box;
+        }
+
+        .portfolio-header {
+            margin-bottom: 20px;
+        }
+
+        .portfolio-header h3 {
+            margin: 0 0 6px;
+            font-size: 20px;
+        }
+
+        .portfolio-header p {
+            margin: 0;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .portfolio-summary-grid {
+            display: grid;
+            width: 100%;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .portfolio-summary-box {
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 18px;
+        }
+
+        .portfolio-summary-box .label {
+            display: block;
+            color: #6b7280;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .portfolio-summary-box .value {
+            display: block;
+            font-size: 20px;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .portfolio-summary-box .value.negative {
+            color: #dc2626;
+        }
+
+        .portfolio-summary-box .value.positive {
+            color: #16a34a;
+        }
+
+        .portfolio-ranking-grid {
+            display: grid;
+            width: 100%;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .portfolio-ranking-card {
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .portfolio-ranking-card h4 {
+            margin: 0;
+            padding: 16px 18px;
+            background: #f8fafc;
+            font-size: 16px;
+        }
+
+        .portfolio-stock-list {
+            padding: 8px 18px;
+        }
+
+        .portfolio-stock-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 13px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .portfolio-stock-item:last-child {
+            border-bottom: none;
+        }
+
+        .portfolio-stock-code {
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .portfolio-stock-performance {
+            font-weight: 600;
+        }
+
+        .portfolio-stock-performance.positive {
+            color: #16a34a;
+        }
+
+        .portfolio-stock-performance.negative {
+            color: #dc2626;
+        }
+
+        .portfolio-loading {
+            padding: 20px;
+            text-align: center;
+            color: #6b7280;
+        }
+
+        @media (max-width: 900px) {
+            .portfolio-summary-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .portfolio-ranking-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .portfolio-summary-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
     </style>
 </head>
 
@@ -283,7 +481,6 @@
                 </div>
             </section>
 
-            <section class="panel market-card">
                 <div class="ticker-header">
                     <div>
                         <h2 id="symbol">-</h2>
@@ -311,6 +508,96 @@
                     Terakhir diperbarui: <strong id="time">-</strong>
                 </div>
             </section>
+      
+                <section class="panel sensitivity-card">
+    <div class="sensitivity-header">
+        <div>
+            <h3>🔍 Sensitivity Analysis</h3>
+                    <p>
+                        Analisis sensitivitas historis terhadap benchmark IHSG.
+                    </p>
+                </div>
+            </div>
+
+            <div class="sensitivity-grid">
+                <div class="sensitivity-box">
+                    <span class="label">Beta</span>
+                    <span id="betaValue" class="value">-</span>
+                </div>
+
+                <div class="sensitivity-box">
+                    <span class="label">Observasi</span>
+                    <span id="observationValue" class="value">-</span>
+                </div>
+            </div>
+
+            <div class="sensitivity-status">
+                Benchmark:
+                <strong id="benchmarkValue">IHSG (^JKSE)</strong>
+            </div>
+            </section>
+             <section class="panel portfolio-analysis">
+
+                <div class="portfolio-header">
+                    <div>
+                        <h3>Portfolio Analysis</h3>
+                        <p>
+                            Analisis kinerja portfolio berdasarkan cost basis,
+                            market value, dan unrealized gain/loss.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Summary -->
+                <div class="portfolio-summary-grid">
+
+                    <div class="portfolio-summary-box">
+                        <span class="label">Total Cost Basis</span>
+                        <span id="portfolioCostBasis" class="value">-</span>
+                    </div>
+
+                    <div class="portfolio-summary-box">
+                        <span class="label">Total Market Value</span>
+                        <span id="portfolioMarketValue" class="value">-</span>
+                    </div>
+
+                    <div class="portfolio-summary-box">
+                        <span class="label">Unrealized Gain/Loss</span>
+                        <span id="portfolioGainLoss" class="value">-</span>
+                    </div>
+
+                    <div class="portfolio-summary-box">
+                        <span class="label">Performance</span>
+                        <span id="portfolioPerformance" class="value">-</span>
+                    </div>
+
+                </div>
+
+                <!-- Top Gainers & Losers -->
+                <div class="portfolio-ranking-grid">
+
+                    <div class="portfolio-ranking-card">
+                        <h4>📈 Top Gainers</h4>
+
+                        <div id="topGainers" class="portfolio-stock-list">
+                            <div class="portfolio-loading">
+                                Loading...
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-ranking-card">
+                        <h4>📉 Top Losers</h4>
+
+                        <div id="topLosers" class="portfolio-stock-list">
+                            <div class="portfolio-loading">
+                                Loading...
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+        </section>
         </main>
     </div>
 
@@ -358,6 +645,37 @@
             document.getElementById("time").textContent = new Date().toLocaleTimeString("id-ID");
         }
 
+        async function loadSensitivity(symbol) {
+            try {
+                const response = await fetch(
+                    `/stocks/${encodeURIComponent(symbol)}/sensitivity`
+                );
+
+                if (!response.ok) {
+                    throw new Error(
+                        `Sensitivity API error: ${response.status}`
+                    );
+                }
+
+                const result = await response.json();
+
+                document.getElementById("betaValue").textContent =
+                    formatValue(result.beta);
+
+                document.getElementById("observationValue").textContent =
+                    `${result.observationCount} hari`;
+
+                document.getElementById("benchmarkValue").textContent =
+                    "IHSG (^JKSE)";
+
+            } catch (error) {
+                console.error("Sensitivity Error:", error);
+
+                document.getElementById("betaValue").textContent = "-";
+                document.getElementById("observationValue").textContent = "-";
+            }
+        }
+
         function connectSocket() {
             if (reconnectTimer) {
                 clearTimeout(reconnectTimer);
@@ -368,7 +686,11 @@
             }
 
             const symbol = document.getElementById("stockSelect").value;
+            loadSensitivity(symbol);
+            loadPortfolioAnalysis();
             setStatus("Connecting...", "");
+
+        
 
             const socketUrl = getSocketUrl(symbol);
             console.log("Connecting to:", socketUrl);
@@ -414,6 +736,141 @@
                     connectSocket();
                 }
             }, delay);
+        }
+
+        async function loadPortfolioAnalysis() {
+            try {
+                const portfolioDate = "2026-05-26";
+
+                const response = await fetch(
+                    `/portfolio/analysis?date=${portfolioDate}`
+                );
+
+                if (!response.ok) {
+                    throw new Error(
+                        `Portfolio Analysis API error: ${response.status}`
+                    );
+                }
+
+                const result = await response.json();
+
+                console.log("Portfolio Analysis:", result);
+
+                // ================================
+                // SUMMARY
+                // ================================
+
+                document.getElementById("portfolioCostBasis").textContent =
+                    formatCurrency(result.totalCostBasis);
+
+                document.getElementById("portfolioMarketValue").textContent =
+                    formatCurrency(result.totalMarketValue);
+
+                document.getElementById("portfolioGainLoss").textContent =
+                    formatCurrency(result.totalUnrealizedGainLoss);
+
+                document.getElementById("portfolioPerformance").textContent =
+                    formatPercentage(result.totalUnrealizedGainLossPercentage);
+
+                // ================================
+                // TOP GAINERS
+                // ================================
+
+                renderPortfolioStocks(
+                    "topGainers",
+                    result.topGainers,
+                    "positive"
+                );
+
+                // ================================
+                // TOP LOSERS
+                // ================================
+
+                renderPortfolioStocks(
+                    "topLosers",
+                    result.topLosers,
+                    "negative"
+                );
+
+            } catch (error) {
+                console.error("Portfolio Analysis Error:", error);
+
+                document.getElementById("portfolioCostBasis").textContent = "-";
+                document.getElementById("portfolioMarketValue").textContent = "-";
+                document.getElementById("portfolioGainLoss").textContent = "-";
+                document.getElementById("portfolioPerformance").textContent = "-";
+
+                document.getElementById("topGainers").innerHTML =
+                    `<div class="portfolio-loading">
+                        Data tidak tersedia
+                    </div>`;
+
+                document.getElementById("topLosers").innerHTML =
+                    `<div class="portfolio-loading">
+                        Data tidak tersedia
+                    </div>`;
+            }
+        }
+
+        function formatCurrency(value) {
+            if (value === undefined || value === null) {
+                return "-";
+            }
+
+            const numeric = Number(value);
+
+            if (!Number.isFinite(numeric)) {
+                return "-";
+            }
+
+            return numeric.toLocaleString("id-ID", {
+                style: "currency",
+                currency: "IDR",
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            });
+        }
+
+        function formatPercentage(value) {
+            if (value === undefined || value === null) {
+                return "-";
+            }
+
+            const numeric = Number(value);
+
+            if (!Number.isFinite(numeric)) {
+                return "-";
+            }
+
+            return `${numeric.toLocaleString("id-ID", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            })}%`;
+        }
+
+        function renderPortfolioStocks(elementId, stocks, performanceClass) {
+            const container = document.getElementById(elementId);
+
+            if (!stocks || stocks.length === 0) {
+                container.innerHTML = `
+                    <div class="portfolio-loading">
+                        Tidak ada data
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = stocks.map(stock => `
+                <div class="portfolio-stock-item">
+                    <span class="portfolio-stock-code">
+                        ${stock.stockCode}
+                    </span>
+
+                    <span class="portfolio-stock-performance ${performanceClass}">
+                        ${formatPercentage(stock.performancePercentage)}
+                    </span>
+                </div>
+            `).join("");
         }
     </script>
 </body>
