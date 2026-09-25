@@ -26,16 +26,13 @@ class InternalProvider(BaseProvider):
 
         url = f"{self.base_url}{path}"
 
-        headers = {
-            "Authorization": f"Bearer {settings.INTERNAL_API_TOKEN}"
-        }
 
         logger.info(f"Internal API GET - {url}")
 
         response = self.client.get(
             url,
             params=params,
-            headers=headers
+    
         )
 
         return response.json()

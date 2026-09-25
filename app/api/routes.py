@@ -414,13 +414,19 @@ def portfolio_portfolios():
     logger.info("REST Request - Portfolio Portfolios")
     return get_portfolios()
 
-@router.get(
-    "/portfolio/analysis",
-    response_model=PortfolioAnalysisResponse,
-    tags=["Portfolio"],
-    summary="Get Portfolio Analysis",
-    description="Menghitung analisis kinerja portfolio berdasarkan index report."
-)
+@router.get("/portfolio/analysis")
+def portfolio_analysis(date: str = Query(...)):
+    logger.info(f"REST Request - Portfolio Analysis: {date}")
+
+    try:
+        return get_portfolio_analysis(date=date)
+
+    except ValueError as e:
+        raise HTTPException(
+            status_code=404,
+            detail=str(e)
+        )
+    
 def portfolio_analysis(
     date: str = Query(
         ...,

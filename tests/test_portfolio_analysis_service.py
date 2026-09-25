@@ -11,12 +11,14 @@ def test_get_portfolio_analysis(monkeypatch):
                 "netAmount": "28771578605.43",
                 "marketValue": "22877250000.00",
                 "unrealizedgainorloss": "-5894328605.43",
+                "closingPrice": "8250",
             },
             {
                 "stockCode": "BBRI",
                 "netAmount": "30794040970.00",
                 "marketValue": "22590740000.00",
                 "unrealizedgainorloss": "-8203300970.00",
+                "closingPrice": "4370",
             },
         ],
     }
@@ -26,23 +28,6 @@ def test_get_portfolio_analysis(monkeypatch):
         "get_index_report",
         lambda params=None: expected
     )
-
-    monkeypatch.setattr(
-    portfolio_analysis_service,
-    "get_all_closing_prices",
-    lambda date: [
-        {
-            "stockCode": "BBCA",
-            "stockName": "Bank Central Asia Tbk",
-            "closingPrice": 8250,
-        },
-        {
-            "stockCode": "BBRI",
-            "stockName": "Bank Rakyat Indonesia Tbk",
-            "closingPrice": 4370,
-        },
-    ]
-)
 
     result = portfolio_analysis_service.get_portfolio_analysis(
         date="2026-05-26"
@@ -66,6 +51,8 @@ def test_get_portfolio_analysis(monkeypatch):
     assert bbca["marketValue"] == 22877250000
     assert bbca["unrealizedGainLoss"] == -5894328605.43
     assert bbca["closingPrice"] == 8250
+
+    assert bbri["stockCode"] == "BBRI"
     assert bbri["closingPrice"] == 4370
 
     assert round(bbca["performancePercentage"], 2) == -20.49
@@ -76,5 +63,3 @@ def test_get_portfolio_analysis(monkeypatch):
 
     assert result["topGainers"][0]["stockCode"] == "BBCA"
     assert result["topLosers"][0]["stockCode"] == "BBRI"
-
-    
