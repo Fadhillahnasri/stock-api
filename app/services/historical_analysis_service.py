@@ -51,3 +51,47 @@ def calculate_historical_returns(
         "interval": historical_data["interval"],
         "data": results,
     }
+
+
+def calculate_period_return(
+    symbol: str,
+    start_date: str,
+    end_date: str,
+    historical_data: dict
+):
+    """
+    Menghitung return saham berdasarkan harga penutupan
+    pertama dan terakhir dalam periode skenario.
+
+    historical_data berisi data harga yang sudah difilter
+    untuk periode start_date hingga end_date.
+    """
+
+    prices = [
+        item
+        for item in historical_data.get("data", [])
+        if start_date <= item["date"] <= end_date
+    ]
+
+    prices.sort(key=lambda item: item["date"])
+
+    if len(prices) < 2:
+        return None
+
+    start_price = float(prices[0]["close"])
+    end_price = float(prices[-1]["close"])
+
+    if start_price <= 0:
+        return None
+
+    period_return = (end_price / start_price) - 1
+
+    return {
+        "symbol": symbol.strip().upper(),
+        "startDate": prices[0]["date"],
+        "endDate": prices[-1]["date"],
+        "startPrice": start_price,
+        "endPrice": end_price,
+        "periodReturn": period_return,
+        "periodReturnPercentage": period_return * 100,
+    }
