@@ -45,6 +45,9 @@ from app.services.historical_scenario_service import (
     get_historical_scenarios,
 )
 from app.services.macro_service import get_exchange_rate
+from app.services.historical_analysis_service import calculate_historical_returns
+from app.services.macro_service import get_exchange_rate
+from app.services.macro_sensitivity_service import calculate_macro_sensitivity
 
 from app.utils.logger import logger
 
@@ -535,4 +538,74 @@ def macro_exchange_rate(
         raise HTTPException(
             status_code=500,
             detail="Gagal mengambil data exchange rate."
+        )
+
+@router.get("/macro/sensitivity")
+def macro_sensitivity(
+    symbol: str = Query(...),
+    currency: str = Query("USD"),
+    startDate: str = Query(...),
+    endDate: str = Query(...)
+):
+    logger.info(
+        f"REST Request - Macro Sensitivity: "
+        f"symbol={symbol}, "
+        f"currency={currency}, "
+        f"startDate={startDate}, "
+        f"endDate={endDate}"
+    )
+
+    try:
+        stock_data = calculate_historical_returns(
+            symbol=symbol,
+            period="max",
+            interval="1d"
+        )
+
+        if not stock_data or not stock_data.get("data"):
+            raise HTTPException(
+                status_code=404,
+                detail=f"Historical data untuk {symbol} tidak tersedia."
+            )
+
+        macro_data = get_exchange_rate(
+            currency=currency,
+            start_date=startDate,
+            end_date=endDate
+        )
+
+        if not macro_data or not macro_data.get("data"):
+            raise HTTPException(
+                status_code=404,
+                detail=f"Macro data untuk {currency}/IDR tidak tersedia."
+            )
+
+        sensitivity = calculate_macro_sensitivity(
+            stock_data=stock_data["data"],
+            macro_data=macro_data["data"]
+        )
+
+        if sensitivity is None:
+            raise HTTPException(
+                status_code=404,
+                detail="Data tidak cukup untuk menghitung macro sensitivity."
+            )
+
+        return {
+            "symbol": symbol.upper(),
+            "macro": macro_data["indicator"],
+            "source": macro_data["source"],
+            "sensitivity": sensitivity
+        }
+
+    except HTTPException:
+        raise
+
+    except Exception as e:
+        logger.exception(
+            f"Macro Sensitivity Error: {e}"
+        )
+        raise HTTPException(
+            status_code=500,
+            detail="Gagal menghitung macro sensitivity."
         )

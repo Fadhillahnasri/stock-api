@@ -272,7 +272,7 @@
 
         .sensitivity-grid {
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 14px;
         }
 
@@ -771,7 +771,7 @@
                     <div>
                         <h3>🔍 Sensitivity Analysis</h3>
                                 <p>
-                                    Analisis sensitivitas historis terhadap benchmark IHSG.
+                                    Analisis sensitivitas historis terhadap perubahan USD/IDR.
                                 </p>
                             </div>
                         </div>
@@ -783,6 +783,11 @@
                     </div>
 
                     <div class="sensitivity-box">
+                        <span class="label">Correlation</span>
+                        <span id="correlationValue" class="value">-</span>
+                    </div>
+
+                    <div class="sensitivity-box">
                         <span class="label">Observasi</span>
                         <span id="observationValue" class="value">-</span>
                     </div>
@@ -790,7 +795,7 @@
 
                 <div class="sensitivity-status">
                     Benchmark:
-                    <strong id="benchmarkValue">IHSG (^JKSE)</strong>
+                    <strong id="benchmarkValue">USD/IDR</strong>
                 </div>
                 </section>
                 <section class="panel portfolio-analysis">
@@ -1016,37 +1021,49 @@
             document.getElementById("time").textContent = new Date().toLocaleTimeString("id-ID");
         }
 
-        async function loadSensitivity(symbol) {
-            try {
-                const response = await fetch(
-                    `/stocks/${encodeURIComponent(symbol)}/sensitivity`
+       async function loadSensitivity(symbol) {
+        try {
+            const startDate = "2025-09-01";
+            const endDate = "2026-09-29";
+
+            const response = await fetch(
+                `/macro/sensitivity?symbol=${encodeURIComponent(symbol)}`
+                + `&currency=USD`
+                + `&startDate=${startDate}`
+                + `&endDate=${endDate}`
+            );
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(
+                    result.detail || `Sensitivity API error: ${response.status}`
                 );
-
-                if (!response.ok) {
-                    throw new Error(
-                        `Sensitivity API error: ${response.status}`
-                    );
-                }
-
-                const result = await response.json();
-
-                document.getElementById("betaValue").textContent =
-                    formatValue(result.beta);
-
-                document.getElementById("observationValue").textContent =
-                    `${result.observationCount} hari`;
-
-                document.getElementById("benchmarkValue").textContent =
-                    "IHSG (^JKSE)";
-
-            } catch (error) {
-                console.error("Sensitivity Error:", error);
-
-                document.getElementById("betaValue").textContent = "-";
-                document.getElementById("observationValue").textContent = "-";
             }
-        }
 
+            const sensitivity = result.sensitivity;
+
+            document.getElementById("betaValue").textContent =
+                Number(sensitivity.beta).toFixed(2);
+
+            document.getElementById("correlationValue").textContent =
+                Number(sensitivity.correlation).toFixed(2);
+
+            document.getElementById("observationValue").textContent =
+                `${sensitivity.observations} hari`;
+
+            document.getElementById("benchmarkValue").textContent =
+                `${result.macro} | ${sensitivity.startDate} - ${sensitivity.endDate}`;
+                
+        } catch (error) {
+            console.error("Macro Sensitivity Error:", error);
+
+            document.getElementById("betaValue").textContent = "-";
+            document.getElementById("observationValue").textContent = "-";
+            document.getElementById("benchmarkValue").textContent =
+                "USD/IDR tidak tersedia";
+        }
+    }
         function connectSocket() {
             if (reconnectTimer) {
                 clearTimeout(reconnectTimer);
@@ -1523,6 +1540,7 @@
             "stressTestTotalWeight"
         ).textContent = "Total Weight: -";
     }
+
 
     </script>
 </body>
