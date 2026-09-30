@@ -1,4 +1,7 @@
 from app.services.stock_service import get_historical_prices
+from app.services.historical_scenario_service import (
+    get_historical_scenario,
+)
 from app.utils.logger import logger
 
 
@@ -94,4 +97,47 @@ def calculate_period_return(
         "endPrice": end_price,
         "periodReturn": period_return,
         "periodReturnPercentage": period_return * 100,
+    }
+
+def calculate_scenario_stock_return(
+    symbol: str,
+    scenario_id: str
+):
+    symbol = symbol.strip().upper()
+
+    logger.info(
+        f"Historical Analysis - Calculate Scenario Return: "
+        f"{symbol}, scenario={scenario_id}"
+    )
+
+    scenario = get_historical_scenario(scenario_id)
+
+    if scenario is None:
+        return None
+
+    historical_data = get_historical_prices(
+        symbol=symbol,
+        period="max",
+        interval="1d"
+    )
+
+    if not historical_data or not historical_data.get("data"):
+        return None
+
+    result = calculate_period_return(
+        symbol=symbol,
+        start_date=scenario["startDate"],
+        end_date=scenario["endDate"],
+        historical_data=historical_data,
+    )
+
+    if result is None:
+        return None
+
+    return {
+        **result,
+        "scenarioId": scenario["id"],
+        "scenarioName": scenario["name"],
+        "scenarioStartDate": scenario["startDate"],
+        "scenarioEndDate": scenario["endDate"],
     }

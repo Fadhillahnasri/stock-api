@@ -209,13 +209,16 @@
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 14px;
+            width: 100%;
         }
 
         .stat-box {
+            min-width: 0;
             background: linear-gradient(180deg, #f8fbff 0%, #eef5ff 100%);
             border: 1px solid var(--border);
             border-radius: 16px;
             padding: 18px 16px;
+            overflow: hidden;
         }
 
         .stat-box .label {
@@ -229,10 +232,11 @@
         }
 
         .stat-box .value {
-            font-size: clamp(1.2rem, 2vw, 1.8rem);
+            font-size: clamp(1rem, 1.5vw, 1.45rem);
             font-weight: 800;
             letter-spacing: -0.03em;
             color: var(--text);
+            white-space: nowrap;
         }
 
         .empty-state {
@@ -393,9 +397,10 @@
 
         .portfolio-summary-box .value {
             display: block;
-            font-size: 20px;
+            font-size: clamp(16px, 1.7vw, 20px);
             font-weight: 700;
             color: #111827;
+            white-space: nowrap;
         }
 
         .portfolio-summary-box .value.negative {
@@ -481,6 +486,218 @@
             }
         }
 
+            .stress-test {
+            margin-top: 24px;
+            width: 100%;
+            grid-column: 1 / -1;
+            box-sizing: border-box;
+        }
+
+        .stress-test-header {
+            margin-bottom: 20px;
+        }
+
+        .stress-test-header h2 {
+            margin-bottom: 4px;
+        }
+
+        .stress-test-subtitle {
+            margin: 0;
+            color: #6b7280;
+        }
+
+        .stress-test-filter {
+            display: flex;
+            align-items: end;
+            gap: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            background: #ffffff;
+            flex: 1.5;
+        }
+
+        .stress-test-filter-item {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex: 1;
+        }
+
+        .stress-test-filter-item label {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .stress-test-filter-item input,
+        .stress-test-filter-item select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            background: #ffffff;
+            font-size: 14px;
+        }
+
+        .stress-test-button {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 8px;
+            background: #111827;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            flex: 0 0 180px;
+        }
+
+        .stress-test-button:hover {
+            opacity: 0.9;
+        }
+
+        .stress-test-scenario-info {
+            margin-bottom: 20px;
+            padding: 16px 20px;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            background: #f9fafb;
+        }
+
+        .stress-test-scenario-name {
+            margin: 0 0 6px;
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+        .stress-test-scenario-description {
+            margin: 0 0 8px;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+
+        .stress-test-scenario-meta {
+            margin: 0;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .stress-test-summary-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .stress-test-card {
+            padding: 20px;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            background: #ffffff;
+        }
+
+        .stress-test-card-label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .stress-test-card strong {
+            font-size: 22px;
+            display: block;
+            white-space: nowrap;
+        }
+
+        .stress-test-table-wrapper {
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            background: #ffffff;
+            overflow: hidden;
+        }
+
+        .stress-test-table-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 20px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .stress-test-table-header h3 {
+            margin: 0;
+        }
+
+        .stress-test-table-header span {
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .stress-test-table-container {
+            overflow-x: auto;
+        }
+
+        .stress-test-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .stress-test-table th,
+        .stress-test-table td {
+            padding: 14px 20px;
+            text-align: left;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .stress-test-table th {
+            font-size: 13px;
+            color: #6b7280;
+            background: #f9fafb;
+        }
+
+        .stress-test-table td {
+            font-size: 14px;
+        }
+
+        .stress-test-empty {
+            text-align: center !important;
+            color: #6b7280;
+        }
+
+        .stress-test-loading {
+            color: #6b7280;
+        }
+
+        .stress-positive {
+            color: #15803d;
+        }
+
+        .stress-negative {
+            color: #dc2626;
+        }
+
+        @media (max-width: 900px) {
+            .stress-test-summary-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stress-test-filter {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .stress-test-summary-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        #stressTestScenario {
+            min-width: 260px;
+        }
+
     </style>
 </head>
 
@@ -518,86 +735,89 @@
                 </div>
             </section>
 
-                <div class="ticker-header">
-                    <div>
-                        <h2 id="symbol">-</h2>
-                        <small id="company">Pilih saham untuk melihat data</small>
-                    </div>
-                    <span class="price-pill">Realtime</span>
-                </div>
 
-                <div class="stats-grid">
-                    <div class="stat-box">
-                        <span class="label">Harga Saat Ini</span>
-                        <span id="price" class="value">-</span>
-                    </div>
-                    <div class="stat-box">
-                        <span class="label">Tertinggi</span>
-                        <span id="high" class="value">-</span>
-                    </div>
-                    <div class="stat-box">
-                        <span class="label">Terendah</span>
-                        <span id="low" class="value">-</span>
-                    </div>
-                </div>
+            <section class="market-card">
 
-                <div class="empty-state">
-                    Terakhir diperbarui: <strong id="time">-</strong>
-                </div>
+                    <div class="ticker-header">
+                        <div>
+                            <h2 id="symbol">-</h2>
+                            <small id="company">Pilih saham untuk melihat data</small>
+                        </div>
+                        <span class="price-pill">Realtime</span>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <span class="label">Harga Saat Ini</span>
+                            <span id="price" class="value">-</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="label">Tertinggi</span>
+                            <span id="high" class="value">-</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="label">Terendah</span>
+                            <span id="low" class="value">-</span>
+                        </div>
+                    </div>
+
+                    <div class="empty-state">
+                        Terakhir diperbarui: <strong id="time">-</strong>
+                    </div>
             </section>
       
                 <section class="panel sensitivity-card">
-    <div class="sensitivity-header">
-        <div>
-            <h3>🔍 Sensitivity Analysis</h3>
-                    <p>
-                        Analisis sensitivitas historis terhadap benchmark IHSG.
+                <div class="sensitivity-header">
+                    <div>
+                        <h3>🔍 Sensitivity Analysis</h3>
+                                <p>
+                                    Analisis sensitivitas historis terhadap benchmark IHSG.
+                                </p>
+                            </div>
+                        </div>
+
+                <div class="sensitivity-grid">
+                    <div class="sensitivity-box">
+                        <span class="label">Beta</span>
+                        <span id="betaValue" class="value">-</span>
+                    </div>
+
+                    <div class="sensitivity-box">
+                        <span class="label">Observasi</span>
+                        <span id="observationValue" class="value">-</span>
+                    </div>
+                </div>
+
+                <div class="sensitivity-status">
+                    Benchmark:
+                    <strong id="benchmarkValue">IHSG (^JKSE)</strong>
+                </div>
+                </section>
+                <section class="panel portfolio-analysis">
+
+                <div class="portfolio-header">
+                <div>
+                    <h2>Portfolio Analysis</h2>
+                    <p class="portfolio-subtitle">
+                        Analisis portfolio berdasarkan tanggal
                     </p>
                 </div>
-            </div>
 
-            <div class="sensitivity-grid">
-                <div class="sensitivity-box">
-                    <span class="label">Beta</span>
-                    <span id="betaValue" class="value">-</span>
+                <div class="portfolio-date-filter">
+                    <label for="portfolioDate">Tanggal</label>
+                    <input
+                        type="date"
+                        id="portfolioDate"
+                        value="2026-05-26"
+                    >
+                    <button
+                        type="button"
+                        onclick="loadPortfolioAnalysisFromDate()"
+                    >
+                        Tampilkan
+                    </button>
                 </div>
-
-                <div class="sensitivity-box">
-                    <span class="label">Observasi</span>
-                    <span id="observationValue" class="value">-</span>
-                </div>
             </div>
-
-            <div class="sensitivity-status">
-                Benchmark:
-                <strong id="benchmarkValue">IHSG (^JKSE)</strong>
-            </div>
-            </section>
-             <section class="panel portfolio-analysis">
-
-               <div class="portfolio-header">
-            <div>
-                <h2>Portfolio Analysis</h2>
-                <p class="portfolio-subtitle">
-                    Analisis portfolio berdasarkan tanggal
-                </p>
-            </div>
-
-            <div class="portfolio-date-filter">
-                <label for="portfolioDate">Tanggal</label>
-                <input
-                    type="date"
-                    id="portfolioDate"
-                    value="2026-05-26"
-                >
-                <button
-                    type="button"
-                    onclick="loadPortfolioAnalysisFromDate()"
-                >
-                    Tampilkan
-                </button>
-            </div>
-        </div>
 
                 <!-- Summary -->
                 <div class="portfolio-summary-grid">
@@ -649,6 +869,106 @@
 
                 </div>
         </section>
+    <section class="stress-test">
+        <div class="stress-test-header">
+            <div>
+                <h2>Historical Stress Test</h2>
+                <p class="stress-test-subtitle">
+                    Simulasi dampak historis terhadap komposisi portfolio
+                </p>
+            </div>
+        </div>
+
+        <div class="stress-test-filter">
+            <div class="stress-test-filter-item">
+                <label for="stressTestDate">Tanggal Portfolio</label>
+                <input
+                    type="date"
+                    id="stressTestDate"
+                    value="2026-05-26"
+                >
+            </div>
+
+            <div class="stress-test-filter-item">
+                <label for="stressTestScenario">Historical Scenario</label>
+                <select id="stressTestScenario">
+                    <option value="">Memuat scenario...</option>
+                </select>
+            </div>
+
+            <button
+                type="button"
+                class="stress-test-button"
+                onclick="runHistoricalStressTest()"
+            >
+                Run Stress Test
+            </button>
+        </div>
+
+        <div id="stressTestScenarioInfo" class="stress-test-scenario-info">
+            <div class="stress-test-loading">
+                Pilih scenario untuk melihat informasi scenario.
+            </div>
+        </div>
+
+        <div class="stress-test-summary-grid">
+            <div class="stress-test-card">
+                <span class="stress-test-card-label">
+                    Portfolio Value Before
+                </span>
+                <strong id="stressPortfolioBefore">-</strong>
+            </div>
+
+            <div class="stress-test-card">
+                <span class="stress-test-card-label">
+                    Stress Return
+                </span>
+                <strong id="stressPortfolioReturn">-</strong>
+            </div>
+
+            <div class="stress-test-card">
+                <span class="stress-test-card-label">
+                    Estimated Impact
+                </span>
+                <strong id="stressEstimatedImpact">-</strong>
+            </div>
+
+            <div class="stress-test-card">
+                <span class="stress-test-card-label">
+                    Portfolio Value After
+                </span>
+                <strong id="stressPortfolioAfter">-</strong>
+            </div>
+        </div>
+
+        <div class="stress-test-table-wrapper">
+            <div class="stress-test-table-header">
+                <h3>Stock Impact</h3>
+                <span id="stressTestTotalWeight">Total Weight: -</span>
+            </div>
+
+            <div class="stress-test-table-container">
+                <table class="stress-test-table">
+                    <thead>
+                        <tr>
+                            <th>Stock</th>
+                            <th>Portfolio Weight</th>
+                            <th>Scenario Return</th>
+                            <th>Contribution</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="stressTestStocks">
+                        <tr>
+                            <td colspan="4" class="stress-test-empty">
+                                Belum ada hasil stress test.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
         </main>
     </div>
 
@@ -739,6 +1059,7 @@
             const symbol = document.getElementById("stockSelect").value;
             loadSensitivity(symbol);
             loadPortfolioAnalysis();
+            loadHistoricalScenarios();
             
             setStatus("Connecting...", "");
 
@@ -951,6 +1272,258 @@
                 </div>
             `).join("");
         }
+
+        async function loadHistoricalScenarios() {
+        const scenarioSelect = document.getElementById("stressTestScenario");
+
+        try {
+            const response = await fetch("/stress-test/scenarios");
+
+            if (!response.ok) {
+                throw new Error(
+                    `Historical Scenario API error: ${response.status}`
+                );
+            }
+
+            const result = await response.json();
+
+            scenarioSelect.innerHTML = "";
+
+            result.forEach((scenario) => {
+                const option = document.createElement("option");
+
+                option.value = scenario.id;
+                option.textContent = scenario.name;
+
+                scenarioSelect.appendChild(option);
+            });
+
+            if (result.length > 0) {
+                scenarioSelect.value = result[0].id;
+                updateStressTestScenarioInfo(result[0]);
+            }
+
+            scenarioSelect.addEventListener("change", () => {
+                const selectedScenario = result.find(
+                    (scenario) => scenario.id === scenarioSelect.value
+                );
+
+                if (selectedScenario) {
+                    updateStressTestScenarioInfo(selectedScenario);
+                }
+            });
+
+        } catch (error) {
+            console.error("Historical Scenario Error:", error);
+
+            scenarioSelect.innerHTML = `
+                <option value="">
+                    Scenario tidak tersedia
+                </option>
+            `;
+
+            document.getElementById(
+                "stressTestScenarioInfo"
+            ).innerHTML = `
+                <div class="stress-test-loading">
+                    Data historical scenario tidak tersedia.
+                </div>
+            `;
+        }
+    }
+    
+        function updateStressTestScenarioInfo(scenario) {
+        document.getElementById(
+            "stressTestScenarioInfo"
+        ).innerHTML = `
+            <p class="stress-test-scenario-name">
+                ${scenario.name}
+            </p>
+
+            <p class="stress-test-scenario-description">
+                ${scenario.description}
+            </p>
+
+            <p class="stress-test-scenario-meta">
+                Periode: ${scenario.startDate}
+                sampai ${scenario.endDate}
+                &nbsp; | &nbsp;
+                Sumber: ${scenario.source}
+            </p>
+        `;
+    }
+
+        async function runHistoricalStressTest() {
+        const portfolioDate =
+            document.getElementById("stressTestDate").value;
+
+        const scenarioId =
+            document.getElementById("stressTestScenario").value;
+
+        if (!portfolioDate) {
+            alert("Silakan pilih tanggal portfolio terlebih dahulu.");
+            return;
+        }
+
+        if (!scenarioId) {
+            alert("Silakan pilih historical scenario.");
+            return;
+        }
+
+        const button = document.querySelector(
+            ".stress-test-button"
+        );
+
+        button.disabled = true;
+        button.textContent = "Running...";
+
+        try {
+            const url =
+                `/stress-test/historical` +
+                `?portfolioDate=${encodeURIComponent(portfolioDate)}` +
+                `&scenarioId=${encodeURIComponent(scenarioId)}`;
+
+            const response = await fetch(url);
+
+            if (!response.ok) {
+                throw new Error(
+                    `Stress Test API error: ${response.status}`
+                );
+            }
+
+            const result = await response.json();
+
+            console.log("Historical Stress Test:", result);
+
+            renderStressTestResult(result);
+
+        } catch (error) {
+            console.error("Historical Stress Test Error:", error);
+
+            resetStressTestResult();
+
+            document.getElementById(
+                "stressTestStocks"
+            ).innerHTML = `
+                <tr>
+                    <td colspan="4" class="stress-test-empty">
+                        Data stress test tidak tersedia.
+                    </td>
+                </tr>
+            `;
+
+        } finally {
+            button.disabled = false;
+            button.textContent = "Run Stress Test";
+        }
+    }
+
+        function renderStressTestResult(result) {
+        const stressTest = result.stressTest;
+
+        document.getElementById(
+            "stressPortfolioBefore"
+        ).textContent = formatCurrency(
+            stressTest.portfolioValueBefore
+        );
+
+        document.getElementById(
+            "stressPortfolioReturn"
+        ).textContent = formatPercentage(
+            stressTest.portfolioReturnPercentage
+        );
+
+        document.getElementById(
+            "stressEstimatedImpact"
+        ).textContent = formatCurrency(
+            stressTest.estimatedImpact
+        );
+
+        document.getElementById(
+            "stressPortfolioAfter"
+        ).textContent = formatCurrency(
+            stressTest.portfolioValueAfter
+        );
+
+        document.getElementById(
+            "stressTestTotalWeight"
+        ).textContent =
+            `Total Weight: ${stressTest.totalWeight.toFixed(2)}%`;
+
+        renderStressTestStocks(stressTest.stocks);
+    }
+
+        function renderStressTestStocks(stocks) {
+        const container =
+            document.getElementById("stressTestStocks");
+
+        if (!stocks || stocks.length === 0) {
+            container.innerHTML = `
+                <tr>
+                    <td colspan="4" class="stress-test-empty">
+                        Tidak ada data saham.
+                    </td>
+                </tr>
+            `;
+
+            return;
+        }
+
+        container.innerHTML = stocks.map((stock) => {
+            const returnClass =
+                stock.scenarioReturnPercentage < 0
+                    ? "stress-negative"
+                    : "stress-positive";
+
+            const contributionClass =
+                stock.contributionPercentage < 0
+                    ? "stress-negative"
+                    : "stress-positive";
+
+            return `
+                <tr>
+                    <td>
+                        <strong>${stock.stockCode}</strong>
+                    </td>
+
+                    <td>
+                        ${stock.portfolioWeight.toFixed(2)}%
+                    </td>
+
+                    <td class="${returnClass}">
+                        ${stock.scenarioReturnPercentage.toFixed(2)}%
+                    </td>
+
+                    <td class="${contributionClass}">
+                        ${stock.contributionPercentage.toFixed(2)}%
+                    </td>
+                </tr>
+            `;
+        }).join("");
+    }
+
+        function resetStressTestResult() {
+        document.getElementById(
+            "stressPortfolioBefore"
+        ).textContent = "-";
+
+        document.getElementById(
+            "stressPortfolioReturn"
+        ).textContent = "-";
+
+        document.getElementById(
+            "stressEstimatedImpact"
+        ).textContent = "-";
+
+        document.getElementById(
+            "stressPortfolioAfter"
+        ).textContent = "-";
+
+        document.getElementById(
+            "stressTestTotalWeight"
+        ).textContent = "Total Weight: -";
+    }
+
     </script>
 </body>
 

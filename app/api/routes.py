@@ -34,10 +34,17 @@ from app.schemas.portfolio_analysis_schema import PortfolioAnalysisResponse
 from app.services.historical_analysis_service import (
     calculate_historical_returns,
 )
-
 from app.services.sensitivity_analysis_service import (
     get_stock_sensitivity,
 )
+from app.services.stress_test_service import (
+    run_historical_stress_test,     
+)
+
+from app.services.historical_scenario_service import (
+    get_historical_scenarios,
+)
+from app.services.macro_service import get_exchange_rate
 
 from app.utils.logger import logger
 
@@ -471,3 +478,61 @@ def stock_sensitivity(
         period=period,
         interval=interval,
     )
+
+@router.get("/stress-test/historical")
+def historical_stress_test(
+    portfolioDate: str = Query(...),
+    scenarioId: str = Query(...)
+):
+    logger.info(
+        f"REST Request - Historical Stress Test: "
+        f"portfolioDate={portfolioDate}, "
+        f"scenarioId={scenarioId}"
+    )
+
+    result = run_historical_stress_test(
+        portfolio_date=portfolioDate,
+        scenario_id=scenarioId,
+    )
+
+    if result is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Historical stress test data tidak tersedia."
+        )
+
+    return result
+
+@router.get("/stress-test/scenarios")
+def historical_stress_test_scenarios():
+    logger.info("REST Request - Historical Stress Test Scenarios")
+
+    return get_historical_scenarios()
+
+@router.get("/macro/exchange-rate")
+def macro_exchange_rate(
+    currency: str = Query("USD"),
+    startDate: str = Query(...),
+    endDate: str = Query(...)
+):
+    logger.info(
+        f"REST Request - Macro Exchange Rate: "
+        f"{currency}, {startDate} to {endDate}"
+    )
+
+    try:
+        return get_exchange_rate(
+            currency=currency,
+            start_date=startDate,
+            end_date=endDate
+        )
+
+    except Exception as e:
+        logger.exception(
+            f"Macro Exchange Rate Error: {e}"
+        )
+
+        raise HTTPException(
+            status_code=500,
+            detail="Gagal mengambil data exchange rate."
+        )

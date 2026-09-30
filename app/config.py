@@ -14,6 +14,8 @@ class Settings(BaseSettings):
     INTERNAL_API_BASE_URL: str = ""
     INTERNAL_API_TOKEN: str = ""
 
+    BI_API_BASE_URL: str = "https://www.bi.go.id/biwebservice/wskursbi.asmx"
+
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",
