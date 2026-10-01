@@ -698,6 +698,46 @@
             min-width: 260px;
         }
 
+        .bi-rate-card {
+        width: 100%;
+        grid-column: 1 / -1;
+        min-width: 0;
+    }
+
+    .bi-rate-card .sensitivity-grid {
+        width: 100%;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .bi-rate-card .stress-test-table-wrapper {
+        width: 100%;
+    }
+
+    .bi-rate-card .stress-test-table-container {
+        width: 100%;
+    }
+
+    .oil-price-card {
+    width: 100%;
+    grid-column: 1 / -1;
+    min-width: 0;
+    }     
+
+    .oil-price-card .sensitivity-grid {
+        width: 100%;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .oil-price-card .sensitivity-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        margin-top: 18px;
+        color: #64748b;
+        font-size: 14px;
+    }
+
     </style>
 </head>
 
@@ -767,16 +807,16 @@
             </section>
       
                 <section class="panel sensitivity-card">
-                <div class="sensitivity-header">
-                    <div>
-                        <h3>🔍 Sensitivity Analysis</h3>
-                                <p>
-                                    Analisis sensitivitas historis terhadap perubahan USD/IDR.
-                                </p>
+                    <div class="sensitivity-header">
+                        <div>
+                            <h3>🔍 Sensitivity Analysis</h3>
+                                    <p>
+                                        Analisis sensitivitas historis terhadap perubahan USD/IDR.
+                                    </p>
+                                </div>
                             </div>
-                        </div>
 
-                <div class="sensitivity-grid">
+                    <div class="sensitivity-grid">
                     <div class="sensitivity-box">
                         <span class="label">Beta</span>
                         <span id="betaValue" class="value">-</span>
@@ -798,6 +838,92 @@
                     <strong id="benchmarkValue">USD/IDR</strong>
                 </div>
                 </section>
+
+                <section class="panel oil-price-card">
+                    <div class="sensitivity-header">
+                        <div>
+                            <h3>🛢️ WTI Oil Price Sensitivity</h3>
+                            <p>
+                                Hubungan historis return saham dengan perubahan harga WTI.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="sensitivity-grid">
+                        <div class="sensitivity-box">
+                            <span class="label">Beta</span>
+                            <span id="oilBetaValue" class="value">-</span>
+                        </div>
+
+                        <div class="sensitivity-box">
+                            <span class="label">Correlation</span>
+                            <span id="oilCorrelationValue" class="value">-</span>
+                        </div>
+
+                        <div class="sensitivity-box">
+                            <span class="label">Observations</span>
+                            <span id="oilObservationsValue" class="value">-</span>
+                        </div>
+                    </div>
+
+                    <div class="sensitivity-info">
+                        <span>Source: U.S. Energy Information Administration</span>
+                        <span>Indicator: WTI Oil Price</span>
+                    </div>
+                </section>
+
+                <section class="panel bi-rate-card">
+                    <div class="sensitivity-header">
+                        <div>
+                            <h3>🏦 BI-Rate Event Sensitivity</h3>
+                            <p>
+                                Return saham pada tanggal perubahan BI-Rate.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="sensitivity-grid">
+                        <div class="sensitivity-box">
+                            <span class="label">Events</span>
+                            <span id="biRateObservations" class="value">-</span>
+                        </div>
+
+                        <div class="sensitivity-box">
+                            <span class="label">Perubahan Terakhir</span>
+                            <span id="biRateLastChange" class="value">-</span>
+                        </div>
+
+                        <div class="sensitivity-box">
+                            <span class="label">BI-Rate Terakhir</span>
+                            <span id="biRateLatest" class="value">-</span>
+                        </div>
+                    </div>
+
+                    <div class="stress-test-table-wrapper">
+                        <div class="stress-test-table-container">
+                            <table class="stress-test-table">
+                                <thead>
+                                    <tr>
+                                        <th>Tanggal</th>
+                                        <th>BI-Rate Sebelum</th>
+                                        <th>BI-Rate Sesudah</th>
+                                        <th>Perubahan</th>
+                                        <th>Return Saham</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="biRateEvents">
+                                    <tr>
+                                        <td colspan="5" class="stress-test-empty">
+                                            Belum ada data BI-Rate.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
                 <section class="panel portfolio-analysis">
 
                 <div class="portfolio-header">
@@ -1064,6 +1190,56 @@
                 "USD/IDR tidak tersedia";
         }
     }
+
+        async function loadOilPriceSensitivity(symbol) {
+        try {
+            const startDate = "2025-09-01";
+            const endDate = "2026-09-29";
+
+            const response = await fetch(
+                `/macro/oil-price/sensitivity`
+                + `?symbol=${encodeURIComponent(symbol)}`
+                + `&startDate=${startDate}`
+                + `&endDate=${endDate}`
+            );
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(
+                    result.detail ||
+                    `Oil Price API error: ${response.status}`
+                );
+            }
+
+            const sensitivity = result.sensitivity;
+
+            if (!sensitivity) {
+                throw new Error(
+                    "Data Oil Price Sensitivity tidak tersedia."
+                );
+            }
+
+            document.getElementById("oilBetaValue").textContent =
+                Number(sensitivity.beta).toFixed(2);
+
+            document.getElementById("oilCorrelationValue").textContent =
+                Number(sensitivity.correlation).toFixed(2);
+
+            document.getElementById("oilObservationsValue").textContent =
+                `${sensitivity.observations} hari`;
+
+        } catch (error) {
+            console.error(
+                "Oil Price Sensitivity Error:",
+                error
+            );
+
+            document.getElementById("oilBetaValue").textContent = "-";
+            document.getElementById("oilCorrelationValue").textContent = "-";
+            document.getElementById("oilObservationsValue").textContent = "-";
+        }
+    }
         function connectSocket() {
             if (reconnectTimer) {
                 clearTimeout(reconnectTimer);
@@ -1075,8 +1251,10 @@
 
             const symbol = document.getElementById("stockSelect").value;
             loadSensitivity(symbol);
+            loadBiRateSensitivity(symbol);
             loadPortfolioAnalysis();
             loadHistoricalScenarios();
+            loadOilPriceSensitivity(symbol);
             
             setStatus("Connecting...", "");
 
@@ -1541,6 +1719,99 @@
         ).textContent = "Total Weight: -";
     }
 
+        async function loadBiRateSensitivity(symbol) {
+        try {
+            const startDate = "2025-09-01";
+            const endDate = "2026-09-29";
+
+            const response = await fetch(
+                `/macro/bi-rate/sensitivity`
+                + `?symbol=${encodeURIComponent(symbol)}`
+                + `&startDate=${startDate}`
+                + `&endDate=${endDate}`
+            );
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(
+                    result.detail || `BI-Rate API error: ${response.status}`
+                );
+            }
+
+            document.getElementById("biRateObservations").textContent =
+                `${result.observations} event`;
+
+            const events = result.events || [];
+
+            if (events.length === 0) {
+                throw new Error("Tidak ada event BI-Rate.");
+            }
+
+            const latestEvent = events[events.length - 1];
+
+            document.getElementById("biRateLastChange").textContent =
+                `${latestEvent.changeBps > 0 ? "+" : ""}${latestEvent.changeBps} bps`;
+
+            document.getElementById("biRateLatest").textContent =
+                `${Number(latestEvent.currentRate).toFixed(2)}%`;
+
+            const container = document.getElementById("biRateEvents");
+
+            container.innerHTML = events.map(event => {
+                const returnValue = event.stockReturnPercentage;
+
+                const returnClass =
+                    returnValue === null
+                        ? ""
+                        : returnValue < 0
+                            ? "stress-negative"
+                            : "stress-positive";
+
+                return `
+                    <tr>
+                        <td>${event.date}</td>
+
+                        <td>
+                            ${Number(event.previousRate).toFixed(2)}%
+                        </td>
+
+                        <td>
+                            ${Number(event.currentRate).toFixed(2)}%
+                        </td>
+
+                        <td>
+                            ${event.changeBps > 0 ? "+" : ""}
+                            ${event.changeBps} bps
+                        </td>
+
+                        <td class="${returnClass}">
+                            ${
+                                returnValue === null
+                                    ? "-"
+                                    : `${returnValue >= 0 ? "+" : ""}${Number(returnValue).toFixed(2)}%`
+                            }
+                        </td>
+                    </tr>
+                `;
+            }).join("");
+
+        } catch (error) {
+            console.error("BI-Rate Sensitivity Error:", error);
+
+            document.getElementById("biRateObservations").textContent = "-";
+            document.getElementById("biRateLastChange").textContent = "-";
+            document.getElementById("biRateLatest").textContent = "-";
+
+            document.getElementById("biRateEvents").innerHTML = `
+                <tr>
+                    <td colspan="5" class="stress-test-empty">
+                        Data BI-Rate tidak tersedia.
+                    </td>
+                </tr>
+            `;
+        }
+    }
 
     </script>
 </body>

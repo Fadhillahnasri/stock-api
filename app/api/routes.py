@@ -44,11 +44,19 @@ from app.services.stress_test_service import (
 from app.services.historical_scenario_service import (
     get_historical_scenarios,
 )
-from app.services.macro_service import get_exchange_rate
 from app.services.historical_analysis_service import calculate_historical_returns
-from app.services.macro_service import get_exchange_rate
 from app.services.macro_sensitivity_service import calculate_macro_sensitivity
-
+from app.services.macro_service import (
+    get_exchange_rate,
+    get_bi_rate,
+)
+from app.services.bi_rate_sensitivity_service import (
+    calculate_bi_rate_sensitivity,
+)
+from app.services.macro_service import get_oil_price
+from app.services.oil_price_sensitivity_service import (
+    calculate_oil_price_sensitivity
+)
 from app.utils.logger import logger
 
 
@@ -608,4 +616,212 @@ def macro_sensitivity(
         raise HTTPException(
             status_code=500,
             detail="Gagal menghitung macro sensitivity."
+        )
+
+@router.get("/macro/bi-rate")
+def macro_bi_rate(
+    startDate: str = Query(...),
+    endDate: str = Query(...)
+):
+    logger.info(
+        f"REST Request - BI-Rate: "
+        f"startDate={startDate}, endDate={endDate}"
+    )
+
+    try:
+        result = get_bi_rate(
+            start_date=startDate,
+            end_date=endDate
+        )
+
+        if not result or not result.get("data"):
+            raise HTTPException(
+                status_code=404,
+                detail="Data BI-Rate tidak tersedia."
+            )
+
+        return result
+
+    except HTTPException:
+        raise
+
+    except Exception as e:
+        logger.exception(
+            f"BI-Rate Error: {e}"
+        )
+        raise HTTPException(
+            status_code=500,
+            detail="Gagal mengambil data BI-Rate."
+        )
+@router.get("/macro/bi-rate/sensitivity")
+def macro_bi_rate_sensitivity(
+    symbol: str = Query(...),
+    startDate: str = Query(...),
+    endDate: str = Query(...)
+):
+    logger.info(
+        f"REST Request - BI-Rate Sensitivity: "
+        f"symbol={symbol}, "
+        f"startDate={startDate}, "
+        f"endDate={endDate}"
+    )
+
+    try:
+        bi_rate_data = get_bi_rate(
+            start_date=startDate,
+            end_date=endDate
+        )
+
+        if not bi_rate_data or not bi_rate_data.get("data"):
+            raise HTTPException(
+                status_code=404,
+                detail="Data BI-Rate tidak tersedia."
+            )
+
+        result = calculate_bi_rate_sensitivity(
+            symbol=symbol,
+            start_date=startDate,
+            end_date=endDate,
+            bi_rate_data=bi_rate_data["data"]
+        )
+
+        if result is None:
+            raise HTTPException(
+                status_code=404,
+                detail=(
+                    f"Data sensitivity BI-Rate untuk "
+                    f"{symbol} tidak tersedia."
+                )
+            )
+
+        return {
+            "symbol": result["symbol"],
+            "macro": result["macro"],
+            "source": "Bank Indonesia",
+            "observations": result["observations"],
+            "startDate": result["startDate"],
+            "endDate": result["endDate"],
+            "events": result["events"],
+        }
+
+    except HTTPException:
+        raise
+
+    except Exception as e:
+        logger.exception(
+            f"BI-Rate Sensitivity Error: {e}"
+        )
+        raise HTTPException(
+            status_code=500,
+            detail="Gagal menghitung BI-Rate sensitivity."
+        )
+
+@router.get("/macro/oil-price")
+def macro_oil_price(
+    startDate: str = Query(...),
+    endDate: str = Query(...)
+):
+    logger.info(
+        f"REST Request - Oil Price: "
+        f"startDate={startDate}, endDate={endDate}"
+    )
+
+    try:
+        result = get_oil_price(
+            start_date=startDate,
+            end_date=endDate
+        )
+
+        if not result or not result.get("data"):
+            raise HTTPException(
+                status_code=404,
+                detail="Data WTI Oil Price tidak tersedia."
+            )
+
+        return result
+
+    except HTTPException:
+        raise
+
+    except Exception as e:
+        logger.exception(
+            f"Oil Price Error: {e}"
+        )
+
+        raise HTTPException(
+            status_code=500,
+            detail="Gagal mengambil data WTI Oil Price."
+        )
+
+
+@router.get("/macro/oil-price/sensitivity")
+def macro_oil_price_sensitivity(
+    symbol: str = Query(...),
+    startDate: str = Query(...),
+    endDate: str = Query(...)
+):
+    logger.info(
+        f"REST Request - Oil Price Sensitivity: "
+        f"symbol={symbol}, "
+        f"startDate={startDate}, "
+        f"endDate={endDate}"
+    )
+
+    try:
+        stock_data = calculate_historical_returns(
+            symbol=symbol,
+            period="max",
+            interval="1d"
+        )
+
+        if not stock_data or not stock_data.get("data"):
+            raise HTTPException(
+                status_code=404,
+                detail=f"Data historis untuk {symbol} tidak tersedia."
+            )
+
+        oil_data = get_oil_price(
+            start_date=startDate,
+            end_date=endDate
+        )
+
+        if not oil_data or not oil_data.get("data"):
+            raise HTTPException(
+                status_code=404,
+                detail="Data WTI Oil Price tidak tersedia."
+            )
+
+        sensitivity = calculate_oil_price_sensitivity(
+            stock_data=stock_data["data"],
+            oil_data=oil_data["data"]
+        )
+
+        if sensitivity is None:
+            raise HTTPException(
+                status_code=404,
+                detail=(
+                    f"Data sensitivity Oil Price untuk "
+                    f"{symbol} tidak tersedia."
+                )
+            )
+
+        return {
+            "symbol": symbol.strip().upper(),
+            "macro": "WTI Oil Price",
+            "source": "U.S. Energy Information Administration",
+            "unit": "USD/barrel",
+            "sensitivity": sensitivity
+        }
+
+    except HTTPException:
+        raise
+
+    except Exception as e:
+        logger.exception(
+            f"Oil Price Sensitivity Error: {e}"
+        )
+
+        raise HTTPException(
+            status_code=500,
+            detail="Gagal menghitung Oil Price sensitivity."
         )
