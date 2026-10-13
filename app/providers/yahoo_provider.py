@@ -1,4 +1,5 @@
 import yfinance as yf
+import math
 
 from app.providers.base_provider import BaseProvider
 from app.exceptions.provider_exceptions import (
@@ -173,15 +174,36 @@ class YahooProvider(BaseProvider):
             data = []
 
             for date, row in history.iterrows():
+                close = float(row["Close"])
+
+                if not math.isfinite(close) or close <= 0:
+                    logger.warning(
+                        f"Yahoo Provider - Invalid Close Price: "
+                        f"{symbol}, date={date}, close={close}"
+                    )
+                    continue
+
+                open_price = float(row["Open"])
+                high = float(row["High"])
+                low = float(row["Low"])
+                volume = float(row["Volume"])
+
                 data.append({
                     "date": date.strftime("%Y-%m-%d"),
-                    "open": row["Open"],
-                    "high": row["High"],
-                    "low": row["Low"],
-                    "close": row["Close"],
-                    "volume": row["Volume"],
+                    "open": open_price if math.isfinite(open_price) else None,
+                    "high": high if math.isfinite(high) else None,
+                    "low": low if math.isfinite(low) else None,
+                    "close": close,
+                    "volume": volume if math.isfinite(volume) else None,
                 })
 
+            if len(data) < 2:
+                logger.warning(
+                    f"Yahoo Provider - Insufficient Valid Historical Data: "
+                    f"{symbol}, valid_rows={len(data)}"
+                )
+                return None
+            
             return {
                 "symbol": symbol,
                 "period": period,

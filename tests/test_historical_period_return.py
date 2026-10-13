@@ -81,3 +81,65 @@ def test_calculate_scenario_stock_return(monkeypatch):
     assert result["endPrice"] == 4500
     assert round(result["periodReturn"], 2) == -0.25
     assert round(result["periodReturnPercentage"], 2) == -25.0
+
+
+def test_calculate_period_return_ignores_zero_volume():
+    historical_data = {
+        "symbol": "BBCA.JK",
+        "data": [
+            {
+                "date": "2020-03-02",
+                "close": 6000,
+                "volume": 1000,
+            },
+            {
+                "date": "2020-03-03",
+                "close": 5800,
+                "volume": 0,
+            },
+            {
+                "date": "2020-03-04",
+                "close": 5400,
+                "volume": 1500,
+            },
+        ],
+    }
+
+    result = calculate_period_return(
+        symbol="BBCA.JK",
+        start_date="2020-03-02",
+        end_date="2020-03-04",
+        historical_data=historical_data,
+    )
+
+    assert result is not None
+    assert result["startPrice"] == 6000
+    assert result["endPrice"] == 5400
+    assert round(result["periodReturnPercentage"], 2) == -10.0
+
+
+def test_calculate_period_return_constant_prices():
+    historical_data = {
+        "symbol": "BKSL.JK",
+        "data": [
+            {
+                "date": "2020-02-19",
+                "close": 55.99,
+                "volume": 0,
+            },
+            {
+                "date": "2020-03-23",
+                "close": 55.99,
+                "volume": 0,
+            },
+        ],
+    }
+
+    result = calculate_period_return(
+        symbol="BKSL.JK",
+        start_date="2020-02-19",
+        end_date="2020-03-23",
+        historical_data=historical_data,
+    )
+
+    assert result is None

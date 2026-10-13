@@ -14,6 +14,7 @@ from app.services.portfolio_service import (
     get_trading_report,
     get_transactions,
     get_index_report,
+    get_mi_report,
 )
 
 from app.schemas.stock_schema import StockResponse
@@ -57,6 +58,30 @@ from app.services.macro_service import get_oil_price
 from app.services.oil_price_sensitivity_service import (
     calculate_oil_price_sensitivity
 )
+from app.services.custom_stress_test_service import (
+    get_stock_macro_betas,
+    run_custom_stress_test,
+)
+
+from app.services.mi_historical_service import (
+    get_mi_historical_snapshot
+)
+
+from app.services.mi_performance_service import (
+    get_mi_performance
+)
+
+from app.services.stress_test_portfolio_service import (
+    get_stress_test_portfolios,
+    )
+
+from app.services.mi_analysis_service import get_mi_analysis
+
+from app.services.stress_test_service import (
+    run_historical_stress_test,
+    run_multi_group_historical_stress_test,
+)
+
 from app.utils.logger import logger
 
 
@@ -344,21 +369,26 @@ def portfolio_trading_report():
 
     return get_trading_report(params=params)
 
-
 @router.get(
     "/portfolio/index-prices",
     tags=["Portfolio"],
     summary="Get Portfolio Index Prices",
     description="Mengambil data harga indeks dari Internal API."
 )
-def portfolio_index_prices():
-    logger.info("REST Request - Portfolio Index Prices")
+def portfolio_index_prices(
+    page: int = Query(1, ge=1),
+    limit: int = Query(100, ge=1, le=500),
+):
+    logger.info(
+        f"REST Request - Portfolio Index Prices: "
+        f"page={page}, limit={limit}"
+    )
 
     params = {
-        "page": 1,
-        "limit": 20,
+        "page": page,
+        "limit": limit,
         "orderBy": "indexCode",
-        "sort": "asc"
+        "sort": "asc",
     }
 
     return get_index_prices(params=params)
@@ -456,6 +486,26 @@ def portfolio_analysis(
     )
 
     return get_portfolio_analysis(date=date)
+
+@router.get(
+    "/portfolio/mi-analysis",
+    tags=["Portfolio"],
+    summary="Get Fund Manager Portfolio Analysis",
+    description="Mengambil dan menganalisis portfolio Fund Manager dari Internal API."
+)
+def portfolio_mi_analysis(
+    date: str = Query(...),
+    dealerCode: str = Query(...)
+):
+    logger.info(
+        f"REST Request - Portfolio MI Analysis: "
+        f"date={date}, dealerCode={dealerCode}"
+    )
+
+    return get_mi_analysis(
+        date=date,
+        dealer_code=dealerCode,
+    )
 
 @router.get(
     "/stocks/{symbol}/sensitivity",
@@ -824,4 +874,312 @@ def macro_oil_price_sensitivity(
         raise HTTPException(
             status_code=500,
             detail="Gagal menghitung Oil Price sensitivity."
+        )
+
+@router.get("/stress-test/custom")
+def custom_stress_test(
+    portfolioDate: str = Query(...),
+    startDate: str = Query(...),
+    endDate: str = Query(...),
+    targetFx: float = Query(25000),
+    oilShock: float = Query(-40),
+):
+    logger.info(
+        f"REST Request - Custom Stress Test: "
+        f"portfolioDate={portfolioDate}, "
+        f"startDate={startDate}, "
+        f"endDate={endDate}, "
+        f"targetFx={targetFx}, "
+        f"oilShock={oilShock}"
+    )
+
+    try:
+        # =========================
+        # 1. Get portfolio
+        # =========================
+
+        portfolio_analysis = get_portfolio_analysis(
+            date=portfolioDate
+        )
+
+        portfolio_stocks = portfolio_analysis.get(
+            "stocks", []
+        )
+
+        if not portfolio_stocks:
+            raise HTTPException(
+                status_code=404,
+                detail=(
+                    f"Tidak ada data portfolio "
+                    f"untuk tanggal {portfolioDate}."
+                )
+            )
+
+        # =========================
+        # 2. Get current USD/IDR
+        # =========================
+
+        fx_data = get_exchange_rate(
+            currency="USD",
+            start_date=startDate,
+            end_date=endDate
+        )
+
+        if not fx_data or not fx_data.get("data"):
+            raise HTTPException(
+                status_code=404,
+                detail="Data USD/IDR tidak tersedia."
+            )
+
+        current_fx = float(
+            fx_data["data"][-1]["value"]
+        )
+
+        # =========================
+        # 3. Get macro beta
+        # =========================
+
+        fx_betas = {}
+        oil_betas = {}
+
+        for stock in portfolio_stocks:
+            symbol = stock.get("stockCode")
+
+            if not symbol:
+                continue
+
+            sensitivity = get_stock_macro_betas(
+                symbol=symbol,
+                start_date=startDate,
+                end_date=endDate
+            )
+
+            if sensitivity is None:
+                logger.warning(
+                    f"Custom Stress Test - "
+                    f"Sensitivity tidak tersedia: {symbol}"
+                )
+                continue
+
+            fx_betas[symbol] = sensitivity["fxBeta"]
+            oil_betas[symbol] = sensitivity["oilBeta"]
+
+        # =========================
+        # 4. Run stress test
+        # =========================
+
+        result = run_custom_stress_test(
+            portfolio_stocks=portfolio_stocks,
+            current_fx=current_fx,
+            fx_betas=fx_betas,
+            oil_betas=oil_betas,
+            target_fx=targetFx,
+            oil_shock_percentage=oilShock,
+        )
+
+        if result is None:
+            raise HTTPException(
+                status_code=404,
+                detail=(
+                    "Tidak cukup data sensitivity "
+                    "untuk menjalankan custom stress test."
+                )
+            )
+
+        # =========================
+        # 5. Response
+        # =========================
+
+        return {
+            "portfolioDate": portfolioDate,
+            "analysisPeriod": {
+                "startDate": startDate,
+                "endDate": endDate,
+            },
+            **result,
+        }
+
+    except HTTPException:
+        raise
+
+    except Exception as e:
+        logger.exception(
+            f"Custom Stress Test Error: {e}"
+        )
+
+        raise HTTPException(
+            status_code=500,
+            detail="Gagal menjalankan custom stress test."
+        )
+    
+@router.get(
+    "/portfolio/mi-report",
+    tags=["Portfolio"],
+    summary="Get MI Report",
+    description="Mengambil laporan portfolio Fund Manager dari Internal API."
+)
+def portfolio_mi_report(
+    date: str = Query(...),
+    dealerCode: str | None = Query(None)
+):
+    logger.info(
+        f"REST Request - Portfolio MI Report: "
+        f"date={date}, dealerCode={dealerCode}"
+    )
+
+    params = {
+        "date": date,
+        "page": 1,
+        "limit": 100,
+        "orderBy": "stockCode",
+    }
+
+    if dealerCode:
+        params["dealerCode"] = dealerCode
+
+    return get_mi_report(params=params)
+
+@router.get(
+    "/portfolio/mi-snapshot",
+    tags=["Portfolio"],
+    summary="Get Historical MI Portfolio Snapshot",
+    description=(
+        "Mengambil snapshot historis portfolio Fund Manager "
+        "berdasarkan tanggal."
+    )
+)
+def portfolio_mi_snapshot(
+    date: str = Query(...),
+    dealerCode: str = Query(...)
+):
+    logger.info(
+        f"REST Request - MI Historical Snapshot: "
+        f"date={date}, dealerCode={dealerCode}"
+    )
+
+    return get_mi_historical_snapshot(
+        date=date,
+        dealer_code=dealerCode,
+    )
+
+@router.get(
+    "/portfolio/mi-performance",
+    tags=["Portfolio"],
+    summary="Get MI Portfolio Period Performance",
+    description=(
+        "Menghitung perubahan market value portfolio "
+        "Fund Manager dalam suatu periode."
+    )
+)
+def portfolio_mi_performance(
+    startDate: str = Query(...),
+    endDate: str = Query(...),
+    dealerCode: str = Query(...)
+):
+    logger.info(
+        f"REST Request - MI Performance: "
+        f"startDate={startDate}, "
+        f"endDate={endDate}, "
+        f"dealerCode={dealerCode}"
+    )
+
+    return get_mi_performance(
+        start_date=startDate,
+        end_date=endDate,
+        dealer_code=dealerCode,
+    )
+
+@router.get("/stress-test/portfolios/preview")
+def stress_test_portfolios_preview(
+    date: str = Query(..., description="Tanggal portofolio YYYY-MM-DD")
+):
+    try:
+        result = get_stress_test_portfolios(date=date)
+
+        groups = result["groups"]
+
+        summary = {}
+
+        for group_name, stocks in groups.items():
+            summary[group_name] = {
+                "totalPositions": len(stocks),
+                "totalMarketValue": sum(
+                    stock["marketValue"] for stock in stocks
+                ),
+                "stocks": [
+                    stock["stockCode"] for stock in stocks
+                ],
+            }
+
+        return {
+            "date": result["date"],
+            "groups": summary,
+            "includedGroups": result["includedGroups"],
+            "excludedGroups": result["excludedGroups"],
+        }
+
+    except Exception:
+        logger.exception(
+            "Gagal mengambil data portofolio untuk stress test."
+        )
+        raise HTTPException(
+            status_code=500,
+            detail="Gagal mengambil data portofolio untuk stress test."
+        )
+
+
+# ===========================
+# Multi-Group Historical Stress Test
+# ===========================
+
+@router.get(
+    "/stress-test/historical/multi-group",
+    tags=["Stress Test"],
+    summary="Multi-Group Historical Stress Test",
+)
+def multi_group_historical_stress_test(
+    portfolioDate: str = Query(
+        ...,
+        description="Tanggal portofolio, format YYYY-MM-DD",
+    ),
+    scenarioId: str = Query(
+        ...,
+        description="ID skenario historis",
+    ),
+):
+    logger.info(
+        "REST Request - Multi-Group Historical Stress Test: "
+        f"portfolioDate={portfolioDate}, "
+        f"scenarioId={scenarioId}"
+    )
+
+    try:
+        result = run_multi_group_historical_stress_test(
+            portfolio_date=portfolioDate,
+            scenario_id=scenarioId,
+        )
+
+        if result is None:
+            raise HTTPException(
+                status_code=404,
+                detail=(
+                    "Skenario tidak ditemukan atau "
+                    "data portofolio tidak tersedia."
+                ),
+            )
+
+        return result
+
+    except HTTPException:
+        raise
+
+    except Exception:
+        logger.exception(
+            "Gagal menjalankan multi-group historical stress test."
+        )
+        raise HTTPException(
+            status_code=500,
+            detail=(
+                "Gagal menjalankan multi-group historical stress test."
+            ),
         )

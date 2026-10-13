@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Indonesia Stock Monitor</title>
+    <title>Dashboard Manajemen Risiko Portofolio</title>
     <style>
         :root {
             --bg: #f3f7ff;
@@ -738,13 +738,186 @@
         font-size: 14px;
     }
 
+    .custom-stress-card {
+        width: 100%;
+        grid-column: 1 / -1;
+        min-width: 0;
+        }
+
+        .custom-stress-form {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
+        gap: 16px;
+        align-items: end;
+        margin-top: 20px;
+        }
+
+        .stress-input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        }
+
+        .stress-input-group label {
+        font-size: 14px;
+        font-weight: 600;
+        color: #475569;
+        }
+
+        .stress-input-group input {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        font-size: 14px;
+        box-sizing: border-box;
+        }
+
+        .stress-input-group input:focus {
+        outline: none;
+        border-color: #64748b;
+        }
+
+        .stress-run-button {
+        padding: 11px 18px;
+        border: none;
+        border-radius: 8px;
+        background: #334155;
+        color: white;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        white-space: nowrap;
+        }
+
+        .stress-run-button:hover {
+        opacity: 0.9;
+        }
+
+        .stress-status {
+        margin-top: 16px;
+        padding: 12px 16px;
+        border-radius: 8px;
+        font-size: 14px;
+        }
+
+        .stress-status.error {
+        color: #991b1b;
+        background: #fee2e2;
+        }
+
+        .hidden {
+        display: none;
+        }
+
+        .custom-stress-result {
+        margin-top: 24px;
+        }
+
+        .custom-stress-impact {
+        margin-top: 20px;
+        padding: 20px;
+        border-radius: 10px;
+        background: #f8fafc;
+        text-align: center;
+        }
+
+        .custom-stress-impact .label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 14px;
+        color: #64748b;
+        }
+
+        .custom-stress-impact .big-value {
+        display: block;
+        font-size: 32px;
+        font-weight: 700;
+        }
+
+
+        @media (max-width: 900px) {
+        .custom-stress-form {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .stress-run-button {
+            width: 100%;
+        }
+        }
+
+        @media (max-width: 600px) {
+        .custom-stress-form {
+            grid-template-columns: 1fr;
+        }
+        }
+
+        .historical-stress-notes {
+            width: 100%;
+            margin-top: 16px;
+        }
+
+        .historical-stress-warning {
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: 0;
+            padding: 14px 16px;
+            border-radius: 8px;
+            background: #f8fafc;
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .historical-stress-disclaimer {
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: 12px;
+            padding: 14px 16px;
+            border-radius: 8px;
+            background: #f8fafc;
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+
+        .custom-stress-notes {
+        width: 100%;
+        margin-top: 16px;
+    }
+
+        .custom-stress-warning {
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: 0;
+            padding: 14px 16px;
+            border-radius: 8px;
+            background: #f8fafc;
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .custom-stress-disclaimer {
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: 12px;
+            padding: 14px 16px;
+            border-radius: 8px;
+            background: #f8fafc;
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
     </style>
 </head>
 
 <body>
     <div class="app-shell">
         <header class="topbar">
-            <h1>Indonesia Stock Monitor</h1>
+            <h1>Dashboard Manajemen Risiko Portofolio</h1>
             <p>Pantau kinerja saham pilihan Anda dengan data real-time.</p>
         </header>
 
@@ -809,7 +982,7 @@
                 <section class="panel sensitivity-card">
                     <div class="sensitivity-header">
                         <div>
-                            <h3>🔍 Sensitivity Analysis</h3>
+                            <h3>Sensitivity Analysis</h3>
                                     <p>
                                         Analisis sensitivitas historis terhadap perubahan USD/IDR.
                                     </p>
@@ -842,7 +1015,7 @@
                 <section class="panel oil-price-card">
                     <div class="sensitivity-header">
                         <div>
-                            <h3>🛢️ WTI Oil Price Sensitivity</h3>
+                            <h3>WTI Oil Price Sensitivity</h3>
                             <p>
                                 Hubungan historis return saham dengan perubahan harga WTI.
                             </p>
@@ -872,10 +1045,132 @@
                     </div>
                 </section>
 
+                <section class="panel custom-stress-card">
+                    <div class="sensitivity-header">
+                        <div>
+                        <h3>Custom Worst-Case Simulator</h3>
+                        <p>Simulasi dampak perubahan USD/IDR dan harga WTI terhadap portfolio.</p>
+                        </div>
+                    </div>
+
+                    <div class="custom-stress-form">
+                        <div class="stress-input-group">
+                        <label for="stressPortfolioDate">Portfolio Date</label>
+                        <input
+                            type="date"
+                            id="stressPortfolioDate"
+                            value="2026-09-29"
+                        >
+                        </div>
+
+                    <div class="stress-input-group">
+                    <label for="stressTargetFx">Target USD/IDR</label>
+                    <input
+                        type="number"
+                        id="stressTargetFx"
+                        value="25000"
+                        min="1"
+                    >
+                    </div>
+
+                    <div class="stress-input-group">
+                    <label for="stressOilShock">WTI Oil Shock (%)</label>
+                    <input
+                        type="number"
+                        id="stressOilShock"
+                        value="-40"
+                        step="1"
+                    >
+                    </div>
+                        
+                        <button
+                        type="button"
+                        class="stress-run-button"
+                        onclick="runCustomStressTest()"
+                        >
+                        Run Simulation
+                        </button>
+    
+                </div>
+
+                <div id="customStressLoading" class="stress-status hidden">
+                    Menjalankan simulasi...
+                </div>
+
+                <div id="customStressError" class="stress-status error hidden"></div>
+
+                <div id="customStressResult" class="custom-stress-result hidden">
+
+                    <div class="sensitivity-grid">
+                    <div class="sensitivity-box">
+                        <span class="label">FX Shock</span>
+                        <span id="customFxShock" class="value">-</span>
+                    </div>
+
+                    <div class="sensitivity-box">
+                        <span class="label">Oil Shock</span>
+                        <span id="customOilShock" class="value">-</span>
+                    </div>
+
+                    <div class="sensitivity-box">
+                        <span class="label">Coverage</span>
+                        <span id="customCoverage" class="value">-</span>
+                    </div>
+                    </div>
+
+                    <div class="custom-stress-impact">
+                    <span class="label">Estimated Portfolio Return</span>
+                    <span id="customPortfolioReturn" class="big-value">-</span>
+                    </div>
+
+                    <div class="stress-test-table-wrapper">
+                        <div class="stress-test-table-container">
+                            <table class="stress-test-table">
+                            <thead>
+                                <tr>
+                                <th>Stock</th>
+                                <th>Weight</th>
+                                <th>FX Beta</th>
+                                <th>Oil Beta</th>
+                                <th>Estimated Return</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="customStressStocks">
+                                <tr>
+                                <td colspan="5" class="stress-test-empty">
+                                    Belum ada hasil simulasi.
+                                </td>
+                                </tr>
+                            </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                       <div class="custom-stress-notes">
+
+                            <div
+                                id="customStressWarning"
+                                class="custom-stress-warning hidden"
+                            ></div>
+
+                            <div class="custom-stress-disclaimer">
+                                <strong>Catatan:</strong>
+                                Hasil merupakan estimasi skenario berdasarkan historical
+                                sensitivity terhadap perubahan USD/IDR dan harga WTI.
+                                Hasil bukan prediksi, rekomendasi investasi, maupun
+                                jaminan kerugian aktual.
+                            </div>
+
+                    </div>
+                </section>
+
+
+
                 <section class="panel bi-rate-card">
                     <div class="sensitivity-header">
                         <div>
-                            <h3>🏦 BI-Rate Event Sensitivity</h3>
+                            <h3>BI-Rate Event Sensitivity</h3>
                             <p>
                                 Return saham pada tanggal perubahan BI-Rate.
                             </p>
@@ -1074,9 +1369,9 @@
 
         <div class="stress-test-table-wrapper">
             <div class="stress-test-table-header">
-                <h3>Stock Impact</h3>
-                <span id="stressTestTotalWeight">Total Weight: -</span>
-            </div>
+            <h3>Stock Impact</h3>
+            <span id="stressTestTotalWeight">Coverage: -</span>
+        </div>
 
             <div class="stress-test-table-container">
                 <table class="stress-test-table">
@@ -1099,6 +1394,24 @@
                 </table>
             </div>
         </div>
+
+        <div class="historical-stress-notes">
+
+            <div
+                id="historicalStressWarning"
+                class="historical-stress-warning hidden"
+            ></div>
+
+            <div class="historical-stress-disclaimer">
+                <strong>Catatan:</strong>
+                Historical Stress Test menerapkan return historis saham
+                pada periode skenario terhadap komposisi portfolio yang dipilih.
+                Hasil bukan merupakan kerugian aktual portfolio pada periode
+                tersebut dan bukan prediksi kondisi di masa depan.
+            </div>
+
+        </div>
+
     </section>
         </main>
     </div>
@@ -1614,39 +1927,58 @@
     }
 
         function renderStressTestResult(result) {
-        const stressTest = result.stressTest;
+            const stressTest = result.stressTest;
 
-        document.getElementById(
-            "stressPortfolioBefore"
-        ).textContent = formatCurrency(
-            stressTest.portfolioValueBefore
-        );
+            document.getElementById(
+                "stressPortfolioBefore"
+            ).textContent = formatCurrency(
+                stressTest.portfolioValueBefore
+            );
 
-        document.getElementById(
-            "stressPortfolioReturn"
-        ).textContent = formatPercentage(
-            stressTest.portfolioReturnPercentage
-        );
+            document.getElementById(
+                "stressPortfolioReturn"
+            ).textContent = formatPercentage(
+                stressTest.portfolioReturnPercentage
+            );
 
-        document.getElementById(
-            "stressEstimatedImpact"
-        ).textContent = formatCurrency(
-            stressTest.estimatedImpact
-        );
+            document.getElementById(
+                "stressEstimatedImpact"
+            ).textContent = formatCurrency(
+                stressTest.estimatedImpact
+            );
 
-        document.getElementById(
-            "stressPortfolioAfter"
-        ).textContent = formatCurrency(
-            stressTest.portfolioValueAfter
-        );
+            document.getElementById(
+                "stressPortfolioAfter"
+            ).textContent = formatCurrency(
+                stressTest.portfolioValueAfter
+            );
 
-        document.getElementById(
-            "stressTestTotalWeight"
-        ).textContent =
-            `Total Weight: ${stressTest.totalWeight.toFixed(2)}%`;
+            const coverage = Number(stressTest.totalWeight);
 
-        renderStressTestStocks(stressTest.stocks);
-    }
+            document.getElementById(
+                "stressTestTotalWeight"
+            ).textContent =
+                `Coverage: ${coverage.toFixed(2)}%`;
+
+            const warningContainer =
+                document.getElementById("historicalStressWarning");
+
+            if (coverage < 99.995) {
+                warningContainer.style.display = "block";
+
+                warningContainer.innerHTML = `
+                    <strong>⚠️ Perhatian:</strong>
+                    Coverage ${coverage.toFixed(2)}%.
+                    Sebagian portfolio tidak memiliki data historis
+                    pada periode skenario dan tidak ikut dalam perhitungan.
+                `;
+            } else {
+                warningContainer.style.display = "none";
+                warningContainer.innerHTML = "";
+            }
+
+            renderStressTestStocks(stressTest.stocks);
+        }
 
         function renderStressTestStocks(stocks) {
         const container =
@@ -1716,10 +2048,17 @@
 
         document.getElementById(
             "stressTestTotalWeight"
-        ).textContent = "Total Weight: -";
-    }
+            ).textContent = "Coverage: -";
 
-        async function loadBiRateSensitivity(symbol) {
+            const warningContainer =
+                document.getElementById("historicalStressWarning");
+
+            warningContainer.style.display = "none";
+            warningContainer.innerHTML = "";
+        }
+    
+
+    async function loadBiRateSensitivity(symbol) {
         try {
             const startDate = "2025-09-01";
             const endDate = "2026-09-29";
@@ -1812,6 +2151,121 @@
             `;
         }
     }
+
+    async function runCustomStressTest() {
+        const portfolioDate =
+            document.getElementById("stressPortfolioDate").value;
+
+        const targetFx =
+            document.getElementById("stressTargetFx").value;
+
+        const oilShock =
+            document.getElementById("stressOilShock").value;
+
+        const loading =
+            document.getElementById("customStressLoading");
+
+        const error =
+            document.getElementById("customStressError");
+
+        const resultContainer =
+            document.getElementById("customStressResult");
+
+        try {
+            loading.classList.remove("hidden");
+            error.classList.add("hidden");
+            resultContainer.classList.add("hidden");
+
+            const startDate = "2025-09-01";
+            const endDate = "2026-09-29";
+
+            const url =
+            `/stress-test/custom` +
+            `?portfolioDate=${encodeURIComponent(portfolioDate)}` +
+            `&startDate=${encodeURIComponent(startDate)}` +
+            `&endDate=${encodeURIComponent(endDate)}` +
+            `&targetFx=${encodeURIComponent(targetFx)}` +
+            `&oilShock=${encodeURIComponent(oilShock)}`;
+
+            const response = await fetch(url);
+            const data = await response.json();
+
+            if (!response.ok) {
+            throw new Error(
+                data.detail || "Gagal menjalankan custom stress test."
+            );
+            }
+
+            const scenario = data.scenario;
+            const portfolio = data.portfolio;
+
+            document.getElementById("customFxShock").textContent =
+            `${Number(scenario.fxShockPercentage).toFixed(2)}%`;
+
+            document.getElementById("customOilShock").textContent =
+            `${Number(scenario.oilShockPercentage).toFixed(2)}%`;
+
+            document.getElementById("customCoverage").textContent =
+            `${Number(portfolio.coveragePercentage).toFixed(2)}%`;
+
+            document.getElementById("customPortfolioReturn").textContent =
+            `${Number(portfolio.portfolioReturnPercentage).toFixed(2)}%`;
+
+            const tableBody =
+            document.getElementById("customStressStocks");
+
+            tableBody.innerHTML = "";
+
+            const extremeStocks = portfolio.stocks.filter(stock => {
+            const estimatedReturn =
+                Number(stock.estimatedReturnPercentage);
+
+            return estimatedReturn < -100 || estimatedReturn > 100;
+            });
+
+            const warningContainer =
+            document.getElementById("customStressWarning");
+
+            if (extremeStocks.length > 0) {
+            warningContainer.classList.remove("hidden");
+
+            warningContainer.innerHTML = `
+                <strong>⚠️ Perhatian:</strong>
+                Beberapa hasil simulasi berada di luar rentang
+                ±100%. Nilai tersebut merupakan hasil matematis
+                dari model historical sensitivity dan tidak dapat
+                diartikan sebagai prediksi perubahan harga aktual.
+            `;
+            } else {
+            warningContainer.classList.add("hidden");
+            }
+
+            portfolio.stocks.forEach(stock => {
+            const row = document.createElement("tr");
+
+            row.innerHTML = `
+                <td>${stock.symbol}</td>
+                <td>${(Number(stock.weight) * 100).toFixed(2)}%</td>
+                <td>${Number(stock.fxBeta).toFixed(2)}</td>
+                <td>${Number(stock.oilBeta).toFixed(2)}</td>
+                <td>${Number(stock.estimatedReturnPercentage).toFixed(2)}%</td>
+            `;
+
+            tableBody.appendChild(row);
+            });
+
+            resultContainer.classList.remove("hidden");
+
+        } catch (err) {
+            console.error("Custom Stress Test Error:", err);
+
+            error.textContent = err.message;
+            error.classList.remove("hidden");
+
+        } finally {
+            loading.classList.add("hidden");
+        }
+        }
 
     </script>
 </body>

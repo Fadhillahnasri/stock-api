@@ -10,11 +10,12 @@ from app.exceptions.provider_exceptions import (
 
 def test_http_client_timeout(monkeypatch):
     client = HttpClient()
+    client.access_token = "test-access-token"
 
     def mock_get(*args, **kwargs):
         raise httpx.TimeoutException("timeout")
 
-    monkeypatch.setattr(client.client, "get", mock_get)
+    monkeypatch.setattr(client.client, "request", mock_get)
 
     with pytest.raises(ProviderTimeoutError) as exc:
         client.get("http://example.com")
@@ -26,11 +27,12 @@ def test_http_client_timeout(monkeypatch):
 
 def test_http_client_connection_error(monkeypatch):
     client = HttpClient()
+    client.access_token = "test-access-token"
 
     def mock_get(*args, **kwargs):
         raise httpx.ConnectError("connection failed")
 
-    monkeypatch.setattr(client.client, "get", mock_get)
+    monkeypatch.setattr(client.client, "request", mock_get)
 
     with pytest.raises(ProviderConnectionError) as exc:
         client.get("http://example.com")
@@ -41,6 +43,7 @@ def test_http_client_connection_error(monkeypatch):
 
 def test_http_client_http_error(monkeypatch):
     client = HttpClient()
+    client.access_token = "test-access-token"
 
     request = httpx.Request(
         "GET",
@@ -55,7 +58,7 @@ def test_http_client_http_error(monkeypatch):
     def mock_get(*args, **kwargs):
         return response
 
-    monkeypatch.setattr(client.client, "get", mock_get)
+    monkeypatch.setattr(client.client, "request", mock_get)
 
     with pytest.raises(httpx.HTTPStatusError):
         client.get("http://example.com")

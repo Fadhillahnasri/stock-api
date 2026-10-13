@@ -19,11 +19,6 @@ class InternalProvider(BaseProvider):
                 "Internal API Base URL belum dikonfigurasi."
             )
 
-        if not settings.INTERNAL_API_TOKEN:
-            raise ProviderError(
-                "Internal API Token belum dikonfigurasi."
-            )
-
         url = f"{self.base_url}{path}"
 
 
@@ -38,25 +33,28 @@ class InternalProvider(BaseProvider):
         return response.json()
 
     def get_portfolios(self):
-        return self._get("/api/portfolios")
+        return self._get("/portfolios")
 
     def get_stocks(self, params: dict | None = None):
-        return self._get("/api/stocks", params=params)
+        return self._get("/stocks", params=params)
 
     def get_closing_prices(self, params: dict | None = None):
-        return self._get("/api/closing-prices", params=params)
+        return self._get("/closing-prices", params=params)
 
     def get_index_prices(self, params: dict | None = None):
-        return self._get("/api/index-prices", params=params)
+        return self._get("/index-prices", params=params)
 
     def get_index_report(self, params: dict | None = None):
-        return self._get("/api/report/index", params=params)
+        return self._get("/report/index", params=params)
+
+    def get_mi_report(self, params: dict | None = None):
+        return self._get("/report/mi", params=params)
 
     def get_trading_report(self, params: dict | None = None):
-        return self._get("/api/report/trading", params=params)
+        return self._get("/report/trading", params=params)
 
     def get_transactions(self, params: dict | None = None):
-        return self._get("/api/transactions", params=params)
+        return self._get("/transactions", params=params)
 
     def get_stock_price(self, symbol: str):
         raise ProviderError(

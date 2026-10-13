@@ -115,3 +115,39 @@ def test_run_historical_stress_test(monkeypatch):
     assert result["stressTest"]["totalWeight"] == 100
 
     assert len(result["stressTest"]["stocks"]) == 2
+
+
+
+def test_calculate_portfolio_stress_impact_skips_missing_return():
+    portfolio_stocks = [
+        {
+            "stockCode": "BBCA",
+            "portfolioWeight": 60,
+        },
+        {
+            "stockCode": "BBRI",
+            "portfolioWeight": 40,
+        },
+    ]
+
+    scenario_returns = [
+        {
+            "symbol": "BBCA.JK",
+            "periodReturn": -0.20,
+        },
+        {
+            "symbol": "BBRI.JK",
+            "periodReturn": None,
+        },
+    ]
+
+    result = calculate_portfolio_stress_impact(
+        portfolio_stocks=portfolio_stocks,
+        scenario_returns=scenario_returns,
+    )
+
+    assert result is not None
+    assert len(result["stocks"]) == 1
+    assert result["stocks"][0]["symbol"] == "BBCA.JK"
+    assert result["totalWeight"] == 60
+    assert round(result["portfolioReturnPercentage"], 2) == -12.0

@@ -24,6 +24,10 @@ def get_index_report(params: dict | None = None):
     logger.info("Portfolio Service - Get Index Report")
     return provider.get_index_report(params=params)
 
+def get_mi_report(params: dict | None = None):
+    logger.info("Portfolio Service - Get MI Report")
+    return provider.get_mi_report(params=params)
+
 def get_trading_report(params: dict | None = None):
     logger.info("Portfolio Service - Get Trading Report")
     return provider.get_trading_report(params=params)

@@ -9,6 +9,10 @@ from app.services.historical_scenario_service import (
     get_historical_scenario,
 )
 
+from app.services.stress_test_portfolio_service import (
+    get_stress_test_portfolios,
+)
+
 def calculate_portfolio_stress_impact(
     portfolio_stocks: list,
     scenario_returns: list
@@ -41,9 +45,12 @@ def calculate_portfolio_stress_impact(
         if scenario_data is None:
             continue
 
-        stock_return = float(
-            scenario_data.get("periodReturn", 0)
-        )
+        period_return = scenario_data.get("periodReturn")
+
+        if period_return is None:
+            continue
+
+        stock_return = float(period_return)
 
         contribution = (
             weight / 100
@@ -144,4 +151,180 @@ def run_historical_stress_test(
             "costBasis": portfolio["totalCostBasis"],
         },
         "stressTest": impact,
+    }
+
+def run_multi_group_historical_stress_test(
+    portfolio_date: str,
+    scenario_id: str,
+):
+    """Menjalankan stress test historis untuk setiap kelompok saham."""
+
+    logger.info(
+        f"Multi-group Stress Test: date={portfolio_date}, "
+        f"scenario={scenario_id}"
+    )
+
+    scenario = get_historical_scenario(scenario_id)
+
+    if scenario is None:
+        return None
+
+    portfolio_data = get_stress_test_portfolios(
+        date=portfolio_date
+    )
+
+    group_results = {}
+    return_cache = {}
+
+    for group_name, positions in portfolio_data["groups"].items():
+        if not positions:
+            group_results[group_name] = {
+                "status": "no_data",
+                "message": "Tidak ada posisi saham.",
+            }
+            continue
+
+        # Agregasi nilai pasar untuk kode saham yang sama
+        aggregated = {}
+
+        for position in positions:
+            code = position["stockCode"]
+            aggregated[code] = (
+                aggregated.get(code, 0)
+                + float(position["marketValue"])
+            )
+
+        total_market_value = sum(aggregated.values())
+
+        if total_market_value <= 0:
+            group_results[group_name] = {
+                "status": "no_data",
+                "message": "Total nilai pasar tidak valid.",
+            }
+            continue
+
+        weighted_stocks = []
+
+        for code, market_value in aggregated.items():
+            weighted_stocks.append({
+                "stockCode": code,
+                "marketValue": market_value,
+                "portfolioWeight": (
+                    market_value / total_market_value
+                ) * 100,
+            })
+
+        scenario_returns = []
+        missing_stocks = []
+
+        for stock in weighted_stocks:
+            code = stock["stockCode"]
+            symbol = f"{code}.JK"
+
+            if symbol not in return_cache:
+                try:
+                    return_cache[symbol] = (
+                        calculate_scenario_stock_return(
+                            symbol=symbol,
+                            scenario_id=scenario_id,
+                        )
+                    )
+                except Exception:
+                    logger.exception(
+                        f"Gagal menghitung return skenario: {symbol}"
+                    )
+                    return_cache[symbol] = None
+
+            result = return_cache[symbol]
+
+            if result is None:
+                missing_stocks.append(code)
+                continue
+
+            scenario_returns.append(result)
+
+        impact = calculate_portfolio_stress_impact(
+            portfolio_stocks=weighted_stocks,
+            scenario_returns=scenario_returns,
+        )
+
+        covered_weight = (
+            float(impact["totalWeight"])
+            if impact is not None else 0
+        )
+
+        if impact is None:
+            group_results[group_name] = {
+                "status": "insufficient_data",
+                "marketValue": total_market_value,
+                "coveragePercentage": 0,
+                "missingStocks": missing_stocks,
+            }
+            continue
+
+        
+        # Nilai pasar saham yang memiliki hasil return historis
+        covered_market_value = sum(
+            float(stock["marketValue"])
+            for stock in weighted_stocks
+            if stock["stockCode"] not in missing_stocks
+        )
+
+        # Return portofolio khusus aset yang tercakup.
+        # Portfolio weight pada impact masih menggunakan bobot
+        # terhadap total nilai pasar grup, sehingga perlu dinormalisasi.
+        if covered_market_value <= 0:
+            group_results[group_name] = {
+                "status": "insufficient_data",
+                "marketValue": total_market_value,
+                "coveredMarketValue": 0,
+                "coveragePercentage": 0,
+                "missingStocks": missing_stocks,
+            }
+            continue
+
+        covered_return = (
+            impact["portfolioReturn"]
+            * total_market_value
+            / covered_market_value
+        )
+
+        # Dampak dihitung hanya terhadap aset yang tercakup.
+        estimated_impact = (
+            covered_market_value * covered_return
+        )
+
+        group_results[group_name] = {
+            "status": (
+                "complete"
+                if covered_weight >= 99.99
+                else "partial"
+            ),
+            "marketValue": total_market_value,
+            "coveredMarketValue": covered_market_value,
+            "portfolioReturn": covered_return,
+            "portfolioReturnPercentage": covered_return * 100,
+            "estimatedImpact": estimated_impact,
+            "portfolioValueAfterCoveredAssets": (
+                covered_market_value + estimated_impact
+            ),
+            "coveragePercentage": covered_weight,
+            "missingStocks": missing_stocks,
+            "stocks": impact["stocks"],
+        }
+
+
+    return {
+        "portfolioDate": portfolio_date,
+        "scenario": {
+            "id": scenario["id"],
+            "name": scenario["name"],
+            "startDate": scenario["startDate"],
+            "endDate": scenario["endDate"],
+            "description": scenario["description"],
+            "source": scenario["source"],
+        },
+        "groups": group_results,
+        "includedGroups": portfolio_data["includedGroups"],
+        "excludedGroups": portfolio_data["excludedGroups"],
     }
