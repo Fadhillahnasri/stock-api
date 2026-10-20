@@ -91,7 +91,7 @@ class MacroProvider:
             Path(__file__).resolve().parents[2]
             / "data"
             / "macro"
-            / "oil_price_wti.csv"
+            / "oil_price_wti_merged.csv"
         )
 
         try:
