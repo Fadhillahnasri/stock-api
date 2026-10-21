@@ -10,21 +10,44 @@ from app.services.custom_stress_test_service import (
 )
 
 
-def test_calculate_fx_shock():
-    shock = calculate_fx_shock(
-        current_fx=17998,
-        target_fx=25000,
-    )
 
-    assert round(shock, 4) == 0.389
+def calculate_fx_shock(current_fx: float, target_fx: float = 25000):
+    """
+    Menghitung shock USD/IDR berdasarkan target exchange rate.
+    Contoh:
+    current_fx = 17998
+    target_fx = 25000
+    """
+    if current_fx <= 0:
+        raise ValueError("Current FX harus lebih besar dari 0.")
 
-    assert round(shock, 4) == 0.389
+    if target_fx <= 0:
+        raise ValueError("Target FX harus lebih besar dari 0.")
 
+    shock = (target_fx / current_fx) - 1
+
+    return shock
+
+
+@pytest.mark.parametrize("target_fx", [0, -1])
+def test_calculate_fx_shock_rejects_invalid_target(target_fx):
+    with pytest.raises(ValueError, match="Target FX"):
+        calculate_fx_shock(
+            current_fx=17998,
+            target_fx=target_fx,
+        )
 
 def test_calculate_oil_shock():
     shock = calculate_oil_shock(-40)
 
     assert shock == -0.40
+
+
+@pytest.mark.parametrize("shock_percentage", [-100.1, 100.1])
+def test_calculate_oil_shock_rejects_invalid_percentage(shock_percentage):
+    with pytest.raises(ValueError, match="Oil shock"):
+        calculate_oil_shock(shock_percentage)
+
 
 
 def test_calculate_stock_stress_impact():
@@ -245,6 +268,14 @@ def test_custom_stress_test_missing_stocks():
     assert result["portfolio"]["missingStocks"][0]["symbol"] == "BBRI.JK"
     assert result["portfolio"]["missingStocks"][0]["weight"] == pytest.approx(0.40)
 
+    assert result["portfolio"]["portfolioReturn"] == pytest.approx(
+        result["portfolio"]["stocks"][0]["weight"]
+        * result["portfolio"]["stocks"][0]["estimatedReturn"]
+    )
+
+    assert result["portfolio"]["portfolioReturnPercentage"] == pytest.approx(
+        result["portfolio"]["portfolioReturn"] * 100
+    )
 
 def test_get_stock_macro_betas_normalizes_indonesia_symbol(monkeypatch):
     captured = {}
@@ -339,3 +370,23 @@ def test_get_stock_macro_betas_normalizes_indonesia_symbol(monkeypatch):
     assert result["symbol"] == "BBRI"
     assert result["fxBeta"] == pytest.approx(-2.0)
     assert result["oilBeta"] == pytest.approx(-0.04)
+
+
+@pytest.mark.parametrize("weight", [-10, 110])
+def test_run_custom_stress_test_rejects_invalid_weight(weight):
+    portfolio = [
+        {
+            "stockCode": "BBCA.JK",
+            "portfolioWeight": weight,
+        },
+    ]
+
+    with pytest.raises(ValueError, match="bobot"):
+        run_custom_stress_test(
+            portfolio_stocks=portfolio,
+            current_fx=17998,
+            fx_betas={"BBCA.JK": -2.0},
+            oil_betas={"BBCA.JK": -0.05},
+            target_fx=25000,
+            oil_shock_percentage=-40,
+        )

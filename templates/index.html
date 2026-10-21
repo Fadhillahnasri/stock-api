@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 
 <head>
@@ -498,7 +498,9 @@
         }
 
         .stress-test-header h2 {
-            margin-bottom: 4px;
+            margin: 0 0 4px;
+            font-size: 20px;
+            color: #0f172a;
         }
 
         .stress-test-subtitle {
@@ -557,6 +559,7 @@
             opacity: 0.9;
         }
 
+
         .stress-test-scenario-info {
             margin-bottom: 20px;
             padding: 16px 20px;
@@ -583,82 +586,6 @@
             color: #6b7280;
         }
 
-        .stress-test-summary-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-
-        .stress-test-card {
-            padding: 20px;
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
-            background: #ffffff;
-        }
-
-        .stress-test-card-label {
-            display: block;
-            margin-bottom: 10px;
-            font-size: 13px;
-            color: #6b7280;
-        }
-
-        .stress-test-card strong {
-            font-size: 22px;
-            display: block;
-            white-space: nowrap;
-        }
-
-        .stress-test-table-wrapper {
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
-            background: #ffffff;
-            overflow: hidden;
-        }
-
-        .stress-test-table-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 18px 20px;
-            border-bottom: 1px solid #e5e7eb;
-        }
-
-        .stress-test-table-header h3 {
-            margin: 0;
-        }
-
-        .stress-test-table-header span {
-            font-size: 13px;
-            color: #6b7280;
-        }
-
-        .stress-test-table-container {
-            overflow-x: auto;
-        }
-
-        .stress-test-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .stress-test-table th,
-        .stress-test-table td {
-            padding: 14px 20px;
-            text-align: left;
-            border-bottom: 1px solid #f3f4f6;
-        }
-
-        .stress-test-table th {
-            font-size: 13px;
-            color: #6b7280;
-            background: #f9fafb;
-        }
-
-        .stress-test-table td {
-            font-size: 14px;
-        }
 
         .stress-test-empty {
             text-align: center !important;
@@ -678,10 +605,6 @@
         }
 
         @media (max-width: 900px) {
-            .stress-test-summary-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
             .stress-test-filter {
                 flex-direction: column;
                 align-items: stretch;
@@ -689,9 +612,6 @@
         }
 
         @media (max-width: 600px) {
-            .stress-test-summary-grid {
-                grid-template-columns: 1fr;
-            }
         }
 
         #stressTestScenario {
@@ -721,7 +641,7 @@
     width: 100%;
     grid-column: 1 / -1;
     min-width: 0;
-    }     
+    }
 
     .oil-price-card .sensitivity-grid {
         width: 100%;
@@ -911,6 +831,395 @@
             line-height: 1.6;
         }
 
+
+/* ==========================================
+   HISTORICAL STRESS TEST
+   ========================================== */
+
+/* Container hasil kelompok terpilih */
+.stress-test-group-results {
+    display: block;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    margin: 20px 0;
+    box-sizing: border-box;
+}
+
+/* Kartu kelompok investasi */
+.stress-test-selected-group {
+    display: block;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    padding: 26px;
+    box-sizing: border-box;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: 0 3px 12px rgba(15, 23, 42, 0.04);
+}
+
+/* Header kartu */
+.stress-test-selected-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #edf0f5;
+}
+
+.stress-test-selected-header h3 {
+    margin: 0 0 10px;
+    color: #172033;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+/* Badge status */
+.stress-test-status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 10px;
+
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}
+
+.stress-test-status-badge.is-complete {
+    color: #166534;
+    background: #dcfce7;
+}
+
+.stress-test-status-badge.is-partial {
+    color: #92400e;
+    background: #fef3c7;
+}
+
+/* Coverage dan progress bar */
+.stress-test-coverage {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 7px;
+    min-width: 150px;
+}
+
+.stress-test-coverage > span {
+    color: #64748b;
+    font-size: 12px;
+}
+
+.stress-test-coverage > strong {
+    font-size: 21px;
+    font-weight: 750;
+}
+
+.stress-test-progress {
+    width: 150px;
+    height: 6px;
+    overflow: hidden;
+
+    border-radius: 999px;
+    background: #e2e8f0;
+}
+
+.stress-test-progress > span {
+    display: block;
+    height: 100%;
+
+    border-radius: inherit;
+    background: #16a34a;
+    transition: width 0.25s ease;
+}
+
+/* Lima metrik dalam layout tiga kolom */
+.stress-test-group-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+
+    width: 100%;
+    min-width: 0;
+    margin-top: 0;
+}
+
+.stress-test-group-metrics > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 12px;
+
+    min-width: 0;
+    min-height: 88px;
+    padding: 16px;
+    box-sizing: border-box;
+
+    border: 1px solid #edf0f5;
+    border-radius: 12px;
+    background: #f8fafc;
+}
+
+.stress-test-group-metrics span {
+    color: #64748b;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.stress-test-group-metrics strong {
+    color: #172033;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+    font-variant-numeric: tabular-nums;
+}
+
+.stress-test-group-metrics .stress-negative {
+    color: #dc2626;
+}
+
+.stress-test-group-metrics .stress-positive {
+    color: #15803d;
+}
+
+/* Saham yang tidak tercakup */
+.stress-test-missing {
+    margin-top: 20px;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    background: #fffbeb;
+}
+
+.stress-test-missing summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+
+    padding: 14px 16px;
+    color: #92400e;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.stress-test-missing summary span {
+    white-space: nowrap;
+    font-size: 12px;
+}
+
+.stress-test-missing p {
+    margin: 0;
+    padding: 0 16px 16px;
+
+    color: #92400e;
+    font-size: 12px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+/* Disclaimer hasil parsial */
+.stress-test-selected-group .historical-stress-disclaimer {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 16px 0 0;
+    padding: 13px 15px;
+
+    border-radius: 10px;
+    background: #f1f5f9;
+    color: #475569;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+/* Kondisi kelompok tidak memiliki data */
+.stress-test-unavailable {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 28px;
+
+    border: 1px dashed #cbd5e1;
+    border-radius: 14px;
+    background: #f8fafc;
+    text-align: center;
+}
+
+.stress-test-unavailable h3 {
+    margin: 0 0 10px;
+    color: #172033;
+}
+
+.stress-test-unavailable p {
+    margin: 6px 0;
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* Tabel Stock Impact */
+.stress-test-table-wrapper {
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
+    margin-top: 20px;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    background: #ffffff;
+    overflow: hidden;
+}
+
+.stress-test-table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+
+    padding: 18px 22px;
+    border-bottom: 1px solid #edf0f5;
+}
+
+.stress-test-table-header h3 {
+    margin: 0;
+    color: #172033;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.stress-test-table-header span {
+    color: #64748b;
+    font-size: 12px;
+}
+
+.stress-test-table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.stress-test-table {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.stress-test-table thead {
+    background: #f8fafc;
+}
+
+.stress-test-table th {
+    padding: 14px 18px;
+    color: #64748b;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.45px;
+    white-space: nowrap;
+}
+
+.stress-test-table td {
+    padding: 15px 18px;
+    border-top: 1px solid #edf0f5;
+    color: #334155;
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+}
+
+.stress-test-table tbody tr:hover {
+    background: #f8fafc;
+}
+
+.stress-test-table td:first-child strong {
+    color: #172033;
+    font-weight: 700;
+}
+
+.stress-test-table td.stress-negative {
+    color: #dc2626;
+    font-weight: 600;
+}
+
+.stress-test-table td.stress-positive {
+    color: #15803d;
+    font-weight: 600;
+}
+
+.stress-test-table .stress-test-empty {
+    padding: 30px 18px;
+    color: #64748b;
+    text-align: center;
+}
+
+/* Responsive: tablet */
+@media (max-width: 900px) {
+    .stress-test-group-metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Responsive: mobile */
+@media (max-width: 600px) {
+    .stress-test-selected-group {
+        padding: 16px;
+    }
+
+    .stress-test-selected-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .stress-test-coverage {
+        width: 100%;
+        min-width: 0;
+        align-items: flex-start;
+    }
+
+    .stress-test-progress {
+        width: 100%;
+    }
+
+    .stress-test-group-metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .stress-test-group-metrics > div {
+        min-height: 80px;
+        padding: 12px;
+    }
+
+    .stress-test-group-metrics strong {
+        font-size: 14px;
+    }
+
+    .stress-test-table-header {
+        padding: 16px;
+    }
+}
+
+/* Responsive: layar sangat kecil */
+@media (max-width: 420px) {
+    .stress-test-group-metrics {
+        grid-template-columns: 1fr;
+    }
+
+    .stress-test-table-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
     </style>
 </head>
 
@@ -978,7 +1287,7 @@
                         Terakhir diperbarui: <strong id="time">-</strong>
                     </div>
             </section>
-      
+
                 <section class="panel sensitivity-card">
                     <div class="sensitivity-header">
                         <div>
@@ -1082,7 +1391,7 @@
                         step="1"
                     >
                     </div>
-                        
+
                         <button
                         type="button"
                         class="stress-run-button"
@@ -1090,7 +1399,7 @@
                         >
                         Run Simulation
                         </button>
-    
+
                 </div>
 
                 <div id="customStressLoading" class="stress-status hidden">
@@ -1322,6 +1631,20 @@
                 </select>
             </div>
 
+
+        <div class="stress-test-filter-item">
+            <label for="stressTestGroup">Kelompok Investasi</label>
+            <select id="stressTestGroup">
+                <option value="sahamIndeks">Saham Indeks</option>
+                <option value="sahamTrading">Saham Trading</option>
+                <option value="sahamFMSchroder">Saham FM-Schroder</option>
+                <option value="sahamFMBNPParibas">Saham FM-BNP Paribas</option>
+                <option value="sbnHTM">SBN HTM</option>
+                <option value="sbnTrading">SBN Trading</option>
+            </select>
+        </div>
+
+
             <button
                 type="button"
                 class="stress-test-button"
@@ -1337,33 +1660,9 @@
             </div>
         </div>
 
-        <div class="stress-test-summary-grid">
-            <div class="stress-test-card">
-                <span class="stress-test-card-label">
-                    Portfolio Value Before
-                </span>
-                <strong id="stressPortfolioBefore">-</strong>
-            </div>
-
-            <div class="stress-test-card">
-                <span class="stress-test-card-label">
-                    Stress Return
-                </span>
-                <strong id="stressPortfolioReturn">-</strong>
-            </div>
-
-            <div class="stress-test-card">
-                <span class="stress-test-card-label">
-                    Estimated Impact
-                </span>
-                <strong id="stressEstimatedImpact">-</strong>
-            </div>
-
-            <div class="stress-test-card">
-                <span class="stress-test-card-label">
-                    Portfolio Value After
-                </span>
-                <strong id="stressPortfolioAfter">-</strong>
+        <div id="stressTestGroupResults" class="stress-test-group-results">
+            <div class="stress-test-empty">
+                Hasil stress test per kelompok akan ditampilkan di sini.
             </div>
         </div>
 
@@ -1493,7 +1792,7 @@
 
             document.getElementById("benchmarkValue").textContent =
                 `${result.macro} | ${sensitivity.startDate} - ${sensitivity.endDate}`;
-                
+
         } catch (error) {
             console.error("Macro Sensitivity Error:", error);
 
@@ -1568,10 +1867,10 @@
             loadPortfolioAnalysis();
             loadHistoricalScenarios();
             loadOilPriceSensitivity(symbol);
-            
+
             setStatus("Connecting...", "");
 
-        
+
 
             const socketUrl = getSocketUrl(symbol);
             console.log("Connecting to:", socketUrl);
@@ -1839,7 +2138,7 @@
             `;
         }
     }
-    
+
         function updateStressTestScenarioInfo(scenario) {
         document.getElementById(
             "stressTestScenarioInfo"
@@ -1886,10 +2185,10 @@
         button.textContent = "Running...";
 
         try {
-            const url =
-                `/stress-test/historical` +
-                `?portfolioDate=${encodeURIComponent(portfolioDate)}` +
-                `&scenarioId=${encodeURIComponent(scenarioId)}`;
+           const url =
+            `/stress-test/historical/multi-group` +
+            `?portfolioDate=${encodeURIComponent(portfolioDate)}` +
+            `&scenarioId=${encodeURIComponent(scenarioId)}`;
 
             const response = await fetch(url);
 
@@ -1902,6 +2201,8 @@
             const result = await response.json();
 
             console.log("Historical Stress Test:", result);
+
+            window.lastHistoricalStressResult = result;
 
             renderStressTestResult(result);
 
@@ -1926,137 +2227,447 @@
         }
     }
 
-        function renderStressTestResult(result) {
-            const stressTest = result.stressTest;
 
-            document.getElementById(
-                "stressPortfolioBefore"
-            ).textContent = formatCurrency(
-                stressTest.portfolioValueBefore
-            );
-
-            document.getElementById(
-                "stressPortfolioReturn"
-            ).textContent = formatPercentage(
-                stressTest.portfolioReturnPercentage
-            );
-
-            document.getElementById(
-                "stressEstimatedImpact"
-            ).textContent = formatCurrency(
-                stressTest.estimatedImpact
-            );
-
-            document.getElementById(
-                "stressPortfolioAfter"
-            ).textContent = formatCurrency(
-                stressTest.portfolioValueAfter
-            );
-
-            const coverage = Number(stressTest.totalWeight);
-
-            document.getElementById(
-                "stressTestTotalWeight"
-            ).textContent =
-                `Coverage: ${coverage.toFixed(2)}%`;
-
-            const warningContainer =
-                document.getElementById("historicalStressWarning");
-
-            if (coverage < 99.995) {
-                warningContainer.style.display = "block";
-
-                warningContainer.innerHTML = `
-                    <strong>⚠️ Perhatian:</strong>
-                    Coverage ${coverage.toFixed(2)}%.
-                    Sebagian portfolio tidak memiliki data historis
-                    pada periode skenario dan tidak ikut dalam perhitungan.
-                `;
-            } else {
-                warningContainer.style.display = "none";
-                warningContainer.innerHTML = "";
+    document.getElementById("stressTestGroup").addEventListener(
+        "change",
+        function () {
+            if (window.lastHistoricalStressResult) {
+                renderStressTestResult(
+                    window.lastHistoricalStressResult
+                );
             }
+        }
+    );
 
-            renderStressTestStocks(stressTest.stocks);
+
+
+    function renderStressTestResult(result) {
+        const groups = result.groups || {};
+
+        const groupConfig = [
+            { key: "sahamIndeks", name: "Saham Indeks" },
+            { key: "sahamTrading", name: "Saham Trading" },
+            { key: "sahamFMSchroder", name: "Saham FM-Schroder" },
+            { key: "sahamFMBNPParibas", name: "Saham FM-BNP Paribas" },
+            { key: "sbnHTM", name: "SBN HTM" },
+            { key: "sbnTrading", name: "SBN Trading" }
+        ];
+
+        const groupSelect = document.getElementById("stressTestGroup");
+
+        if (!groupSelect) {
+            console.error("Dropdown stressTestGroup tidak ditemukan.");
+            return;
         }
 
-        function renderStressTestStocks(stocks) {
-        const container =
-            document.getElementById("stressTestStocks");
+        const selectedKey = groupSelect.value;
+        const selectedConfig = groupConfig.find(
+            (item) => item.key === selectedKey
+        );
+        const group = groups[selectedKey];
 
-        if (!stocks || stocks.length === 0) {
-            container.innerHTML = `
-                <tr>
-                    <td colspan="4" class="stress-test-empty">
-                        Tidak ada data saham.
-                    </td>
-                </tr>
-            `;
+        const container = document.getElementById(
+            "stressTestGroupResults"
+        );
+
+        const formatRupiah = (value) => {
+            if (
+                value === null ||
+                value === undefined ||
+                value === "" ||
+                !Number.isFinite(Number(value))
+            ) {
+                return "-";
+            }
+
+            return new Intl.NumberFormat("id-ID", {
+                style: "currency",
+                currency: "IDR",
+                maximumFractionDigits: 0
+            }).format(Number(value));
+        };
+
+        const formatPercent = (value) => {
+            if (
+                value === null ||
+                value === undefined ||
+                value === "" ||
+                !Number.isFinite(Number(value))
+            ) {
+                return "-";
+            }
+
+            return `${Number(value).toFixed(2)}%`;
+        };
+
+        const escapeHTML = (value) => {
+            return String(value ?? "").replace(
+                /[&<>"']/g,
+                (character) => ({
+                    "&": "&amp;",
+                    "<": "&lt;",
+                    ">": "&gt;",
+                    '"': "&quot;",
+                    "'": "&#39;"
+                })[character]
+            );
+        };
+
+        const setText = (id, value) => {
+            const element = document.getElementById(id);
+
+            if (element) {
+                element.textContent = value;
+            }
+        };
+
+        const scenario = result.scenario || {};
+        const scenarioInfo = document.getElementById(
+            "stressTestScenarioInfo"
+        );
+
+        if (scenarioInfo) {
+            scenarioInfo.textContent = [
+                scenario.name || "Historical Scenario",
+                `${scenario.startDate || "-"} sampai ${scenario.endDate || "-"}`
+            ].join(" | ");
+        }
+
+        const stocksContainer = document.getElementById("stressTestStocks");
+        const warningContainer = document.getElementById(
+            "historicalStressWarning"
+        );
+
+        if (warningContainer) {
+            warningContainer.style.display = "none";
+            warningContainer.innerHTML = "";
+        }
+
+        if (!selectedConfig || !group) {
+            if (container) {
+                container.innerHTML = `
+                    <div class="stress-test-empty">
+                        Data untuk kelompok ${escapeHTML(
+                            selectedConfig?.name || selectedKey
+                        )} belum tersedia dari API.
+                    </div>
+                `;
+            }
+
+            if (stocksContainer) {
+                stocksContainer.innerHTML = `
+                    <tr>
+                        <td colspan="4" class="stress-test-empty">
+                            Data saham tidak tersedia.
+                        </td>
+                    </tr>
+                `;
+            }
+
+            setText("stressTestTotalWeight", "Coverage: -");
+            return;
+        }
+
+        const status = String(group.status || "").toLowerCase();
+
+        const hasData =
+            status === "complete" || status === "partial";
+
+        if (!hasData) {
+            if (container) {
+                container.innerHTML = `
+                    <div class="stress-test-unavailable">
+                        <h3>${escapeHTML(selectedConfig.name)}</h3>
+                        <p>
+                            Data belum tersedia untuk perhitungan
+                            historical stress test.
+                        </p>
+                        <p>Status: ${escapeHTML(group.status || "unknown")}</p>
+                    </div>
+                `;
+            }
+
+            if (stocksContainer) {
+                stocksContainer.innerHTML = `
+                    <tr>
+                        <td colspan="4" class="stress-test-empty">
+                            Tidak ada data saham untuk kelompok ini.
+                        </td>
+                    </tr>
+                `;
+            }
+
+            setText("stressTestTotalWeight", "Coverage: -");
+
+            const tableHeader = document.querySelector(
+                ".stress-test-table-header h3"
+            );
+
+            if (tableHeader) {
+                tableHeader.textContent = "Stock Impact";
+            }
 
             return;
         }
 
+        const coverage = Number(group.coveragePercentage);
+        const coverageText = formatPercent(group.coveragePercentage);
+        const coverageClass =
+            Number.isFinite(coverage) && coverage >= 99.995
+                ? "stress-positive"
+                : "stress-negative";
+
+        const impact = Number(group.estimatedImpact);
+        const returnPercentage = Number(group.portfolioReturnPercentage);
+
+        const missingStocks = Array.isArray(group.missingStocks)
+            ? group.missingStocks
+            : [];
+
+        if (container) {
+            container.innerHTML = `
+                <section class="stress-test-selected-group">
+                    <div class="stress-test-selected-header">
+                        <div>
+                            <h3>${escapeHTML(selectedConfig.name)}</h3>
+                            <span class="stress-test-status-badge ${
+                                status === "complete" ? "is-complete" : "is-partial"
+                            }">
+                                ${escapeHTML(status)}
+                            </span>
+                        </div>
+                        <div class="stress-test-coverage">
+                            <span>Coverage</span>
+                            <strong class="${coverageClass}">
+                                ${coverageText}
+                            </strong>
+                            <div
+                                class="stress-test-progress"
+                                role="progressbar"
+                                aria-label="Portfolio coverage"
+                                aria-valuemin="0"
+                                aria-valuemax="100"
+                                aria-valuenow="${
+                                    Number.isFinite(coverage)
+                                        ? Math.min(100, Math.max(0, coverage))
+                                        : 0
+                                }"
+                            >
+                                <span style="width: ${
+                                    Number.isFinite(coverage)
+                                        ? Math.min(100, Math.max(0, coverage))
+                                        : 0
+                                }%"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stress-test-group-metrics">
+                        <div>
+                            <span>Portfolio Value</span>
+                            <strong>${formatRupiah(group.marketValue)}</strong>
+                        </div>
+
+                        <div>
+                            <span>Covered Market Value</span>
+                            <strong>${formatRupiah(group.coveredMarketValue)}</strong>
+                        </div>
+
+                        <div>
+                            <span>Stress Return</span>
+                            <strong class="${
+                                Number.isFinite(returnPercentage) &&
+                                returnPercentage < 0
+                                    ? "stress-negative"
+                                    : "stress-positive"
+                            }">
+                                ${formatPercent(group.portfolioReturnPercentage)}
+                            </strong>
+                        </div>
+
+                        <div>
+                            <span>Estimated Impact</span>
+                            <strong class="${
+                                Number.isFinite(impact) && impact < 0
+                                    ? "stress-negative"
+                                    : "stress-positive"
+                            }">
+                                ${formatRupiah(group.estimatedImpact)}
+                            </strong>
+                        </div>
+
+                        <div>
+                            <span>Value After Stress (Covered Assets)</span>
+                            <strong>${formatRupiah(
+                                group.portfolioValueAfterCoveredAssets
+                            )}</strong>
+                        </div>
+                    </div>
+
+                    ${
+                        missingStocks.length > 0
+                            ? `
+                                <details class="stress-test-missing">
+                                    <summary>
+                                        Saham tidak tercakup
+                                        <span>${missingStocks.length} saham</span>
+                                    </summary>
+                                    <p>${missingStocks
+                                        .map((stock) => escapeHTML(stock))
+                                        .join(", ")}</p>
+                                </details>
+                            `
+                            : ""
+                    }
+
+                    ${
+                        status === "partial"
+                            ? `
+                                <p class="historical-stress-disclaimer">
+                                    Estimated Impact dihitung berdasarkan aset yang
+                                    tercakup, bukan seluruh nilai portfolio kelompok.
+                                </p>
+                            `
+                            : ""
+                    }
+                </section>
+            `;
+        }
+
+        setText(
+            "stressTestTotalWeight",
+            `Coverage: ${coverageText}`
+        );
+
+        const stocks = Array.isArray(group.stocks) ? group.stocks : [];
+
+        renderStressTestStocks(stocks);
+
+        const tableHeader = document.querySelector(
+            ".stress-test-table-header h3"
+        );
+
+        if (tableHeader) {
+            tableHeader.textContent = `Stock Impact (${stocks.length} saham)`;
+        }
+            }
+
+
+    function renderStressTestStocks(stocks) {
+        const container = document.getElementById("stressTestStocks");
+
+        if (!container) return;
+
+        if (!Array.isArray(stocks) || stocks.length === 0) {
+            container.innerHTML = `
+                <tr>
+                    <td colspan="4" class="stress-test-empty">
+                        Tidak ada data saham untuk kelompok ini.
+                    </td>
+                </tr>
+            `;
+            return;
+        }
+
+        const formatPercent = (value) => {
+            if (
+                value === null ||
+                value === undefined ||
+                value === "" ||
+                !Number.isFinite(Number(value))
+            ) {
+                return "-";
+            }
+
+            return `${Number(value).toFixed(2)}%`;
+        };
+
+        const escapeHTML = (value) =>
+            String(value ?? "").replace(/[&<>"']/g, (character) => ({
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#39;"
+            })[character]);
+
         container.innerHTML = stocks.map((stock) => {
+            const stockReturn = Number(stock.scenarioReturnPercentage);
+            const contribution = Number(stock.contributionPercentage);
+
             const returnClass =
-                stock.scenarioReturnPercentage < 0
+                Number.isFinite(stockReturn) && stockReturn < 0
                     ? "stress-negative"
                     : "stress-positive";
 
             const contributionClass =
-                stock.contributionPercentage < 0
+                Number.isFinite(contribution) && contribution < 0
                     ? "stress-negative"
                     : "stress-positive";
 
             return `
                 <tr>
-                    <td>
-                        <strong>${stock.stockCode}</strong>
-                    </td>
-
-                    <td>
-                        ${stock.portfolioWeight.toFixed(2)}%
-                    </td>
-
+                    <td><strong>${escapeHTML(stock.stockCode)}</strong></td>
+                    <td>${formatPercent(stock.portfolioWeight)}</td>
                     <td class="${returnClass}">
-                        ${stock.scenarioReturnPercentage.toFixed(2)}%
+                        ${formatPercent(stock.scenarioReturnPercentage)}
                     </td>
-
                     <td class="${contributionClass}">
-                        ${stock.contributionPercentage.toFixed(2)}%
+                        ${formatPercent(stock.contributionPercentage)}
                     </td>
                 </tr>
             `;
         }).join("");
     }
 
-        function resetStressTestResult() {
-        document.getElementById(
-            "stressPortfolioBefore"
-        ).textContent = "-";
 
-        document.getElementById(
-            "stressPortfolioReturn"
-        ).textContent = "-";
 
-        document.getElementById(
-            "stressEstimatedImpact"
-        ).textContent = "-";
+    function resetStressTestResult() {
+        const groupResults = document.getElementById(
+            "stressTestGroupResults"
+        );
 
-        document.getElementById(
-            "stressPortfolioAfter"
-        ).textContent = "-";
+        if (groupResults) {
+            groupResults.innerHTML = `
+                <div class="stress-test-empty">
+                    Hasil stress test belum tersedia.
+                </div>
+            `;
+        }
 
-        document.getElementById(
-            "stressTestTotalWeight"
-            ).textContent = "Coverage: -";
+        const warningContainer = document.getElementById(
+            "historicalStressWarning"
+        );
 
-            const warningContainer =
-                document.getElementById("historicalStressWarning");
-
+        if (warningContainer) {
             warningContainer.style.display = "none";
             warningContainer.innerHTML = "";
         }
-    
+
+        const stocksContainer = document.getElementById(
+            "stressTestStocks"
+        );
+
+        if (stocksContainer) {
+            stocksContainer.innerHTML = `
+                <tr>
+                    <td colspan="4" class="stress-test-empty">
+                        Data stress test tidak tersedia.
+                    </td>
+                </tr>
+            `;
+        }
+
+        const coverageLabel = document.getElementById(
+            "stressTestTotalWeight"
+        );
+
+        if (coverageLabel) {
+            coverageLabel.textContent = "Coverage: -";
+        }
+    }
+
+
 
     async function loadBiRateSensitivity(symbol) {
         try {

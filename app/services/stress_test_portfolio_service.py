@@ -87,6 +87,17 @@ def get_stress_test_portfolios(date: str) -> dict:
         {"date": date},
     )
 
+    logger.info(
+    "Saham Trading - Raw row count: %s",
+    len(trading_rows),
+)
+
+    if trading_rows:
+        logger.info(
+            "Saham Trading - First raw row keys: %s",
+            list(trading_rows[0].keys()),
+        )
+
     schroder_rows = _fetch_all_pages(
         get_mi_report,
         {

@@ -5,7 +5,7 @@ from datetime import datetime
 
 ROOT = Path(__file__).resolve().parent
 OLD_FILE = ROOT / "data" / "macro" / "oil_price_wti.csv"
-NEW_FILE = ROOT / "wti_fred.csv"
+NEW_FILE = ROOT / "data" / "macro" / "wti_fred.csv"
 OUTPUT_FILE = ROOT / "data" / "macro" / "oil_price_wti_merged.csv"
 
 # Baca data WTI lama

@@ -2,6 +2,7 @@ from app.services.stock_service import get_historical_prices
 from app.utils.logger import logger
 
 
+
 def calculate_bi_rate_events(
     symbol: str,
     bi_rate_data: list,
@@ -19,12 +20,22 @@ def calculate_bi_rate_events(
     if not stock_data:
         return None
 
+    # Simpan harga penutupan saham yang valid.
     stock_prices = {
         item["date"]: float(item["close"])
         for item in stock_data
-        if item.get("close") is not None
+        if item.get("date")
+        and item.get("close") is not None
+        and float(item["close"]) > 0
     }
 
+    if not stock_prices:
+        return None
+
+    # Urutkan tanggal perdagangan saham.
+    stock_dates = sorted(stock_prices.keys())
+
+    # Urutkan data BI-Rate berdasarkan tanggal.
     sorted_bi_rate = sorted(
         bi_rate_data,
         key=lambda item: item["date"]
@@ -34,41 +45,52 @@ def calculate_bi_rate_events(
     previous_rate = None
 
     for item in sorted_bi_rate:
-        date = item["date"]
+        event_date = item["date"]
         current_rate = float(item["value"])
 
         if previous_rate is None:
             previous_rate = current_rate
             continue
 
-        change_bps = (current_rate - previous_rate) * 100
+        change_bps = round(
+            (current_rate - previous_rate) * 100,
+            6
+        )
 
-        # Hanya ambil tanggal ketika BI-Rate benar-benar berubah.
+        # Hanya proses event ketika BI-Rate berubah.
         if change_bps == 0:
             previous_rate = current_rate
             continue
 
+        previous_stock_date = None
+        current_stock_date = None
+
+        # Cari tanggal perdagangan sebelum tanggal event.
+        for stock_date in stock_dates:
+            if stock_date < event_date:
+                previous_stock_date = stock_date
+            else:
+                # Tanggal event atau hari perdagangan
+                # pertama setelah tanggal event.
+                current_stock_date = stock_date
+                break
+
         event_return = None
 
-        if date in stock_prices:
-            event_dates = sorted(
-                stock_date
-                for stock_date in stock_prices
-                if stock_date < date
-            )
+        if previous_stock_date and current_stock_date:
+            previous_stock_price = stock_prices[
+                previous_stock_date
+            ]
+            current_stock_price = stock_prices[
+                current_stock_date
+            ]
 
-            if event_dates:
-                previous_stock_date = event_dates[-1]
-                previous_stock_price = stock_prices[previous_stock_date]
-                current_stock_price = stock_prices[date]
-
-                if previous_stock_price > 0:
-                    event_return = (
-                        current_stock_price / previous_stock_price
-                    ) - 1
+            event_return = (
+                current_stock_price / previous_stock_price
+            ) - 1
 
         events.append({
-            "date": date,
+            "date": event_date,
             "previousRate": previous_rate,
             "currentRate": current_rate,
             "changeBps": change_bps,
@@ -78,6 +100,7 @@ def calculate_bi_rate_events(
                 if event_return is not None
                 else None
             ),
+            "stockReturnDate": current_stock_date,
         })
 
         previous_rate = current_rate

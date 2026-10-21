@@ -23,14 +23,16 @@ class InternalProvider(BaseProvider):
 
 
         logger.info(f"Internal API GET - {url}")
+        logger.info(f"Internal API Params - {params}")
 
         response = self.client.get(
             url,
             params=params,
-    
         )
 
-        return response.json()
+        result = response.json()
+
+        return result
 
     def get_portfolios(self):
         return self._get("/portfolios")

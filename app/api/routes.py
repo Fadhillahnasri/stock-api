@@ -718,7 +718,7 @@ def macro_bi_rate_sensitivity(
 
     try:
         bi_rate_data = get_bi_rate(
-            start_date=startDate,
+            start_date="2025-01-01",
             end_date=endDate
         )
 

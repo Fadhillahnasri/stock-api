@@ -21,6 +21,7 @@ def calculate_fx_shock(current_fx: float, target_fx: float = 25000):
     return shock
 
 
+
 def calculate_oil_shock(shock_percentage: float):
     """
     Mengembalikan shock harga minyak dalam bentuk desimal.
@@ -29,7 +30,13 @@ def calculate_oil_shock(shock_percentage: float):
     -30% -> -0.30
     -40% -> -0.40
     """
+    if not -100 <= shock_percentage <= 100:
+        raise ValueError(
+            "Oil shock harus berada di antara -100 dan 100 persen."
+        )
+
     return shock_percentage / 100
+
 
 
 def calculate_stock_stress_impact(
@@ -162,13 +169,31 @@ def run_custom_stress_test(
     stocks = []
     missing_stocks = []
 
+
     for stock in portfolio_stocks:
         symbol = stock.get("stockCode")
 
         # portfolioWeight dari portfolio analysis
         # menggunakan satuan persen (0-100).
+        if not symbol:
+            continue
+
+        try:
+            portfolio_weight = float(stock.get("portfolioWeight", 0))
+        except (TypeError, ValueError) as exc:
+            raise ValueError(
+                f"Nilai bobot tidak valid untuk saham {symbol}."
+            ) from exc
+
+        if not 0 <= portfolio_weight <= 100:
+            raise ValueError(
+                f"Nilai bobot saham {symbol} harus berada "
+                "di antara 0 dan 100 persen."
+            )
+
         # Custom stress test menggunakan desimal (0-1).
-        weight = float(stock.get("portfolioWeight", 0)) / 100
+        weight = portfolio_weight / 100
+
 
         fx_beta = fx_betas.get(symbol)
         oil_beta = oil_betas.get(symbol)
@@ -294,4 +319,3 @@ def get_stock_macro_betas(
         "oilBeta": oil_sensitivity["beta"],
         "oilCorrelation": oil_sensitivity["correlation"],
     }
-
